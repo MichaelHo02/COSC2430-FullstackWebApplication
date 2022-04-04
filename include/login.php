@@ -29,7 +29,6 @@
                     $tempUserUsername = $tempUserArray[3];
                     $tempUserEmail = $tempUserArray[2];
                     $tempUserPassword = $tempUserArray[4];
-                    
                     if ($_POST['email'] == $tempUserEmail || $_POST['email'] == $tempUserUsername) {
                         if ($_POST['password'] == $tempUserPassword) {
                             setcookie('user-id-cookie', $tempUserId, time() + 7200,"/", "localhost");
