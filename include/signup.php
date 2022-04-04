@@ -18,10 +18,11 @@
     <div class="container mt-5 ">
         <div class="row justify-content-center">
             <h1 class="display-3 col-12 text-center">Sign Up</h1>
-            <form name="form" class="col-lg-6 col-sm-10 mt-4" method="post" action="handle_signup.php" enctype="multipart/form-data">
+            <form name="form" class="col-lg-6 col-sm-10 mt-4" method="post" action="" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="email" class="form-label">Email address</label>
-                    <input name="email" type="email" class="form-control" id="email">
+                    <input name="email" type="email" class="form-control" id="email" autocomplete="off">
+                    <div id="emailFeedback" class=""></div>
                 </div>
 
                 <div class="mb-3">
@@ -42,6 +43,7 @@
                 <div class="mb-3">
                     <label for="retypePassword" class="form-label">Retype Password</label>
                     <input name="retypePassword" type="password" class="form-control" id="retypePassword">
+                    <div id="retypePasswordFeedback" class=""></div>
                 </div>
 
                 <div class="mb-3">
@@ -52,11 +54,13 @@
                 <div class="mb-3">
                     <label for="firstName" class="form-label">First name</label>
                     <input name="firstName" type="text" class="form-control" id="firstName">
+                    <div id="firstNameFeedback" class=""></div>
                 </div>
 
                 <div class="mb-3">
                     <label for="lastName" class="form-label">Last name</label>
                     <input name="lastName" type="text" class="form-control" id="lastName">
+                    <div id="lastNameFeedback" class=""></div>
                 </div>
 
                 <input type="reset" value="Reset" class="btn btn-secondary">
