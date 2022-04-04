@@ -32,13 +32,17 @@
                     if ($objArray[$i]->email == $emailUsername 
                     || $objArray[$i]->username == $emailUsername) {
                         if ($objArray[$i]->password == $loginPassword) {
+                            $_GLOBAL[$objArray[$i]->id] = $objArray[$i];
                             setcookie('user-id-cookie', $objArray[$i]->id, time() + 7200,"/", "localhost");
                             header('Location: ../index.php');
+                            break;
                         } else {
                             $loginPasswordErr = 'Wrong username or password!';
+                            break;
                         }
                     } else {
                         $loginPasswordErr = 'Wrong username or password!';
+                        break;
                     }
                 }
                 fclose($db);

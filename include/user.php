@@ -20,6 +20,8 @@
             $this->photoIdList = array();
         } 
 
+
+
         function setName($name) {
             $this->name = $name;
         }

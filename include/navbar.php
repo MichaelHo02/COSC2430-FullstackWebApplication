@@ -17,12 +17,26 @@
         </div>
         <a class="btn btn-primary position-absolute end-0" href="
         <?php 
-            if (str_contains($_SERVER['PHP_SELF'], 'index.php')) {
-                echo "./include/login.php";
+            if (isset($_COOKIE['user-id-cookie']) && str_contains($_SERVER['PHP_SELF'], 'index.php')) {
+                echo "./include/myaccount.php";
+            } else if (isset($_COOKIE['user-id-cookie']) && !str_contains($_SERVER['PHP_SELF'], 'index.php')) {
+                echo "./myaccount.php";
             } else {
-                echo "./login.php";
+                if (str_contains($_SERVER['PHP_SELF'], 'index.php')) {
+                    echo "./include/login.php";
+                } else {
+                    echo "./login.php";
+                }
             }
-        ?>" >Login</a>
+        ?>" >
+            <?php 
+                if (isset($_COOKIE['user-id-cookie'])) {
+                    echo "My account";
+                } else {
+                    echo "Login";
+                }
+            ?>
+        </a>
 
     </nav>
 </header>
