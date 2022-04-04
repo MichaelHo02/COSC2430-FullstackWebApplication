@@ -30,6 +30,16 @@
                 </div>
 
                 <div class="mb-3">
+                    <ul class="list-group">
+                        <li class="list-group-item">Password must be from 8 to 20 characters</li>
+                        <li class="list-group-item">Password must contain at least 1 lower case letter</li>
+                        <li class="list-group-item">Password must contain at least 1 upper case letter</li>
+                        <li class="list-group-item">Password must contain at least 1 digit</li>
+                        <li class="list-group-item">Password requires to have no space</li>
+                    </ul>
+                </div>
+
+                <div class="mb-3">
                     <label for="retypePassword" class="form-label">Retype Password</label>
                     <input name="retypePassword" type="password" class="form-control" id="retypePassword">
                 </div>
@@ -57,7 +67,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="">
+    <script src="../assets/js/form.js"></script>
     </script>
 </body>
 
