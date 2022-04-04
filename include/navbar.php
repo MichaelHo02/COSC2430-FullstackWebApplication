@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-lg navbar-light position-relative">
         <!-- Bug when clicking at 1nstagram at index.php -->
         <a href="../index.php" class="navbar-brand display-1 font-weight-bold position-absolute">1nstagram</a> 
-        <div class="ms-auto me-auto">
+        <div class="ms-auto me-auto w-50">
             <form class="">
                 <input class="form-control modal-xl" type="search" placeholder="Search" aria-label="Search">
             </form>

@@ -1,1 +1,3 @@
-user_1,Truong Nhat Anh,truongnhatanh@gmail.com,truongnhatanh,123yasuoulti,23/2/2002,[]
+[
+    {"id":"user_624b021ee9304","name":"Truong Nhat Anh","email":"truongnhatanh@gmail.com","username":"truongnhatanh","password":"hash","registeredTime":"21-02-2022 12:34:49","photoIdList":[]}
+]

@@ -14,24 +14,25 @@
     ?>
 
     <?php 
-        
+        require_once "./user.php";
         $loginPasswordErr = '';
         if (isset($_POST['submit'])) {
             $emailUsername = $_POST['email'];
             $loginPassword = $_POST['password'];
             
+            
             $db = fopen('../accounts.db', 'r');
 
-            if ($db) { 
-                while (($line = fgets($db)) !== false) { 
-                    $tempUserArray = explode(",", $line);
-                    $tempUserId = $tempUserArray[0];
-                    $tempUserUsername = $tempUserArray[3];
-                    $tempUserEmail = $tempUserArray[2];
-                    $tempUserPassword = $tempUserArray[4];
-                    if ($_POST['email'] == $tempUserEmail || $_POST['email'] == $tempUserUsername) {
-                        if ($_POST['password'] == $tempUserPassword) {
-                            setcookie('user-id-cookie', $tempUserId, time() + 7200,"/", "localhost");
+
+            if ($db) {
+                $rawContent = fread($db, filesize("../accounts.db"));
+                $objArray = json_decode($rawContent);
+
+                for ($i = 0; $i < count($objArray); $i++) {
+                    if ($objArray[$i]->email == $emailUsername 
+                    || $objArray[$i]->username == $emailUsername) {
+                        if ($objArray[$i]->password == $loginPassword) {
+                            setcookie('user-id-cookie', $objArray[$i]->id, time() + 7200,"/", "localhost");
                             header('Location: ../index.php');
                         } else {
                             $loginPasswordErr = 'Wrong username or password!';
@@ -49,14 +50,16 @@
     <div class="container mt-5">
         <div class="row justify-content-center">
             <h1 class="display-3 col-12 text-center">Login</h1>
-            <h5 class="mt-4 border border-danger rounded col-6 p-3 text-danger text-center fail-auth <?php 
-                if ($loginPasswordErr == '') {
-                    echo 'd-none';
-                }
-            ?>">
-                <?php echo $loginPasswordErr; ?>
-            </h5>
+
             <form class="col-lg-6 col-sm-10 mt-4" method="post" action="login.php" onsubmit="return handleLoginForm()">
+                <h5 class="mt-4 mb-4 border border-danger rounded  p-3 text-danger text-center fail-auth <?php 
+                    if ($loginPasswordErr == '') {
+                        echo 'd-none';
+                    }
+                ?>">
+                    <?php echo $loginPasswordErr; ?>
+                </h5>
+
                 <div class="mb-3">
                     <label for="loginEmailUsername" class="form-label">Email address / Username</label>
                     <input name="email" type="text" class="form-control" id="loginEmailUsername" >

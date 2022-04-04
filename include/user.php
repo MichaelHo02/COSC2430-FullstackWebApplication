@@ -3,7 +3,7 @@
 
     class User {
         private $id;
-        private $name;
+        public $name;
         private $email;
         private $username;
         private $password;
@@ -63,6 +63,10 @@
         function getRegistrationTime() {
             return $this->registeredTime;
         }
-        
+
+        public function jsonSerialize() {
+            $vars = get_object_vars($this);
+            return $vars;
+        }        
     }
 ?>
