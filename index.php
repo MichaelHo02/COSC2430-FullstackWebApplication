@@ -23,7 +23,7 @@
             include "./include/post.php";
         ?>
 
-        <div class="container mt-1">
+        <div class="container mt-4">
             <div class="row justify-content-center">
                 <?php
                 // echo $_COOKIE['user-id-cookie'];
