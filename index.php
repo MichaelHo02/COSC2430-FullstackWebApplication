@@ -18,6 +18,7 @@
         <div class="container mt-1">
             <div class="row justify-content-center">
                 <?php
+                // echo $_COOKIE['user-id-cookie'];
                 include "./include/row.php";
                 include "./include/row.php";
                 include "./include/row.php";

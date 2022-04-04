@@ -2,6 +2,7 @@
     include "./photo.php";
 
     class User {
+        private $id;
         private $name;
         private $email;
         private $username;
@@ -10,6 +11,7 @@
         private $photoIdList;
 
         function __construct($name, $email, $username, $password, $registeredTime) {
+            $this->id = "user_" . uniqid();
             $this->name = $name;
             $this->email = $email;
             $this->username = $username;
@@ -39,6 +41,9 @@
             array_push($this->photoIdList, $photoId);
         }
 
+        function getId() {
+            return $this->id;
+        }
         function getName() {
             return $this->name;
         }
