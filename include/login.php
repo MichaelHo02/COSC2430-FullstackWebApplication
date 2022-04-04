@@ -34,10 +34,10 @@
                             setcookie('user-id-cookie', $tempUserId, time() + 7200,"/", "localhost");
                             header('Location: ../index.php');
                         } else {
-                            $loginPasswordErr = 'Wrong password';
+                            $loginPasswordErr = 'Wrong username or password!';
                         }
                     } else {
-                        $emailUsernameErr = 'Invalid information!';
+                        $loginPasswordErr = 'Wrong username or password!';
                     }
                 }
                 fclose($db);
@@ -49,16 +49,27 @@
     <div class="container mt-5">
         <div class="row justify-content-center">
             <h1 class="display-3 col-12 text-center">Login</h1>
-            <form class="col-lg-6 col-sm-10 mt-4" method="post" action="login.php">
+            <h5 class="mt-4 border border-danger rounded col-6 p-3 text-danger text-center fail-auth <?php 
+                if ($loginPasswordErr == '') {
+                    echo 'd-none';
+                }
+            ?>">
+                <?php echo $loginPasswordErr; ?>
+            </h5>
+            <form class="col-lg-6 col-sm-10 mt-4" method="post" action="login.php" onsubmit="return handleLoginForm()">
                 <div class="mb-3">
                     <label for="loginEmailUsername" class="form-label">Email address / Username</label>
                     <input name="email" type="text" class="form-control" id="loginEmailUsername" >
-                    <h4 id="loginEmailUsernameWarning" class="form-text"><?php echo $emailUsernameErr; ?></h4>
+                    <div id="loginUserFeedback" class="invalid-feedback">
+                        
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="loginPassword" class="form-label">Password</label>
                     <input name="password" type="password" class="form-control" id="loginPassword">
-                    <h4 id="loginPasswordWarning" class="form-text"><?php echo $loginPasswordErr; ?></h4>
+                    <div id="passwordUserFeedback" class="invalid-feedback">
+
+                    </div>
                 </div>
                 <div class="mb-3 form-check">
                     <input type="checkbox" class="form-check-input" id="rememberMeCheck">
