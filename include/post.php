@@ -1,5 +1,5 @@
-<div class="container mt-3">
-    <form action="" method="post">
+<div class="container mt-3 ">
+    <form class="col-sm-12 col-lg-6 ms-auto me-auto" action="" method="post">
 
         <div class="mb-3">
             <label for="imageUpload" class="form-label">Choose image to upload</label>
@@ -11,7 +11,7 @@
             <textarea class="form-control" id="post-desc" rows="3" style="resize: none;"></textarea>
         </div>
 
-        <div class="mb-3 w-25">
+        <div class="mb-3 w-50">
             <label for="sharinglev" class="form-label">Sharing level</label>
             <select id="sharinglev" class="form-select form-select w-50">
                 
