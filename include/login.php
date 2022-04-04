@@ -14,21 +14,22 @@
     ?>
 
     <?php 
-        $emailUsernameErr = '';
+        
         $loginPasswordErr = '';
         if (isset($_POST['submit'])) {
             $emailUsername = $_POST['email'];
             $loginPassword = $_POST['password'];
             
             $db = fopen('../accounts.db', 'r');
-            if ($db) {
-                while (($line = fgets($db)) !== false) {
-                    // Find corresponding user and thenproceed;
+
+            if ($db) { 
+                while (($line = fgets($db)) !== false) { 
                     $tempUserArray = explode(",", $line);
                     $tempUserId = $tempUserArray[0];
                     $tempUserUsername = $tempUserArray[3];
                     $tempUserEmail = $tempUserArray[2];
                     $tempUserPassword = $tempUserArray[4];
+                    
                     if ($_POST['email'] == $tempUserEmail || $_POST['email'] == $tempUserUsername) {
                         if ($_POST['password'] == $tempUserPassword) {
                             setcookie('user-id-cookie', $tempUserId, time() + 7200,"/", "localhost");
