@@ -26,12 +26,18 @@
         $firstName = $_POST['firstName'];
         $lastName = $_POST['lastName'];
         $user = new User($email, $password, $firstName, $lastName);
-        $json = json_encode($user->jsonSerialize());
-        // echo $json;
-        // var_dump(file_exists('../accounts.db'));
-        $db = fopen('../accounts.db', 'w');
-        fwrite($db, $json);
-        fclose($db);
+        $file = '../accounts.db';
+        if ($out = fopen($file, 'r')) {
+            $jsonSrc = json_decode(fread($out, filesize($file)));
+            array_push($jsonSrc, $user->jsonSerialize());
+            $strSrc = json_encode($jsonSrc);
+        }
+        fclose($out);
+        $in = fopen($file, 'w');
+        if ($in) {
+            fwrite($in, $strSrc);
+        }
+        fclose($in);
     }
     ?>
 
