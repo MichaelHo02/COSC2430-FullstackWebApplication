@@ -78,9 +78,8 @@
 
                     </div>
                 </div>
-                <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="rememberMeCheck">
-                    <label class="form-check-label" for="rememberMeCheck">Remember me</label>
+                <div class="mb-3">
+                    <label class="form-check-label" for="redirectSignUp">Don't have an account? <a href="./signup.php" class="link-primary">Sign up</a></label>
                 </div>
                 <button name="submit" type="submit" class="btn btn-primary login-submit">Submit</button>
             </form>
