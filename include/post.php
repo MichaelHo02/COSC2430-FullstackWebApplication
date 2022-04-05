@@ -1,4 +1,4 @@
-<div class="container mt-3 d-none">
+<div class="container mt-3 d-none" id="post-factory">
     <form class="col-sm-12 col-lg-6 ms-auto me-auto" action="" method="post">
 
         <div class="mb-3">
