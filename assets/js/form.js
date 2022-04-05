@@ -1,4 +1,5 @@
 const $ = document.querySelector.bind(document);
+const $$ = document.querySelectorAll.bind(document);
 
 const validEmail = function () {
 	const email = String(this.value).toLowerCase();
@@ -30,6 +31,7 @@ const validEmail = function () {
 		element.classList.remove('valid-feedback');
 		element.innerText = message;
 	}
+	updateBtn();
 };
 
 const validPassword = function () {
@@ -82,6 +84,7 @@ const validPassword = function () {
 		requirement[4].classList.add('list-group-item-success');
 		requirement[4].classList.remove('list-group-item-danger');
 	}
+	updateBtn();
 };
 
 const validRetypePassword = function () {
@@ -102,6 +105,7 @@ const validRetypePassword = function () {
 		element.classList.remove('valid-feedback');
 		element.innerText = 'The retype password is not similar!';
 	}
+	updateBtn();
 };
 
 const validName = function () {
@@ -122,6 +126,7 @@ const validName = function () {
 		element.innerText =
 			'The name need to be between 2 and 20 characters long!';
 	}
+	updateBtn();
 };
 
 $('#email').addEventListener('input', validEmail);
@@ -129,3 +134,35 @@ $('#password').addEventListener('input', validPassword);
 $('#retypePassword').addEventListener('input', validRetypePassword);
 $('#firstName').addEventListener('input', validName);
 $('#lastName').addEventListener('input', validName);
+
+const updateBtn = function () {
+	console.log(
+		$$('.is-valid').length,
+		$$('.valid-feedback').length,
+		$$('.list-group-item-success').length
+	);
+	console.log(
+		$$('.is-valid').length < 4 ||
+			$$('.valid-feedback').length < 4 ||
+			$$('.list-group-item-success').length < 5
+	);
+	if (
+		$$('.is-valid').length < 4 ||
+		$$('.valid-feedback').length < 4 ||
+		$$('.list-group-item-success').length < 5
+	) {
+		console.log('A');
+		$('#submit').disabled = true;
+	} else {
+		$('#submit').disabled = false;
+	}
+};
+
+$('.form').onsubmit = function () {
+	console.log('object');
+	return (
+		$$('.is-valid').length === 4 &&
+		$$('.valid-feedback').length === 4 &&
+		$$('.list-group-item-success').length === 5
+	);
+};
