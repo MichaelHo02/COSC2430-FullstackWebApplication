@@ -31,6 +31,7 @@ class User
         $this->password = $password;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
+        $this->photoIdList = array();
     }
 
 

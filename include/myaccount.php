@@ -29,12 +29,11 @@
                 for ($i = 0; $i < count($objArray); $i++) {
                     if ($objArray[$i]->id == $_COOKIE['user-id-cookie']) {
                         $user = new User(
-                            $objArray[$i]->name,
+            
                             $objArray[$i]->email,
-                            $objArray[$i]->username,
                             "hidden",
-                            $objArray[$i]->$registeredTime,
-                            $objArray[$i]->$photoIdList
+                            "test",
+                            "fuck you"
                         );
                         break;
                     }
@@ -47,7 +46,7 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <h1 class="display-1"><?php echo $user->getName(); ?></h1>
-                    <h1 class="display-2"><?php echo "@" . $user->getUsername(); ?></h1>
+                    <h1 class="display-2"><?php echo "@" . $user->getEmail(); ?></h1>
                 </div>
             </div>
             <form action="./logout.php" method="post">

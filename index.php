@@ -16,6 +16,8 @@
 
 <body>
         <?php
+            // unset($_COOKIE['user-id-cookie']);
+            // setcookie('user-id-cookie', null, -1, '/', 'localhost');
             include "./include/navbar.php";
         ?>
 
@@ -24,6 +26,7 @@
         <?php
             include "./include/post.php";
         ?>
+
 
         <div class="container mt-4">
             <button class="btn btn-primary create-post-btn 
