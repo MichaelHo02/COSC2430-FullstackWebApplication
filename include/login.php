@@ -18,7 +18,7 @@
         $loginPasswordErr = '';
         if (isset($_POST['submit'])) {
             $emailUsername = $_POST['email'];
-            $loginPassword = $_POST['password'];
+            $loginPassword = md5($_POST['password']);
             
             
             $db = fopen('../accounts.db', 'r');

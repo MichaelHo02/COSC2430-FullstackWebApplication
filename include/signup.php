@@ -21,7 +21,7 @@
 
         $email = $_POST['email'];
         $password = $_POST['password'];
-        // $password = md5($password);
+        $password = md5($password);
         // $file = $_POST['formFile'];
         $firstName = $_POST['firstName'];
         $lastName = $_POST['lastName'];
