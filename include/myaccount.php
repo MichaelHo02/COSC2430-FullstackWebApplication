@@ -33,7 +33,8 @@
                             $objArray[$i]->email,
                             "hidden",
                             "test",
-                            "fuck you"
+                            "fuck you",
+                            $objArray[$i]->avatar
                         );
                         break;
                     }
