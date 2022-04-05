@@ -15,10 +15,30 @@
     include "./navbar.php"
     ?>
 
+    <?php
+    require_once "./user.php";
+    if (isset($_POST['submit'])) {
+
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $password = md5($password);
+        // $file = $_POST['formFile'];
+        $firstName = $_POST['firstName'];
+        $lastName = $_POST['lastName'];
+        $user = new User($email, $password, $firstName, $lastName);
+        $json = json_encode($user->jsonSerialize());
+        // echo $json;
+        // var_dump(file_exists('../accounts.db'));
+        $db = fopen('../accounts.db', 'w');
+        fwrite($db, $json);
+        fclose($db);
+    }
+    ?>
+
     <div class="container mt-5 ">
         <div class="row justify-content-center">
             <h1 class="display-3 col-12 text-center">Sign Up</h1>
-            <form name="form" class="col-lg-6 col-sm-10 mt-4" method="post" action="" enctype="multipart/form-data">
+            <form name="form" class="col-lg-6 col-sm-10 mt-4" method="post" action="signup.php" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="email" class="form-label">Email address</label>
                     <input name="email" type="email" class="form-control" id="email" autocomplete="off">
@@ -64,7 +84,7 @@
                 </div>
 
                 <input type="reset" value="Reset" class="btn btn-secondary">
-                <input type="submit" value="Register" class="btn btn-primary">
+                <input name="submit" type="submit" value="Register" class="btn btn-primary">
             </form>
         </div>
 
