@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="./assets/css/gdpr.css">
     <script src="./assets/js/gdpr.js" defer></script>
     <script src="./assets/js/index.js" defer></script>
+    <script src="./assets/js/render.js" defer></script>
 </head>
 
 <body>
@@ -38,12 +39,12 @@
                 }
             ?> ">Create new post</button>
 
-            <div class="row justify-content-center mt-4">
+            <div class="row justify-content-center mt-4 new-feed-wrapper">
                 <?php
-                include "./include/row.php";
-                include "./include/row.php";
-                include "./include/row.php";
-                include "./include/row.php";
+                // include "./include/row.php";
+                // include "./include/row.php";
+                // include "./include/row.php";
+                // include "./include/row.php";
                 ?>
             </div>
         </div>

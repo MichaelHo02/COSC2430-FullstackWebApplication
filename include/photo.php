@@ -3,15 +3,17 @@
         private $photoId;
         private $publishedDate;
         private $userId;
+        private $photoExt;
         private $photoDesc;
         private $sharingLev;
 
-        function __construct($userId, $photoDesc, $sharingLev) {
+        function __construct($userId, $photoDesc, $sharingLev, $photoExt) {
             $this->photoId = "img_" . uniqid();
             $this->publishedDate = time();
             $this->userId = $userId;
-            $this->desc = $photoDesc;
+            $this->photoDesc = $photoDesc;
             $this->sharingLev = $sharingLev;
+            $this->photoExt = $photoExt;
         }
 
         function setPublishedDate($publishedDate) {
@@ -36,6 +38,10 @@
 
         function getPhotoId() {
             return $this->photoId;
+        }
+
+        function getPhotoExt() {
+            return $this->photoExt;
         }
 
         function getUserId() {

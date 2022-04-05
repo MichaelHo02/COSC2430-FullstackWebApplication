@@ -7,8 +7,8 @@
         </div>
 
         <div class="mb-3">
-            <label for="post-desc"  class="form-label">Photo description</label>
-            <textarea class="form-control" name="photoDesc" id="post-desc" rows="3" style="resize: none;"></textarea>
+            <label for="photoDesc" name="photoDesc" class="form-label">Photo description</label>
+            <textarea class="form-control" name="photoDesc" id="photoDesc" rows="2" style="resize: none;"></textarea>
         </div>
 
         <div class="mb-3 w-50">

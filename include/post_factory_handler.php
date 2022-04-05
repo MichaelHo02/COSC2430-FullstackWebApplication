@@ -19,12 +19,16 @@
             $file_ok = false;
         }
 
+        // print_r($_POST);
+
+
         if ($file_ok) {
             // Create new photo obj
             $photo = new Photo(
                 $_COOKIE['user-id-cookie'],
                 $_POST['photoDesc'],
-                $_POST['sharingLev']
+                $_POST['sharingLev'],
+                $file_ext
             );
 
             // Add img to user
@@ -55,7 +59,7 @@
             $jsonPhotoSrc = json_decode(fread($photoDb, filesize($photoFile)));
             array_push($jsonPhotoSrc, $photo->jsonSerialize());
             fclose($photoDb);
-            print_r($jsonPhotoSrc);
+
             $photoDb = fopen($photoFile, 'w');
             fwrite($photoDb, json_encode($jsonPhotoSrc));
             fclose($photoDb);
