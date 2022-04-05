@@ -22,29 +22,64 @@
         $email = $_POST['email'];
         $password = $_POST['password'];
         $password = md5($password);
-        // $file = $_POST['formFile'];
+
+
         $firstName = $_POST['firstName'];
         $lastName = $_POST['lastName'];
-        $user = new User($email, $password, $firstName, $lastName);
-        $file = '../accounts.db';
-        if ($out = fopen($file, 'r')) {
-            $jsonSrc = json_decode(fread($out, filesize($file)));
-            array_push($jsonSrc, $user->jsonSerialize());
-            $strSrc = json_encode($jsonSrc);
+
+
+        // avatar validation
+        if (isset($_FILES['formFile'])) {
+            $avatar = $_FILES['formFile'];
+            $file_ok = true;
+            $extension = ['jpg', 'jpeg', 'png', 'gif'];
+            $file_ext = strtolower(end(explode('.', $avatar['name'])));
+            if (in_array($file_ext, $extension) === false) {
+                $file_ok = false;
+                $message = 'Wrong file extension! Only JPG, JPEG, PNG, and GIF';
+            }
+            if ($avatar['size'] > 20000000) {
+                $file_ok = false;
+                $message = 'File size is greater than 20MB';
+            }
+            if ($file_ok) {
+                $fileNewName = '../assets/img/avatar/' . uniqid() . '.' . $file_ext;
+                if (move_uploaded_file($avatar['tmp_name'], $fileNewName)) {
+                    echo 'success ' . $fileNewName;
+                    $message = 'File is saved!';
+                } else {
+                    echo 'fail ' . $fileNewName;
+                }
+            }
         }
-        fclose($out);
-        $in = fopen($file, 'w');
-        if ($in) {
-            fwrite($in, $strSrc);
+        $message = 'No File was uploaded!';
+
+        if ($file_ok) {
+            $user = new User($email, $password, $firstName, $lastName, $fileNewName);
+
+            $file = '../accounts.db';
+            if ($out = fopen($file, 'r')) {
+                $jsonSrc = json_decode(fread($out, filesize($file)));
+                array_push($jsonSrc, $user->jsonSerialize());
+                $strSrc = json_encode($jsonSrc);
+                fclose($out);
+
+                $in = fopen($file, 'w');
+                if ($in) {
+                    fwrite($in, $strSrc);
+                }
+                fclose($in);
+
+                header('Location: ./login.php');
+            }
         }
-        fclose($in);
     }
     ?>
 
     <div class="container mt-5 ">
         <div class="row justify-content-center">
             <h1 class="display-3 col-12 text-center">Sign Up</h1>
-            <form name="form" class="col-lg-6 col-sm-10 mt-4" method="post" action="signup.php" enctype="multipart/form-data">
+            <form name="form" class="col-lg-6 col-sm-10 mt-4 form" method="post" action="signup.php" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="email" class="form-label">Email address</label>
                     <input name="email" type="email" class="form-control" id="email" autocomplete="off">
@@ -74,7 +109,28 @@
 
                 <div class="mb-3">
                     <label for="formFile" class="form-label">Profile picture</label>
-                    <input class="form-control" type="file" id="formFile" name="formFile">
+                    <input class="form-control <?php
+                                                if (isset($_FILES['formFile'])) {
+                                                    if ($file_ok) {
+                                                        echo 'is-valid';
+                                                    } else {
+                                                        echo 'is-invalid';
+                                                    }
+                                                }
+                                                ?>" type="file" id="formFile" name="formFile">
+                    <div id="" class="<?php
+                                        if (isset($_FILES['formFile'])) {
+                                            if ($file_ok) {
+                                                echo 'valid-feedback';
+                                            } else {
+                                                echo 'invalid-feedback';
+                                            }
+                                        }
+                                        ?>">
+                        <?php
+                        echo $message;
+                        ?>
+                    </div>
                 </div>
 
                 <div class="mb-3">
@@ -90,7 +146,7 @@
                 </div>
 
                 <input type="reset" value="Reset" class="btn btn-secondary">
-                <input name="submit" type="submit" value="Register" class="btn btn-primary">
+                <input name="submit" type="submit" value="Register" class="btn btn-primary" id="submit" disabled>
             </form>
         </div>
 

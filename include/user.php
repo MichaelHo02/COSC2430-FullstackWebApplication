@@ -24,13 +24,14 @@ class User
     //     $this->photoIdList = array();
     // } 
 
-    function __construct($email, $password, $firstName, $lastName)
+    function __construct($email, $password, $firstName, $lastName, $avatar)
     {
         $this->id = "user_" . uniqid();
         $this->email = $email;
         $this->password = $password;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
+        $this->avatar = $avatar;
         $this->photoIdList = array();
     }
 
