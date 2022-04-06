@@ -1,6 +1,6 @@
 <?php
     function cmpPhoto($a, $b) {
-        return strcmp($a->publishedDate, $b->publishedDate);
+        return  $b->publishedDate - $a->publishedDate;
     }
 
     function cmpUser($a, $b) {
