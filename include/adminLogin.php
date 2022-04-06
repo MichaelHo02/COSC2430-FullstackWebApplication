@@ -50,10 +50,7 @@
 
                     </div>
                 </div>
-                <div class="mb-3">
-                    <label class="form-check-label" for="redirectSignUp">Don't have an account? <a href="./signup.php" class="link-primary">Sign up</a></label>
-                </div>
-                <button name="submit" type="submit" class="btn btn-primary login-submit">Submit</button>
+                <button name="submit" type="submit" class="btn btn-primary login-submit">Login</button>
             </form>
         </div>
     </div>
