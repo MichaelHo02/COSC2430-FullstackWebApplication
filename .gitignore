@@ -5,3 +5,4 @@ assets/img/storage/
 photos.db
 *.db
 *.json
+accounts.db
