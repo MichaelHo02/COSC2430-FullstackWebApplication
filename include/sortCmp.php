@@ -4,6 +4,6 @@
     }
 
     function cmpUser($a, $b) {
-        return strcmp($a->registeredTime, $b->registeredTime);
+        return $b->registeredTime - $a->registeredTime;
     }
 ?>
