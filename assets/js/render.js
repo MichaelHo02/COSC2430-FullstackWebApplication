@@ -24,7 +24,7 @@ function renderFeed(data) {
     data.forEach(photo => {
         let photoUrl = "./assets/img/storage/" + photo.photoId + "." + photo.photoExt;
         let html = `
-        <div class="card col-lg-6 cold-md-6 col-sm-12 pt-0 ps-0 pe-0 rounded-0">
+        <div class="card col-lg-6 cold-md-6 ms-auto me-auto col-sm-12 pt-0 ps-0 pe-0 rounded-0">
             <img src="${photoUrl}" class="card-img-top" alt="...">
             <div class="card-body">
                 <!-- <h5 class="card-title">Card title</h5> -->
