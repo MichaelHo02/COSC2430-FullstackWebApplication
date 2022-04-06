@@ -1,0 +1,17 @@
+.list-group-item {
+
+}
+.list-group-item:hover {
+    color: blue;
+    cursor: pointer;
+}
+
+.list-group-item {
+    min-height: 42px;
+}
+
+.user-list {
+    min-height: 420px;
+
+    border: 1px solid #ccc;
+}

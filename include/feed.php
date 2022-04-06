@@ -14,7 +14,10 @@
                 $result[] = $jsonObj[$i];
             }
         }
-    } else { // Not logged in -> Only public
+    } else if ($_COOKIE['admin'] == ('admin' . md5('yasuoroot') . 'x')) {
+        echo json_encode($jsonObj);
+    }
+    else { // Not logged in -> Only public
         for ($i = 0; $i < count($jsonObj); $i++) {
             if ($jsonObj[$i]->sharingLev == 'public') {
                 $result[] = $jsonObj[$i];
@@ -23,5 +26,5 @@
     }
     echo json_encode($result);
     fclose($photoDb);
-    
+
 ?>

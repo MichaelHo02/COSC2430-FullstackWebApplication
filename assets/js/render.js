@@ -4,7 +4,7 @@ const newFeed = document.querySelector('.new-feed-wrapper');
 console.log(newFeed)
 console.log(document.cookie);
 
-fetchAllPhoto(renderFeed)
+fetchAllPhoto(renderFeed);
 
 function fetchAllPhoto(callback) {
     fetch(dbPath, {
