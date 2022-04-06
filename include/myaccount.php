@@ -21,28 +21,32 @@
         <!-- Idea: Show avatar, name, email, all photos, logout at the end -->
         <?php
         require_once "./user.php";
-        $db = fopen('../accounts.db', 'r');
-        $user;
+        // echo $_SERVER["HTTP_REFERER"];
+        // header('Location: ' . $_SERVER["HTTP_REFERER"]);
+        if (isset($_COOKIE['user-id-cookie'])) {
+            $db = fopen('../accounts.db', 'r');
+            $user;
 
-        if ($db) {
-            $rawContent = fread($db, filesize("../accounts.db"));
-            $objArray = json_decode($rawContent);
+            if ($db) {
+                $rawContent = fread($db, filesize("../accounts.db"));
+                $objArray = json_decode($rawContent);
 
-            for ($i = 0; $i < count($objArray); $i++) {
-                if ($objArray[$i]->id == $_COOKIE['user-id-cookie']) {
-                    $firstName = $objArray[$i]->firstName;
-                    $lastName = $objArray[$i]->lastName;
-                    $user = new User(
-                        $objArray[$i]->email,
-                        "hidden",
-                        $firstName,
-                        $lastName,
-                        $objArray[$i]->avatar
-                    );
-                    break;
+                for ($i = 0; $i < count($objArray); $i++) {
+                    if ($objArray[$i]->id == $_COOKIE['user-id-cookie']) {
+                        $firstName = $objArray[$i]->firstName;
+                        $lastName = $objArray[$i]->lastName;
+                        $user = new User(
+                            $objArray[$i]->email,
+                            "hidden",
+                            $firstName,
+                            $lastName,
+                            $objArray[$i]->avatar
+                        );
+                        break;
+                    }
                 }
+                fclose($db);
             }
-            fclose($db);
         }
         ?>
 
@@ -53,7 +57,7 @@
                 </div>
                 <div class="col-lg-9 col-md-6 col-sm-12 ">
                     <h1 class="display-4 text-lg-start text-md-start text-center">username</h1>
-                    <div class="row">
+                    <div class="row mt-lg-3 mt-md-0 mt-0">
                         <div class="col-lg-6 col-md-12 col-sm-12 text-md-start text-center">
                             <label for="" class="form-label fs-3">Email: </label>
                             <span class=" fs-3"><?php echo $user->getEmail(); ?></span>
@@ -63,7 +67,7 @@
                             <span class="fs-3 text-muted">07/04/2002</span>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mt-lg-3 mt-md-0 mt-0">
                         <div class="col-lg-6 col-md-12 col-sm-12 text-md-start text-center">
                             <label for="" class="form-label fs-3">First name: </label>
                             <span class=" fs-3"><?php echo $user->getFirstName(); ?></span>
@@ -76,13 +80,6 @@
                 </div>
             </div>
         </div>
-
-        <div class="container mt-4">
-            <form action="./logout.php" method="post">
-                <button class="btn btn-outline-danger">Log out</button>
-            </form>
-        </div>
-
     </main>
 
     <footer>
