@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="../assets/css/gdpr.css">
+    <link rel="stylesheet" href="../assets/css/myaccount.css">
     <script src="../assets/js/gdpr.js" defer></script>
 </head>
 
@@ -53,7 +54,10 @@
         <div class="container">
             <div class="row mt-5">
                 <div class="col-lg-3 col-md-6 col-sm-12">
-                    <img src="<?php echo $user->getAvatar(); ?>" class="rounded-circle mx-auto d-block" alt="avatar" width="80%">
+                    <div class="bg-info rounded-circle w-75 avatar">
+                        <img src="<?php echo $user->getAvatar(); ?>" class=" mx-auto d-block img-fluid" alt="avatar" width="80%">
+                    
+                    </div>
                 </div>
                 <div class="col-lg-9 col-md-6 col-sm-12 ">
                     <h1 class="display-4 text-lg-start text-md-start text-center">username</h1>
