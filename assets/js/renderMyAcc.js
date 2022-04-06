@@ -1,4 +1,4 @@
-let dbPath = './feed.php';
+let dbPath = './myaccountfeed.php';
 const newFeed = document.querySelector('.new-feed-wrapper');
 console.log(newFeed);
 console.log(document.cookie);
