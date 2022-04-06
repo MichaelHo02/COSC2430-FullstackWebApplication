@@ -112,6 +112,11 @@ class User
         return $this->registeredTime;
     }
 
+    function getAvatar()
+    {
+        return $this->avatar;
+    }
+
     public function jsonSerialize()
     {
         $vars = get_object_vars($this);
