@@ -3,7 +3,6 @@
     <?php
         include "card.php";
         include "card.php";
-
     ?>
 
 </div>

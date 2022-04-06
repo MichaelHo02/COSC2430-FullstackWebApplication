@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../assets/css/gdpr.css">
     <link rel="stylesheet" href="../assets/css/myaccount.css">
     <script src="../assets/js/gdpr.js" defer></script>
+    <script src="../assets/js/renderMyAcc.js" defer></script>
 </head>
 
 <body>
@@ -22,8 +23,6 @@
         <!-- Idea: Show avatar, name, email, all photos, logout at the end -->
         <?php
         require_once "./user.php";
-        // echo $_SERVER["HTTP_REFERER"];
-        // header('Location: ' . $_SERVER["HTTP_REFERER"]);
         if (isset($_COOKIE['user-id-cookie'])) {
             $db = fopen('../accounts.db', 'r');
             $user;
@@ -54,9 +53,9 @@
         <div class="container">
             <div class="row mt-5">
                 <div class="col-lg-3 col-md-6 col-sm-12">
-                    <div class="bg-info rounded-circle w-75 avatar">
+                    <div class="bg-info rounded-circle w-75 avatar mx-auto">
                         <img src="<?php echo $user->getAvatar(); ?>" class=" mx-auto d-block img-fluid" alt="avatar" width="80%">
-                    
+
                     </div>
                 </div>
                 <div class="col-lg-9 col-md-6 col-sm-12 ">
@@ -84,6 +83,13 @@
                 </div>
             </div>
         </div>
+
+
+        <div class="row justify-content-center mt-4 new-feed-wrapper">
+            <?php
+            ?>
+        </div>
+
     </main>
 
     <footer>
