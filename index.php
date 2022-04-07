@@ -44,7 +44,7 @@
         </div>
 
         <?php
-            include './include/cardComponent.php'
+            include './include/cardComponent.php';
         ?>
     </main>
     <footer>

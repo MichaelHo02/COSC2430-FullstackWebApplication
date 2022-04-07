@@ -52,7 +52,6 @@
                 <div class="col-lg-3 col-md-6 col-sm-12">
                     <div class="bg-info rounded-circle w-75 avatar mx-auto">
                         <img src="<?php echo $avatar; ?>" class=" mx-auto d-block img-fluid" alt="avatar" width="80%">
-
                     </div>
                 </div>
                 <div class="col-lg-9 col-md-6 col-sm-12 ">
