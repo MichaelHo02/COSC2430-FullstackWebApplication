@@ -1,7 +1,7 @@
 const userList = document.querySelector(".user-list")
 const userDbPath = "./adminFeed.php";
 const pagination = document.querySelector(".pagination");
-let isSearching = false;
+
 let currentPage = 0;
 let totalPages = 0;
 
@@ -21,19 +21,17 @@ function fetchAllUsers(callback) {
 }
 
 function filterData(data) {
-    console.log(data);
     let result = []
-    if (isSearching) {
-        let searchValue = searchUserInput.value;
-        console.log(searchUserInput.value);
-        data.forEach(user => {
-            if (user.email.includes(searchValue)) {
-                result.push(user);
-            }
-        })
-        data = result;
-    }
-    isSearching = false;
+
+    let searchValue = searchUserInput.value;
+    data.forEach(user => {
+        if (user.email.includes(searchValue)) {
+            result.push(user);
+        }
+    })
+    data = result;
+    
+
     return result;
 
 }
@@ -54,11 +52,6 @@ function renderPagination(data) {
         let pageItems = pagination.querySelectorAll('.page-item');
         pageItems[0].classList.add('disabled');
         pageItems[1].classList.add('disabled');
-        // console.log(pageItems);
-        // pageItems.forEach(item => {
-        //     item.classList.add('disabled');
-        //     console.log("invoke")
-        // });
     } else {
         totalPages = Math.ceil(data.length / 10);
         renderPaginationItem(totalPages);
@@ -160,5 +153,4 @@ searchUserBtn.addEventListener('click', () => {
     currentPage = 0;
     totalPages = 0;
     fetchAllUsers(renderPagination);
-    
 })

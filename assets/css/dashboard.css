@@ -2,7 +2,7 @@
 
 }
 .list-group-item:hover {
-    color: blue;
+    background-color: rgb(223, 223, 223);
     cursor: pointer;
 }
 
