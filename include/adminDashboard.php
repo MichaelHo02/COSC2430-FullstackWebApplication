@@ -24,8 +24,8 @@ if ($_COOKIE['admin'] != ('admin' . md5('yasuoroot') . 'x')) {
             <div class="container">
                 <a class="navbar-brand" href="#">Dashboard</a>
                 <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search user" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    <input class="form-control me-2 search-user-input" type="search" placeholder="Search user" aria-label="Search">
+                    <button class="btn btn-outline-success search-user-btn" type="submit">Search</button>
                 </form>
             </div>
             </div>

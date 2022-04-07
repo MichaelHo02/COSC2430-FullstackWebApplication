@@ -1,6 +1,7 @@
 const userList = document.querySelector(".user-list")
 const userDbPath = "./adminFeed.php";
 const pagination = document.querySelector(".pagination");
+let isSearching = false;
 let currentPage = 0;
 let totalPages = 0;
 
@@ -19,7 +20,27 @@ function fetchAllUsers(callback) {
     })
 }
 
+function filterData(data) {
+    console.log(data);
+    let result = []
+    if (isSearching) {
+        let searchValue = searchUserInput.value;
+        console.log(searchUserInput.value);
+        data.forEach(user => {
+            if (user.email.includes(searchValue)) {
+                result.push(user);
+            }
+        })
+        data = result;
+    }
+    isSearching = false;
+    return result;
+
+}
+
 function renderPagination(data) {
+    data = filterData(data);
+
     // Reset
     pagination.innerHTML = `
         <li class="page-item"><a class="page-link" href="#">Previous</a></li>
@@ -29,10 +50,15 @@ function renderPagination(data) {
     let totalUsers = data.length;
 
     if (totalUsers < 10) { // Disable pagination
+        console.log("< 10")
         let pageItems = pagination.querySelectorAll('.page-item');
-        pageItems.forEach(item => {
-            item.classList.add('disabled');
-        });
+        pageItems[0].classList.add('disabled');
+        pageItems[1].classList.add('disabled');
+        // console.log(pageItems);
+        // pageItems.forEach(item => {
+        //     item.classList.add('disabled');
+        //     console.log("invoke")
+        // });
     } else {
         totalPages = Math.ceil(data.length / 10);
         renderPaginationItem(totalPages);
@@ -61,7 +87,7 @@ function renderPaginationItem(totalPages) {
 function addEventPagination(data) {
     let allPageItems = pagination.querySelectorAll('.page-item');
     allPageItems.forEach(item => {
-        item.addEventListener('click', (event) => {
+        item.onclick = (event) => {
             userList.innerHTML = ''; // Reset
             let content = event.target.textContent;
             if (content == "Previous") {
@@ -76,15 +102,15 @@ function addEventPagination(data) {
                 currentPage = content - 1;
             }
             renderUIUser(data)
-        })
+        }
     })
 }
 
 function renderUIUser(data) {
-
-    console.log(data);
-    console.log(currentPage)
+    userList.innerHTML = '';
     activeCurrentPagination();
+    console.log("data: ",data)
+    console.log("currentPage: ", currentPage)
     for (let i = currentPage * 10; i < currentPage * 10 + 10; i++) {
         if (i == data.length) {
             break;
@@ -100,24 +126,39 @@ function renderUIUser(data) {
 }
 
 function activeCurrentPagination() {
-    let currentBtn = pagination.querySelectorAll('.page-item');
-    
-    let prevBtn = currentBtn[0];
-    let nextBtn = currentBtn[totalPages + 1];
-    console.log(currentPage);
-    prevBtn.classList.remove('disabled');
-    nextBtn.classList.remove('disabled');
-    currentBtn.forEach(btn => {
-        if (btn.textContent == currentPage + 1) {
-            btn.classList.add('active');
-        } else {
-            btn.classList.remove('active');
+    if (totalPages > 1) {
+        let currentBtn = pagination.querySelectorAll('.page-item');
+        
+        let prevBtn = currentBtn[0];
+        let nextBtn = currentBtn[currentBtn.length - 1];
+        if (prevBtn && prevBtn) {
+            prevBtn.classList.remove('disabled');
+            nextBtn.classList.remove('disabled');
         }
-    })
-    if (currentPage == totalPages - 1) {
-        nextBtn.classList.add('disabled');
-    } else if (currentPage == 0) {
-        prevBtn.classList.add('disabled');
+        currentBtn.forEach(btn => {
+            if (btn.textContent == currentPage + 1) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        })
+        if (currentPage == totalPages - 1) {
+            nextBtn.classList.add('disabled');
+        } else if (currentPage == 0) {
+            prevBtn.classList.add('disabled');
+        }
     }
     
 }
+
+////////////////////////////////
+const searchUserInput = document.querySelector(".search-user-input");
+const searchUserBtn = document.querySelector(".search-user-btn");
+
+searchUserBtn.addEventListener('click', () => {
+    isSearching = true;
+    currentPage = 0;
+    totalPages = 0;
+    fetchAllUsers(renderPagination);
+    
+})
