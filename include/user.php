@@ -21,6 +21,8 @@ class User
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->avatar = $avatar;
+        $this->username = $this->firstName . " " . $this->lastName;
+        $this->registeredTime = date('Y/m/d');
     }
 
 

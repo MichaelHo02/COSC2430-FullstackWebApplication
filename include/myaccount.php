@@ -33,15 +33,12 @@
 
                 for ($i = 0; $i < count($objArray); $i++) {
                     if ($objArray[$i]->id == $_COOKIE['user-id-cookie']) {
+                        $avatar = $objArray[$i]->avatar;
+                        $email = $objArray[$i]->email;
                         $firstName = $objArray[$i]->firstName;
                         $lastName = $objArray[$i]->lastName;
-                        $user = new User(
-                            $objArray[$i]->email,
-                            "hidden",
-                            $firstName,
-                            $lastName,
-                            $objArray[$i]->avatar
-                        );
+                        $username = $objArray[$i]->username;
+                        $registeredTime = $objArray[$i]->registeredTime;
                         break;
                     }
                 }
@@ -54,30 +51,38 @@
             <div class="row mt-5">
                 <div class="col-lg-3 col-md-6 col-sm-12">
                     <div class="bg-info rounded-circle w-75 avatar mx-auto">
-                        <img src="<?php echo $user->getAvatar(); ?>" class=" mx-auto d-block img-fluid" alt="avatar" width="80%">
+                        <img src="<?php echo $avatar; ?>" class=" mx-auto d-block img-fluid" alt="avatar" width="80%">
 
                     </div>
                 </div>
                 <div class="col-lg-9 col-md-6 col-sm-12 ">
-                    <h1 class="display-4 text-lg-start text-md-start text-center">username</h1>
+                    <h1 class="display-4 text-lg-start text-md-start text-center">
+                        <?php
+                            echo $username;
+                        ?>
+                    </h1>
                     <div class="row mt-lg-3 mt-md-0 mt-0">
                         <div class="col-lg-6 col-md-12 col-sm-12 text-md-start text-center">
                             <label for="" class="form-label fs-3">Email: </label>
-                            <span class=" fs-3"><?php echo $user->getEmail(); ?></span>
+                            <span class=" fs-3"><?php echo $email; ?></span>
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-12 text-md-start text-center">
-                            <label for="" class="form-label fs-3">Registered time: </label>
-                            <span class="fs-3 text-muted">07/04/2002</span>
+                            <label for="" class="form-label fs-3">Registered on: </label>
+                            <span class="fs-3 text-muted">
+                                <?php
+                                    echo $registeredTime;
+                                ?>
+                            </span>
                         </div>
                     </div>
                     <div class="row mt-lg-3 mt-md-0 mt-0">
                         <div class="col-lg-6 col-md-12 col-sm-12 text-md-start text-center">
                             <label for="" class="form-label fs-3">First name: </label>
-                            <span class=" fs-3"><?php echo $user->getFirstName(); ?></span>
+                            <span class=" fs-3"><?php echo $firstName; ?></span>
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-12 text-md-start text-center">
                             <label for="" class="form-label fs-3">Last name: </label>
-                            <span class="fs-3"><?php echo $user->getLastName(); ?></span>
+                            <span class="fs-3"><?php echo $lastName; ?></span>
                         </div>
                     </div>
                 </div>
