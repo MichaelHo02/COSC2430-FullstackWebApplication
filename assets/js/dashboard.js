@@ -2,6 +2,7 @@ const userList = document.querySelector(".user-list")
 const userDbPath = "./adminFeed.php";
 const pagination = document.querySelector(".pagination");
 let currentPage = 0;
+let totalPages = 0;
 
 fetchAllUsers(renderPagination);
 
@@ -33,7 +34,7 @@ function renderPagination(data) {
             item.classList.add('disabled');
         });
     } else {
-        let totalPages = Math.ceil(data.length / 10);
+        totalPages = Math.ceil(data.length / 10);
         renderPaginationItem(totalPages);
         addEventPagination(data);
         userList.innerHTML = '';
@@ -64,9 +65,13 @@ function addEventPagination(data) {
             userList.innerHTML = ''; // Reset
             let content = event.target.textContent;
             if (content == "Previous") {
-                currentPage = Math.abs(--currentPage);
+                if (currentPage != 0) {
+                    currentPage--;
+                }
             } else if (content == "Next") {
-                currentPage = Math.round((currentPage + 1) % (allPageItems.length - 2));
+                if (currentPage != totalPages - 1) {
+                    currentPage++;
+                }
             } else {
                 currentPage = content - 1;
             }
@@ -96,6 +101,12 @@ function renderUIUser(data) {
 
 function activeCurrentPagination() {
     let currentBtn = pagination.querySelectorAll('.page-item');
+    
+    let prevBtn = currentBtn[0];
+    let nextBtn = currentBtn[totalPages + 1];
+    console.log(currentPage);
+    prevBtn.classList.remove('disabled');
+    nextBtn.classList.remove('disabled');
     currentBtn.forEach(btn => {
         if (btn.textContent == currentPage + 1) {
             btn.classList.add('active');
@@ -103,4 +114,10 @@ function activeCurrentPagination() {
             btn.classList.remove('active');
         }
     })
+    if (currentPage == totalPages - 1) {
+        nextBtn.classList.add('disabled');
+    } else if (currentPage == 0) {
+        prevBtn.classList.add('disabled');
+    }
+    
 }

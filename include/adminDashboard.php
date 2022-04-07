@@ -46,8 +46,8 @@ if ($_COOKIE['admin'] != ('admin' . md5('yasuoroot') . 'x')) {
                 </div>
                 <div aria-label="Page navigation" class="d-flex mt-2 mb-3 justify-content-center">
                     <ul class="pagination">
-                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        <li class="page-item prev-item"><a class="page-link" href="#">Previous</a></li>
+                        <li class="page-item next-item"><a class="page-link" href="#">Next</a></li>
                     </ul>
                 </div>
             </div>
