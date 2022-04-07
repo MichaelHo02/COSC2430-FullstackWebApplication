@@ -1,6 +1,6 @@
 <?php
 
-    include "./photo.php";
+    include "./post.php";
 
     $file_name = $_FILES['uploadImg']['name'];
     $file_size =$_FILES['uploadImg']['size'];
@@ -23,10 +23,10 @@
 
 
         if ($file_ok) {
-            // Create new photo obj
-            $photo = new Photo(
+            // Create new post obj
+            $post = new Post(
                 $_COOKIE['user-id-cookie'],
-                $_POST['photoDesc'],
+                $_POST['postDesc'],
                 $_POST['sharingLev'],
                 $file_ext
             );
@@ -41,7 +41,7 @@
         
             for ($i = 0; $i < $jsonUserSrcLength; $i++) {
                 if ($jsonUserSrc[$i]->id == $currentUserId) {
-                    array_push($jsonUserSrc[$i]->photoIdList, $photo->getPhotoId());
+                    // array_push($jsonUserSrc[$i]->postIdList, $post->getPostId());
                     $strJsonUser = json_encode($jsonUserSrc);
                     break;
                 }
@@ -54,18 +54,18 @@
             fclose($userDb);
 
             // Add img to db
-            $photoFile = '../photos.db';
-            $photoDb = fopen($photoFile, 'r');
-            $jsonPhotoSrc = json_decode(fread($photoDb, filesize($photoFile)));
-            array_push($jsonPhotoSrc, $photo->jsonSerialize());
-            fclose($photoDb);
+            $postFile = '../posts.db';
+            $postDb = fopen($postFile, 'r');
+            $jsonPostSrc = json_decode(fread($postDb, filesize($postFile)));
+            array_push($jsonPostSrc, $post->jsonSerialize());
+            fclose($postDb);
 
-            $photoDb = fopen($photoFile, 'w');
-            fwrite($photoDb, json_encode($jsonPhotoSrc));
-            fclose($photoDb);
+            $postDb = fopen($postFile, 'w');
+            fwrite($postDb, json_encode($jsonPostSrc));
+            fclose($postDb);
 
             // Move img to storage
-            move_uploaded_file($file_tmp, "../assets/img/storage/" . $photo->getPhotoId() . "." . $file_ext);
+            move_uploaded_file($file_tmp, "../assets/img/storage/" . $post->getPostId() . "." . $file_ext);
             header('location: ../index.php');
         }
     }

@@ -1,12 +1,12 @@
 <?php
-//Fetch all Photo
+//Fetch all Post
 include_once 'sortCmp.php';
-$photoFile = '../photos.db';
-$photoDb = fopen($photoFile, 'r');
-$photoSrc = fread($photoDb, filesize($photoFile));
-$jsonObj = json_decode($photoSrc);
+$postFile = '../posts.db';
+$postDb = fopen($postFile, 'r');
+$postSrc = fread($postDb, filesize($postFile));
+$jsonObj = json_decode($postSrc);
 $result = array();
-usort($jsonObj, "cmpPhoto");
+usort($jsonObj, "cmpPost");
 if (isset($_COOKIE['user-id-cookie'])) { // Logged in -> internal and public
     for ($i = 0; $i < count($jsonObj); $i++) {
         if (
@@ -24,4 +24,4 @@ if (isset($_COOKIE['user-id-cookie'])) { // Logged in -> internal and public
     }
 }
 echo json_encode($result);
-fclose($photoDb);
+fclose($postDb);

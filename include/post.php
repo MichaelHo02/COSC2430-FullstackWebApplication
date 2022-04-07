@@ -1,25 +1,65 @@
-<div class="container mt-3 d-none" id="post-factory">
-    <form class="col-sm-12 col-lg-6 ms-auto me-auto" action="./include/post_factory_handler.php" method="post" enctype="multipart/form-data">
+<?php
+    class Post {
+        private $postId;
+        private $publishedDate;
+        private $userId;
+        private $postExt;
+        private $postDesc;
+        private $sharingLev;
 
-        <div class="mb-3">
-            <label for="imageUpload" name="uploadImg" class="form-label">Choose image to upload</label>
-            <input type="file" name="uploadImg" id="imageUpload" class="form-control">
-        </div>
+        function __construct($userId, $postDesc, $sharingLev, $postExt) {
+            $this->postId = "img_" . uniqid();
+            $this->publishedDate = time();
+            $this->userId = $userId;
+            $this->postDesc = $postDesc;
+            $this->sharingLev = $sharingLev;
+            $this->postExt = $postExt;
+        }
 
-        <div class="mb-3">
-            <label for="photoDesc" name="photoDesc" class="form-label">Photo description</label>
-            <textarea class="form-control" name="photoDesc" id="photoDesc" rows="2" style="resize: none;"></textarea>
-        </div>
+        function setPublishedDate($publishedDate) {
+            $this->publishedDate = $publishedDate;
+        }
 
-        <div class="mb-3 w-50">
-            <label for="sharinglev" class="form-label">Sharing level</label>
-            <select id="sharinglev" name="sharingLev" class="form-select form-select w-50">
-                <option value="public">Public</option>
-                <option value="internal">Internal</option>
-                <option value="private">Private</option>
-            </select>
-        </div>
+        function setUserId($userId) {
+            $this->userId = $userId;
+        }
 
-        <button name="submit" type="submit" class="btn btn-primary post-submit"><i class="bi bi-send me-2"></i>Post</button>
-    </form>
-</div>
+        function setPostDesc($postDesc) {
+            $this->postDesc = $postDesc;
+        }
+
+        function setSharingLev($sharingLev) {
+            $this->sharingLev = $sharingLev;
+        }
+
+        function getPostPublishedDate() {
+            return $this->publishedDate;
+        }
+
+        function getPostId() {
+            return $this->postId;
+        }
+
+        function getPostExt() {
+            return $this->postExt;
+        }
+
+        function getUserId() {
+            return $this->userId;
+        }
+
+        function getPostDesc() {
+            return $this->postDesc;
+        }
+
+        function getSharingLev() {
+            return $this->sharingLev;
+        }
+
+        public function jsonSerialize() {
+            $vars = get_object_vars($this);
+            return $vars;
+        }
+    }
+
+?>

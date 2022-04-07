@@ -1,5 +1,5 @@
 <?php
-    function cmpPhoto($a, $b) {
+    function cmpPost($a, $b) {
         return  $b->publishedDate - $a->publishedDate;
     }
 

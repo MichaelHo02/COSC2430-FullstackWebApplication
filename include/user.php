@@ -9,20 +9,9 @@ class User
     private $username;
     private $password;
     private $registeredTime;
-    private $photoIdList;
     private $firstName;
     private $lastName;
     private $avatar;
-
-    // function __construct($name, $email, $username, $password, $registeredTime) {
-    //     $this->id = "user_" . uniqid();
-    //     $this->name = $name;
-    //     $this->email = $email;
-    //     $this->username = $username;
-    //     $this->password = $password;
-    //     $this->registeredTime = $registeredTime;
-    //     $this->photoIdList = array();
-    // } 
 
     function __construct($email, $password, $firstName, $lastName, $avatar)
     {
@@ -32,7 +21,6 @@ class User
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->avatar = $avatar;
-        $this->photoIdList = array();
     }
 
 
@@ -65,12 +53,6 @@ class User
     function setRegistrationTime($registeredTime)
     {
         $this->registeredTime = $registeredTime;
-    }
-
-    function addPhoto($photo)
-    {
-        $photoId = $photo->getPhotoId();
-        array_push($this->photoIdList, $photoId);
     }
 
     function getId()

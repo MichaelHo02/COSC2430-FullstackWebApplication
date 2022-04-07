@@ -23,7 +23,7 @@
     <main>
 
         <?php
-            include "./include/post.php";
+            include "./include/postFactory.php";
         ?>
 
 

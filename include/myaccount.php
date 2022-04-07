@@ -20,7 +20,7 @@
     ?>
 
     <main>
-        <!-- Idea: Show avatar, name, email, all photos, logout at the end -->
+        <!-- Idea: Show avatar, name, email, all posts, logout at the end -->
         <?php
         require_once "./user.php";
         if (isset($_COOKIE['user-id-cookie'])) {
