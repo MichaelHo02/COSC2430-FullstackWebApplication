@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../assets/css/gdpr.css">
     <link rel="stylesheet" href="../assets/css/myaccount.css">
     <script src="../assets/js/gdpr.js" defer></script>
-    <script src="../assets/js/renderMyAcc.js" defer></script>
+    <!-- <script src="../assets/js/renderMyAcc.js" defer></script> -->
 </head>
 
 <body>
@@ -57,7 +57,7 @@
                 <div class="col-lg-9 col-md-6 col-sm-12 ">
                     <h1 class="display-4 text-lg-start text-md-start text-center">
                         <?php
-                            echo $username;
+                        echo $username;
                         ?>
                     </h1>
                     <div class="row mt-lg-3 mt-md-0 mt-0">
@@ -69,7 +69,7 @@
                             <label for="" class="form-label fs-3">Registered on: </label>
                             <span class="fs-3 text-muted">
                                 <?php
-                                    echo $registeredTime;
+                                echo $registeredTime;
                                 ?>
                             </span>
                         </div>
@@ -88,10 +88,11 @@
             </div>
         </div>
 
-
+        <?php
+        include './cardComponent.php';
+        ?>
+        
         <div class="row justify-content-center mt-4 new-feed-wrapper">
-            <?php
-            ?>
         </div>
 
     </main>
