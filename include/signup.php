@@ -43,8 +43,9 @@
                 $message = 'File size is greater than 20MB';
             }
             if ($file_ok) {
-                $fileNewName = '../assets/img/avatar/' . uniqid() . '.' . $file_ext;
-                if (move_uploaded_file($avatar['tmp_name'], $fileNewName)) {
+                $fileNewName = uniqid() . '.' . $file_ext;
+                $fileFullName = '../assets/img/avatar/' . $fileNewName;
+                if (move_uploaded_file($avatar['tmp_name'], $fileFullName)) {
                     echo 'success ' . $fileNewName;
                     $message = 'File is saved!';
                 } else {

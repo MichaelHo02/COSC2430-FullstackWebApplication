@@ -44,7 +44,7 @@
         <?php
         include './include/cardComponent.php';
         include_once './include/sortCmp.php';
-        configComponent('posts.db', $_SERVER['PHP_SELF'], './assets/img/');
+        configComponent('posts.db', 'accounts.db', $_SERVER['PHP_SELF'], './assets/img/');
         ?>
     </main>
     <footer>

@@ -33,7 +33,7 @@
 
                 for ($i = 0; $i < count($objArray); $i++) {
                     if ($objArray[$i]->id == $_COOKIE['user-id-cookie']) {
-                        $avatar = $objArray[$i]->avatar;
+                        $avatar = '../assets/img/avatar/' . $objArray[$i]->avatar;
                         $email = $objArray[$i]->email;
                         $firstName = $objArray[$i]->firstName;
                         $lastName = $objArray[$i]->lastName;
@@ -90,8 +90,8 @@
 
         <?php
         include './cardComponent.php';
-        include_once './include/sortCmp.php';
-        configComponent('../posts.db', $_SERVER['PHP_SELF'], '../assets/img/');
+        include_once './sortCmp.php';
+        configComponent('../posts.db', '../accounts.db', $_SERVER['PHP_SELF'], '../assets/img/');
         ?>
 
         <div class="row justify-content-center mt-4 new-feed-wrapper">

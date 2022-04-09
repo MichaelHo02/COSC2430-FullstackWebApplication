@@ -32,55 +32,78 @@ function renderCard($avatar, $username, $lastUpdate, $content, $image, $sharingL
         ';
 }
 
-function configComponent($postFile, $currentPath, $pathToImage)
+function getUser($id, $userJson) {
+    for ($i = 0; $i < count($userJson); $i++) {
+        if ($userJson[$i]->id == $id) {
+            return $userJson[$i];
+        }
+    }
+}
+
+function configCard($post, $userJson, $pathToImage)
 {
-    $postDb = fopen($postFile, 'r');
-    $postSrc = fread($postDb, filesize($postFile));
-    $jsonObj = json_decode($postSrc);
-    usort($jsonObj, "cmpPost");
+    $user = getUser($post->userId, $userJson);
+    $avatar = $pathToImage . 'avatar/' . $user->avatar;
+    $username = $user->username;
+    $lastUpdate = $post->lastUpdate;
+    $content = $post->postDesc;
+    $image = $pathToImage . 'storage/' . $post->postId . '.' . $post->postExt;
+    $sharingLev = $post->sharingLev;
+    renderCard($avatar, $username, $lastUpdate, $content, $image, $sharingLev);
+}
+
+function isValidPostForUser($sharingLev)
+{
+    return $sharingLev == 'public' || $sharingLev == 'internal';
+}
+
+function isValidPostForGuest($sharingLev)
+{
+    return $sharingLev == 'public';
+}
+
+function isValidPostMyAccount($id)
+{
+    return $id == $_COOKIE['user-id-cookie'];
+}
+
+function getJson($name)
+{
+    $file = fopen($name, 'r');
+    $src = fread($file, filesize($name));
+    $json = json_decode($src);
+    return $json;
+}
+
+function configComponent($postFile, $userFile, $currentPath, $pathToImage)
+{
+    $postJson = getJson($postFile);
+    usort($postJson, "cmpPost");
+    $userJson = getJson($userFile);
 
     echo '
     <div class="container">
-        <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-2">
     ';
 
     if (str_contains($currentPath, 'index.php')) {
-
         if (isset($_COOKIE['user-id-cookie'])) {
-            for ($i = 0; $i < count($jsonObj); $i++) {
-                if ($jsonObj[$i]->sharingLev == 'public' || $jsonObj[$i]->sharingLev == 'internal') {
-                    $avatar = '#';
-                    $username = '#';
-                    $lastUpdate = $jsonObj[$i]->lastUpdate;
-                    $content = $jsonObj[$i]->postDesc;
-                    $image = $pathToImage . 'storage/' . $jsonObj[$i]->postId . '.' . $jsonObj[$i]->postExt;
-                    $sharingLev = $jsonObj[$i]->sharingLev;
-                    renderCard($avatar, $username, $lastUpdate, $content, $image, $sharingLev);
+            for ($i = 0; $i < count($postJson); $i++) {
+                if (isValidPostForUser($postJson[$i]->sharingLev)) {
+                    configCard($postJson[$i], $userJson, $pathToImage);
                 }
             }
         } else {
-            for ($i = 0; $i < count($jsonObj); $i++) {
-                if ($jsonObj[$i]->sharingLev == 'public') {
-                    $avatar = '#';
-                    $username = '#';
-                    $lastUpdate = $jsonObj[$i]->lastUpdate;
-                    $content = $jsonObj[$i]->postDesc;
-                    $image = $pathToImage . 'storage/' . $jsonObj[$i]->postId . '.' . $jsonObj[$i]->postExt;
-                    $sharingLev = $jsonObj[$i]->sharingLev;
-                    renderCard($avatar, $username, $lastUpdate, $content, $image, $sharingLev);
+            for ($i = 0; $i < count($postJson); $i++) {
+                if (isValidPostForGuest($postJson[$i]->sharingLev)) {
+                    configCard($postJson[$i], $userJson, $pathToImage);
                 }
             }
         }
     } else if (str_contains($currentPath, 'myaccount.php') && isset($_COOKIE['user-id-cookie'])) {
-        for ($i = 0; $i < count($jsonObj); $i++) {
-            if ($jsonObj[$i]->userId == $_COOKIE['user-id-cookie']) {
-                $avatar = '#';
-                $username = '#';
-                $lastUpdate = $jsonObj[$i]->lastUpdate;
-                $content = $jsonObj[$i]->postDesc;
-                $image = $pathToImage . 'storage/' . $jsonObj[$i]->postId . '.' . $jsonObj[$i]->postExt;
-                $sharingLev = $jsonObj[$i]->sharingLev;
-                renderCard($avatar, $username, $lastUpdate, $content, $image, $sharingLev);
+        for ($i = 0; $i < count($postJson); $i++) {
+            if (isValidPostMyAccount($postJson[$i]->userId)) {
+                configCard($postJson[$i], $userJson, $pathToImage);
             }
         }
     }
