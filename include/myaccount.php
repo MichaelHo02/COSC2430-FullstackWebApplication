@@ -90,8 +90,10 @@
 
         <?php
         include './cardComponent.php';
+        include_once './include/sortCmp.php';
+        configComponent('../posts.db', $_SERVER['PHP_SELF'], '../assets/img/');
         ?>
-        
+
         <div class="row justify-content-center mt-4 new-feed-wrapper">
         </div>
 

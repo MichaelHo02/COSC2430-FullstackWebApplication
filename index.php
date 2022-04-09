@@ -12,46 +12,46 @@
     <link rel="stylesheet" href="./assets/css/gdpr.css">
     <script src="./assets/js/gdpr.js" defer></script>
     <script src="./assets/js/index.js" defer></script>
-    <script src="./assets/js/render.js" defer></script>
+    <!-- <script src="./assets/js/render.js" defer></script> -->
 </head>
 
 <body>
-        <?php
-            include "./include/navbar.php";
-        ?>
+    <?php
+    include "./include/navbar.php";
+    ?>
 
     <main>
 
         <?php
-            include "./include/postFactory.php";
+        include "./include/postFactory.php";
         ?>
 
 
         <div class="container mt-4">
             <button class="btn btn-primary create-post-btn 
-            <?php 
-                if (isset($_COOKIE['user-id-cookie'])) {
-                    echo "";
-                } else {
-                    echo "d-none";
-                }
+            <?php
+            if (isset($_COOKIE['user-id-cookie'])) {
+                echo "";
+            } else {
+                echo "d-none";
+            }
             ?> ">Create new post</button>
 
             <div class="row justify-content-center mt-4 new-feed-wrapper">
-                <?php
-                ?>
             </div>
         </div>
 
         <?php
-            include './include/cardComponent.php';
+        include './include/cardComponent.php';
+        include_once './include/sortCmp.php';
+        configComponent('posts.db', $_SERVER['PHP_SELF'], './assets/img/');
         ?>
     </main>
     <footer>
     </footer>
-        <?php
-            include "./include/gdpr.php"
-        ?>
+    <?php
+    include "./include/gdpr.php"
+    ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 
