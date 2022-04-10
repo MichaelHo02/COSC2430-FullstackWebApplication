@@ -9,6 +9,7 @@
 
         function __construct($userId, $postDesc, $sharingLev, $postExt) {
             $this->postId = "img_" . uniqid();
+            date_default_timezone_set('Asia/Ho_Chi_Minh');
             $this->publishedDate = time();
             $this->userId = $userId;
             $this->postDesc = $postDesc;
@@ -61,5 +62,3 @@
             return $vars;
         }
     }
-
-?>

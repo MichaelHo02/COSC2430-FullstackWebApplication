@@ -17,7 +17,7 @@ function renderCard($avatar, $username, $lastUpdate, $content, $image, $sharingL
                         <div class="col col-8">
                             <h5 class="card-title">' . $username . '</h5>
                             <p class="card-text">
-                                <small class="text-muted">Last updated ' . $lastUpdate . ' ago</small>
+                                <small class="text-muted">' . $lastUpdate . '</small>
                                 <small class="text-muted"> | ' . $sharingLev . '</small>
                             </p>
                         </div>
@@ -32,7 +32,8 @@ function renderCard($avatar, $username, $lastUpdate, $content, $image, $sharingL
         ';
 }
 
-function getUser($id, $userJson) {
+function getUser($id, $userJson)
+{
     for ($i = 0; $i < count($userJson); $i++) {
         if ($userJson[$i]->id == $id) {
             return $userJson[$i];
@@ -45,7 +46,8 @@ function configCard($post, $userJson, $pathToImage)
     $user = getUser($post->userId, $userJson);
     $avatar = $pathToImage . 'avatar/' . $user->avatar;
     $username = $user->username;
-    $lastUpdate = $post->lastUpdate;
+    date_default_timezone_set('Asia/Ho_Chi_Minh');
+    $lastUpdate = date('Y-m-d', $post->publishedDate);
     $content = $post->postDesc;
     $image = $pathToImage . 'storage/' . $post->postId . '.' . $post->postExt;
     $sharingLev = $post->sharingLev;
