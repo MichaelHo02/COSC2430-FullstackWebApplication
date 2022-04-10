@@ -1,13 +1,13 @@
 [
 	{
-		"id": "user_624edb6dede5a",
+		"id": "user_62514a4404a06",
 		"name": null,
 		"email": "abc@gmail.com",
 		"username": "Thach Ho",
 		"password": "c68333cdeda54fed84b1368f0c4625fe",
-		"registeredTime": "2022/04/07",
+		"registeredTime": "2022/04/09",
 		"firstName": "Thach",
 		"lastName": "Ho",
-		"avatar": "../assets/img/avatar/624edb6ded866.jpg"
+		"avatar": "62514a4404891.jpg"
 	}
 ]

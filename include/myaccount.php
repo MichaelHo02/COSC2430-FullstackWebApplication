@@ -23,6 +23,55 @@
         <!-- Idea: Show avatar, name, email, all posts, logout at the end -->
         <?php
         require_once "./user.php";
+
+        if (isset($_FILES['formFile'])) {
+            $avatar = $_FILES['formFile'];
+            $file_ok = true;
+            $extension = ['jpg', 'jpeg', 'png', 'gif'];
+            $file_ext = strtolower(end(explode('.', $avatar['name'])));
+            if (in_array($file_ext, $extension) === false) {
+                $file_ok = false;
+                $message = 'Wrong file extension! Only JPG, JPEG, PNG, and GIF';
+            }
+            if ($avatar['size'] > 20000000) {
+                $file_ok = false;
+                $message = 'File size is greater than 20MB';
+            }
+            if ($file_ok) {
+                $fileNewName = uniqid() . '.' . $file_ext;
+                $fileFullName = '../assets/img/avatar/' . $fileNewName;
+                if (move_uploaded_file($avatar['tmp_name'], $fileFullName)) {
+                    // echo 'success ' . $fileNewName;
+                    $message = 'File is saved!';
+                } else {
+                    echo 'fail ' . $fileNewName;
+                }
+            }
+
+            if ($file_ok) {
+                $db = fopen('../accounts.db', 'r');
+                if ($db) {
+                    $rawContent = fread($db, filesize("../accounts.db"));
+                    $objArray = json_decode($rawContent);
+                    for ($i = 0; $i < count($objArray); $i++) {
+                        if ($objArray[$i]->id == $_COOKIE['user-id-cookie']) {
+                            $objArray[$i]->avatar = $fileNewName;
+                            break;
+                        }
+                    }
+                    $strSrc = json_encode($objArray);
+                    fclose($db);
+
+                    $in = fopen('../accounts.db', 'w');
+                    if ($in) {
+                        fwrite($in, $strSrc);
+                    }
+                    fclose($in);
+                }
+
+            }
+        }
+
         if (isset($_COOKIE['user-id-cookie'])) {
             $db = fopen('../accounts.db', 'r');
             $user;
@@ -88,7 +137,7 @@
                         <div class="d-grid gap-2">
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
-                                Launch demo modal
+                                Change Avatar
                             </button>
 
                             <!-- Modal -->
@@ -96,17 +145,43 @@
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Change Avatar</h5>
                                             <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
                                             </button>
                                         </div>
-                                        <div class="modal-body">
-                                            ...
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save changes</button>
-                                        </div>
+                                        <form action="myaccount.php" name="form" method="post" enctype="multipart/form-data">
+                                            <div class="modal-body">
+                                                <div class="mb-3">
+                                                    <label for="formFile" class="form-label">Profile picture</label>
+                                                    <input class="form-control <?php
+                                                                                if (isset($_FILES['formFile'])) {
+                                                                                    if ($file_ok) {
+                                                                                        echo 'is-valid';
+                                                                                    } else {
+                                                                                        echo 'is-invalid';
+                                                                                    }
+                                                                                }
+                                                                                ?>" type="file" id="formFile" name="formFile">
+                                                    <div id="" class="<?php
+                                                                        if (isset($_FILES['formFile'])) {
+                                                                            if ($file_ok) {
+                                                                                echo 'valid-feedback';
+                                                                            } else {
+                                                                                echo 'invalid-feedback';
+                                                                            }
+                                                                        }
+                                                                        ?>">
+                                                        <?php
+                                                        echo $message;
+                                                        ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary" value="Submit">Save changes</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
