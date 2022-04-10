@@ -68,7 +68,6 @@
                     }
                     fclose($in);
                 }
-
             }
         }
 
@@ -190,16 +189,18 @@
                 </div>
             </div>
         </div>
-
         <?php
         include './cardComponent.php';
         include_once './sortCmp.php';
-        configComponent('../posts.db', '../accounts.db', $_SERVER['PHP_SELF'], '../assets/img/');
+        if (isset($_POST)) {
+            deleteCard('../posts.db', $_POST);
+        }
         ?>
-
-        <div class="row justify-content-center mt-4 new-feed-wrapper">
-        </div>
-
+        <form action=" <?php echo $_SERVER['PHP_SELF'] ?>" method="POST" name="deleteForm" enctype="multipart/form-data"">
+            <?php
+            configComponent('../posts.db', '../accounts.db', $_SERVER['PHP_SELF'], '../assets/img/');
+            ?>
+        </form>
     </main>
 
     <footer>

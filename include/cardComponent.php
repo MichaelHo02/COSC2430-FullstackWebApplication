@@ -1,14 +1,34 @@
 <link rel="stylesheet" href="./assets/css/myaccount.css">
 
 <?php
-function renderCard($avatar, $username, $lastUpdate, $content, $image, $sharingLev)
+function deleteCard($postFile, $postArr)
+{
+    $arr = array_keys($postArr);
+    $id = $arr[0];
+    $jsonRead = getJson($postFile);
+    for ($i = 0; $i < count($jsonRead); $i++) {
+        if ($id == $jsonRead[$i]->postId) {
+            unset($jsonRead[$i]);
+            break;
+        }
+    }
+    $jsonWrite = array_values($jsonRead);
+    $jsonWrite = json_encode($jsonWrite);
+    if ($in = fopen($postFile, 'w')) {
+        fwrite($in, $jsonWrite);
+        fclose($in);
+    }
+}
+
+
+function renderCard($id, $avatar, $username, $lastUpdate, $content, $image, $sharingLev, $currentPath)
 {
     echo '
         <div class="col position-relative">
             <div class="card h-100">
-                <button type="button" class="btn btn-danger rounded-circle position-absolute top-0 start-100 translate-middle px-2 py-1">
-                    <i class="bi bi-x"></i>
-                </button>
+                    <button name="' . $id . '" type="submit" value="submit" class="btn btn-danger rounded-circle position-absolute top-0 start-100 translate-middle px-2 py-1">
+                        <i class="bi bi-x"></i>
+                    </button>
                 <div class="card-body">
                     <div class="row px-3 align-items-center justify-content-start">
                         <div class="col col-2 bg-info rounded-circle avatar">
@@ -41,7 +61,7 @@ function getUser($id, $userJson)
     }
 }
 
-function configCard($post, $userJson, $pathToImage)
+function configCard($post, $userJson, $pathToImage, $currentPath)
 {
     $user = getUser($post->userId, $userJson);
     $avatar = $pathToImage . 'avatar/' . $user->avatar;
@@ -51,7 +71,7 @@ function configCard($post, $userJson, $pathToImage)
     $content = $post->postDesc;
     $image = $pathToImage . 'storage/' . $post->postId . '.' . $post->postExt;
     $sharingLev = $post->sharingLev;
-    renderCard($avatar, $username, $lastUpdate, $content, $image, $sharingLev);
+    renderCard($post->postId, $avatar, $username, $lastUpdate, $content, $image, $sharingLev, $currentPath);
 }
 
 function isValidPostForUser($sharingLev)
@@ -92,20 +112,20 @@ function configComponent($postFile, $userFile, $currentPath, $pathToImage)
         if (isset($_COOKIE['user-id-cookie'])) {
             for ($i = 0; $i < count($postJson); $i++) {
                 if (isValidPostForUser($postJson[$i]->sharingLev)) {
-                    configCard($postJson[$i], $userJson, $pathToImage);
+                    configCard($postJson[$i], $userJson, $pathToImage, $currentPath);
                 }
             }
         } else {
             for ($i = 0; $i < count($postJson); $i++) {
                 if (isValidPostForGuest($postJson[$i]->sharingLev)) {
-                    configCard($postJson[$i], $userJson, $pathToImage);
+                    configCard($postJson[$i], $userJson, $pathToImage, $currentPath);
                 }
             }
         }
     } else if (str_contains($currentPath, 'myaccount.php') && isset($_COOKIE['user-id-cookie'])) {
         for ($i = 0; $i < count($postJson); $i++) {
             if (isValidPostMyAccount($postJson[$i]->userId)) {
-                configCard($postJson[$i], $userJson, $pathToImage);
+                configCard($postJson[$i], $userJson, $pathToImage, $currentPath);
             }
         }
     }
