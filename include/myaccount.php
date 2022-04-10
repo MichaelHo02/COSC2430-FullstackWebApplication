@@ -84,6 +84,11 @@
                             <span class="fs-3"><?php echo $lastName; ?></span>
                         </div>
                     </div>
+                    <div class="row mt-lg-3 mt-md-0 mt-0">
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-outline-secondary">Change avatar</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
