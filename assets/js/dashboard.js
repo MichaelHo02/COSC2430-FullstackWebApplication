@@ -16,6 +16,7 @@ function fetchAllUsers(callback) {
     })
     .then(response => response.json())
     .then(data => {
+        console.log(data)
         callback(data);
     })
 }
@@ -148,7 +149,8 @@ function activeCurrentPagination() {
 const searchUserInput = document.querySelector(".search-user-input");
 const searchUserBtn = document.querySelector(".search-user-btn");
 
-searchUserBtn.addEventListener('click', () => {
+searchUserBtn.addEventListener('click', (event) => {
+    event.preventDefault();
     isSearching = true;
     currentPage = 0;
     totalPages = 0;
