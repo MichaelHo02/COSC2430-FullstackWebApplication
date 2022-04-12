@@ -1,0 +1,157 @@
+.section {
+	padding: 20px 0;
+}
+
+label.form__section {
+	display: block;
+}
+
+.form__section {
+	padding: 10px 0;
+}
+
+label.form__input {
+	display: inline;
+}
+
+.text-area {
+	width: 100% !important;
+	resize: none;
+}
+
+input,
+button,
+textarea {
+	border: 0;
+	outline: none;
+}
+
+.input-focus {
+	padding: 1rem;
+	width: 100%;
+	display: block;
+	border: 1px solid #b5bfc9;
+	border-radius: 6px;
+	color: #0d1f36;
+	font-size: 14px;
+	outline: none;
+	background-color: white;
+	transition: all 0.2s ease;
+	/* margin-bottom: 10px; */
+}
+
+.input-focus::-webkit-input-placeholder {
+	color: #8d97a9;
+}
+
+.input-focus::-moz-input-placeholder {
+	color: #8d97a9;
+}
+
+.input-focus:focus {
+	border-color: var(--primary-color);
+	box-shadow: 0 0 0 4px rgba(var(--primary-color-rgb), 0.5);
+}
+
+.radio-input {
+	display: none;
+}
+
+.radio-label {
+	width: 20px;
+	height: 20px;
+	border-radius: 1.6rem;
+	background-color: #eee;
+	display: inline-block;
+	cursor: pointer;
+	margin: 0 1rem;
+	box-shadow: 0 0 0 4px #eee;
+	transition: all 0.25s linear;
+}
+
+.radio-input:checked + .radio-label {
+	box-shadow: 0 0 0 4px #fff, 0 0 0 6px var(--primary-color);
+	background-color: var(--primary-color);
+}
+
+.checkbox-input {
+	display: none;
+}
+
+.checkbox-label {
+	width: 20px;
+	height: 20px;
+	border-radius: 2px;
+	background-color: #eee;
+	display: inline-block;
+	cursor: pointer;
+	margin: 0 1rem;
+	box-shadow: 0 0 0 4px #eee;
+	transition: all 0.25s linear;
+}
+
+.checkbox-input:checked + .checkbox-label {
+	box-shadow: 0 0 0 4px #fff, 0 0 0 6px var(--primary-color);
+	background-color: var(--primary-color);
+}
+
+select:invalid {
+	color: #8d97a9;
+}
+
+input[type="email"]:invalid {
+	color: red;
+}
+
+input[type="email"]:not(:placeholder-shown):invalid {
+	color: red;
+}
+
+#business-form-wrapper {
+	display: none;
+}
+
+#storeowner:checked ~ #business-form-wrapper {
+	display: block;
+}
+
+.label-input {
+	display: inline-block;
+	text-align: center;
+}
+
+.display-grid {
+	display: grid;
+}
+
+.justify-content-center {
+	justify-content: center;
+}
+
+.grid-template-2-columns {
+	grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+	gap: 20px;
+}
+
+.display-grid div {
+	width: 152px;
+}
+
+.custom {
+	grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+	row-gap: 20px;
+}
+
+.button {
+	margin: 0 auto;
+}
+
+@media screen and (max-width: 698px) {
+	.grid.wide {
+		width: 90%;
+	}
+}
+
+.padding-space {
+	padding: 40px 0;
+}

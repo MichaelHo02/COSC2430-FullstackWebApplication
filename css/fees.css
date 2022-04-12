@@ -1,0 +1,43 @@
+.medal {
+	font-size: 64px;
+}
+
+.medal--bronze {
+	color: brown;
+}
+
+.medal--silver {
+	color: silver;
+}
+
+.medal--gold {
+	color: gold;
+}
+
+.icon {
+	font-size: 32px;
+}
+
+.icon--yes {
+	color: green;
+}
+
+.icon--no {
+	color: red;
+}
+
+#checkbox:checked ~ .container__page [data-shopper] {
+	display: none;
+}
+
+#checkbox:not(checked) ~ .container__page [data-shopper] {
+	display: block;
+}
+
+#checkbox:not(checked) ~ .container__page [data-owner] {
+	display: none;
+}
+
+#checkbox:checked ~ .container__page [data-owner] {
+	display: block;
+}

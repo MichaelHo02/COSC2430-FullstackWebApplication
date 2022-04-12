@@ -1,0 +1,255 @@
+/** STYLING FOR GRID AREA **/
+.cart {
+  width: 100%;
+  margin: auto auto auto 0;
+  display: none;
+  grid-gap: 0.5em;
+  grid-template: "content summary";
+}
+
+.cart.active {
+  display: grid;
+}
+/****/
+
+/** FOR ALL BUTTONS **/
+button {
+  border: 1px solid #252422;
+}
+/****/
+
+/** PRODUCT LIST **/
+.cart_list {
+  display: flex;
+  grid-area: content;
+  width: 100%;
+  justify-content: center;
+  padding: 0;
+}
+
+/* hidden product list to clone from */
+.cart_list.sample {
+  display: none;
+}
+
+/* For each product card */
+.cart_product {
+  background: inherit;
+  margin: 15px 15px;
+  padding-bottom: 15px;
+  width: auto;
+  height: 200px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd;
+}
+
+.cart_product:last-child {
+  border: none;
+}
+
+/* product's image */
+.cart_product img {
+  height: 100%;
+  padding: 20px;
+}
+
+/* product's info */
+.cart_details {
+  margin: auto;
+  width: 100%;
+}
+
+.cart_title {
+  font-family: "Poppins", sans-serif;
+  font-size: 12pt;
+  display: block;
+}
+
+/* quantity display field */
+.cart_quantity input {
+  text-align: center;
+  width: 30px;
+  height: 30px;
+}
+
+/* remove button for product card */
+.cart_remove {
+  padding: 50px 10px;
+  min-width: 80px;
+  width: 20%;
+  height: 20%;
+}
+
+.cart_remove button {
+  background-color: #fff;
+  height: 30px;
+  width: 55px;
+  font-size: 8pt;
+}
+
+.cart_remove button:hover {
+  color: #fff;
+  background: #252422;
+}
+
+/* remove arrows button from input type:number */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* remove arrows button from input type:number but for firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/*styling for quantity buttons*/
+.cart_quantity button {
+  background-color: #ccc5b9;
+  border-color: #ccc5b9;
+  height: 20px;
+  width: 20px;
+}
+
+.cart_quantity button i {
+  color: black;
+  font-size: smaller;
+}
+/****/
+
+/** CART SUMMARY **/
+.summary {
+  grid-area: summary;
+  width: 100%;
+  justify-content: center;
+}
+
+.summary ul {
+  list-style-type: none;
+}
+
+.summary_table li {
+  height: 40px;
+  border-bottom: 1px solid #ddd;
+}
+
+.summary_table li:last-child {
+  border: none;
+  margin-bottom: 30px;
+}
+
+/* split sections and fees */
+.total_tag {
+  float: left;
+}
+
+.total_fee {
+  float: right;
+}
+
+/* coupon */
+.summary_table .coupon {
+  height: 80px;
+}
+
+.coupon .total_tag p {
+  display: inline;
+}
+
+.coupon--insert {
+  display: inline;
+  max-width: 100px;
+  width: auto;
+  font-size: 8pt;
+  height: fit-content;
+  padding: 7px 0;
+  margin: 10px 0 10px 5px;
+  border: 1px solid;
+  text-align: center;
+}
+
+.button--apply {
+  background: #ccc5b9;
+  color: #403d39;
+  display: inline;
+  height: fit-content;
+  padding: 6px;
+  margin: 10px 5px 10px 0;
+  font-size: 9pt;
+}
+.button--apply:hover {
+  background: #403d39;
+  color: #ccc5b9;
+}
+
+.button--apply.hide {
+  display: none;
+}
+
+.coupon .total-fee {
+  padding: 10px 0;
+}
+
+/* Continue shopping and checkout buttons */
+.summary_button {
+  text-align: center;
+}
+
+.summary_button button {
+  width: 90px;
+}
+
+.button {
+  background-color: #ff3368;
+  color: #fff;
+  padding: 10px;
+  transition: all 0.4s ease-in-out;
+}
+
+.button--secondary {
+  border-radius: 5px;
+  background-color: #fff;
+  color: var(--primary-color);
+  padding: 8px 0px 25px;
+  margin: 10px auto 10px;
+}
+
+/****/
+
+/** RESPONSIVE LAYOUT AND STYLING FOR MOBILE DEVICES **/
+
+@media (max-width: 763px) {
+  .cart {
+    margin: 0;
+    max-width: 60rem;
+    grid-template:
+      "content"
+      "summary";
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+  }
+
+  .summary {
+    margin-right: 20px;
+  }
+
+  .cart_quantity button {
+    width: auto;
+    height: auto;
+    padding: auto;
+  }
+
+  .cart_quantity input {
+    text-align: center;
+    width: 20px;
+    height: 20px;
+  }
+
+  .summary_button button {
+    width: 150px;
+    font-size: 10pt;
+  }
+}
+/****/

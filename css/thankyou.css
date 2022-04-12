@@ -1,0 +1,17 @@
+@media (min-width: 769px) {
+  .article__title--center p {
+    font-size: 30px;
+    padding-bottom: 100px;
+  }
+}
+
+@media (max-width: 768px) {
+  .article__title--center img {
+    width: 75%;
+    height: 75%;
+  }
+
+  .article__title--center p {
+    font-size: 15px;
+  }
+}

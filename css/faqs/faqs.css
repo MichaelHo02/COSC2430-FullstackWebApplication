@@ -1,0 +1,20 @@
+.faqs__container {
+	line-height: 1.5;
+	word-wrap: break-word;
+}
+.faq {
+	margin: 1.5rem 0;
+}
+
+.faq__summary {
+    cursor: pointer;
+}
+
+.faq__title {
+    display: inline;
+    vertical-align: middle;
+}
+
+.faq__answer {
+    padding: 0.8rem 0;
+}
