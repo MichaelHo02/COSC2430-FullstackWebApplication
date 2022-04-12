@@ -99,37 +99,36 @@
             <div class="row mt-5">
                 <div class="col-lg-3 col-md-6 col-sm-12">
                     <div class="bg-info rounded-circle w-75 avatar mx-auto">
-                        <img src="<?php echo $avatar; ?>" class=" mx-auto d-block img-fluid" alt="avatar" width="80%">
+                        <img src="<?php echo $avatar; ?>" class=" mx-auto d-block img-fluid" alt="avatar" >
                     </div>
                 </div>
                 <div class="col-lg-9 col-md-6 col-sm-12 ">
                     <h1 class="display-4 text-lg-start text-md-start text-center">
                         <?php
-                        echo $username;
+                        echo "@" . $username;
                         ?>
                     </h1>
                     <div class="row mt-lg-3 mt-md-0 mt-0">
                         <div class="col-lg-6 col-md-12 col-sm-12 text-md-start text-center">
-                            <label for="" class="form-label fs-3">Email: </label>
-                            <span class=" fs-3"><?php echo $email; ?></span>
+                            <p for="" class="">Email: <span class=""><?php echo $email; ?></span></p>
+                            
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-12 text-md-start text-center">
-                            <label for="" class="form-label fs-3">Registered on: </label>
-                            <span class="fs-3 text-muted">
+                            <p for="" class="">Registered on:                             <span class="">
                                 <?php
                                 echo $registeredTime;
                                 ?>
-                            </span>
+                            </span></p>
+
                         </div>
                     </div>
                     <div class="row mt-lg-3 mt-md-0 mt-0">
                         <div class="col-lg-6 col-md-12 col-sm-12 text-md-start text-center">
-                            <label for="" class="form-label fs-3">First name: </label>
-                            <span class=" fs-3"><?php echo $firstName; ?></span>
+                            <p for="" class="">First name: <span class=""><?php echo $firstName; ?></span> </p>
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-12 text-md-start text-center">
-                            <label for="" class="form-label fs-3">Last name: </label>
-                            <span class="fs-3"><?php echo $lastName; ?></span>
+                            <p for="" class="">Last name: <span class=""><?php echo $lastName; ?></span></p>
+                            
                         </div>
                     </div>
                     <div class="row mt-lg-3 mt-md-0 mt-0">

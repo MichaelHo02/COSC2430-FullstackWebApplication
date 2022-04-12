@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="./assets/css/myaccount.css">
-
 <?php
 function deleteCard($postFile, $postArr)
 {
@@ -26,7 +24,7 @@ function renderCard($id, $avatar, $username, $lastUpdate, $content, $image, $sha
     echo '
         <div class="col position-relative">
             <div class="card h-100">
-                    <button name="' . $id . '" type="submit" value="submit" class="btn btn-danger rounded-circle position-absolute top-0 start-100 translate-middle px-2 py-1">
+                    <button name="' . $id . '" type="submit" value="submit" class="btn btn-danger rounded-circle position-absolute top-0 start-100 translate-middle px-2 py-1 delete-img-btn">
                         <i class="bi bi-x"></i>
                     </button>
                 <div class="card-body">
@@ -74,11 +72,6 @@ function configCard($post, $userJson, $pathToImage, $currentPath)
     renderCard($post->postId, $avatar, $username, $lastUpdate, $content, $image, $sharingLev, $currentPath);
 }
 
-function isValidPostForUser($sharingLev)
-{
-    return $sharingLev == 'public' || $sharingLev == 'internal';
-}
-
 function isValidPostForGuest($sharingLev)
 {
     return $sharingLev == 'public';
@@ -87,6 +80,12 @@ function isValidPostForGuest($sharingLev)
 function isValidPostMyAccount($id)
 {
     return $id == $_COOKIE['user-id-cookie'];
+}
+
+function isValidPostForUser($sharingLev, $id)
+{
+    return $sharingLev == 'public' || $sharingLev == 'internal' 
+    || ($sharingLev == 'private' && isValidPostMyAccount($id));
 }
 
 function getJson($name)
@@ -102,7 +101,6 @@ function configComponent($postFile, $userFile, $currentPath, $pathToImage)
     $postJson = getJson($postFile);
     usort($postJson, "cmpPost");
     $userJson = getJson($userFile);
-
     echo '
     <div class="container">
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-2">
@@ -111,7 +109,7 @@ function configComponent($postFile, $userFile, $currentPath, $pathToImage)
     if (str_contains($currentPath, 'index.php')) {
         if (isset($_COOKIE['user-id-cookie'])) {
             for ($i = 0; $i < count($postJson); $i++) {
-                if (isValidPostForUser($postJson[$i]->sharingLev)) {
+                if (isValidPostForUser($postJson[$i]->sharingLev, $postJson[$i]->userId)) {
                     configCard($postJson[$i], $userJson, $pathToImage, $currentPath);
                 }
             }
@@ -127,6 +125,10 @@ function configComponent($postFile, $userFile, $currentPath, $pathToImage)
             if (isValidPostMyAccount($postJson[$i]->userId)) {
                 configCard($postJson[$i], $userJson, $pathToImage, $currentPath);
             }
+        }
+    } else if (str_contains($currentPath, 'adminDashboard.php')) {
+        for ($i = 0; $i < count($postJson); $i++) {
+            configCard($postJson[$i], $userJson, $pathToImage, $currentPath);
         }
     }
 
