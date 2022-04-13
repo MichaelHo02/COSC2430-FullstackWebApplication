@@ -18,17 +18,83 @@ header("Expires: 0 ");
 
 <footer class="footer">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12 text-center">
-                <div class="footer__title h1 badge bg-primary text-fluid">1nstagram.com</div>
-                <div class="footer__menu">
-                    <a href="#" class="menu__item">About</a>
-                    <a href="#" class="menu__item">Privacy</a>
-                    <a href="#" class="menu__item">Support</a>
+        <div class="row justify-content-between">
+            <div class="col-md-7 text-center">
+                <div class="col-lg-12 footer__title h1 ">1nstagram.com</div>
+                <div class="footer__menu col-lg-12">
+                    <a href="#" class="menu__item"><span>About</span></a>
+                    <a href="#" class="menu__item"><span>Privacy</span></a>
+                    <a href="#" class="menu__item"><span>Support</span></a>
                 </div>
             </div>
+            <div class="col-md-5 text-center">
+                <?php
+                if(isset($_COOKIE['user-id-cookie'])){
+                    $db = fopen('../accounts.db', 'r');
+
+                    if ($db) {
+                        $rawContent = fread($db, filesize("../accounts.db"));
+                        $objArray = json_decode($rawContent);
+                        for ($i = 0; $i < count($objArray); $i++) {
+                            if ($objArray[$i]->id == $_COOKIE['user-id-cookie']) {
+                                $avatar = '../assets/img/avatar/' . $objArray[$i]->avatar;
+                                $username = $objArray[$i]->username;
+                            }
+                        }
+                    }
+                    echo '
+                        <div class="user__card">
+                            <img src="'. $avatar .'" alt="" class="user__card-image">
+                            <div class="user__card-name">'. $username .'</div>
+                        </div>
+                    ';
+                }
+                else echo '
+                        <div class = "footer__user-title h1">Join us now</div>
+                     ';
+                ?>
+                <!-- <div class="user__card">
+                    <img src="https://picsum.photos/id/1025/4951/3301" alt="" class="user__card-image">
+                    <div class="user__card-name h3">tamwilltry</div>
+                </div> -->
+                <a class="btn <?php
+                                if (isset($_COOKIE['user-id-cookie']) && str_contains($_SERVER['PHP_SELF'], 'myaccount.php')) {
+                                    echo 'btn-outline-danger';
+                                } else {
+                                    echo "btn btn-primary";
+                                }
+                                ?>" href="
+                                <?php
+                                if (isset($_COOKIE['user-id-cookie']) && str_contains($_SERVER['PHP_SELF'], 'index.php')) {
+                                    echo "./include/myaccount.php";
+                                } else if (isset($_COOKIE['user-id-cookie']) && str_contains($_SERVER['PHP_SELF'], 'myaccount.php')) {
+                                    echo './logout.php';
+                                } else if (isset($_COOKIE['user-id-cookie']) && !str_contains($_SERVER['PHP_SELF'], 'index.php')) {
+                                    echo "./myaccount.php";
+                                } else {
+                                    if (str_contains($_SERVER['PHP_SELF'], 'index.php')) {
+                                        echo "./include/login.php";
+                                    } else {
+                                        echo "./login.php";
+                                    }
+                                }
+                                ?>">
+                                <?php
+                                if (isset($_COOKIE['user-id-cookie'])) {
+                                    $path = strtolower(end(explode('/', $_SERVER['PHP_SELF'])));
+                                    if ($path === 'myaccount.php') {
+                                        echo 'Log out';
+                                    } else {
+                                        echo "My account";
+                                    }
+                                } else {
+                                    echo "Login";
+                                }
+                                ?>
+                </a>
+            </div>
         </div>
-        <div class="row mt-5">
+        <div class="row mt-3">
             <div class="col-md-12 text-center copyright__wrapper">
                 <p class="copyright__content">
                     Copyright @2022 All rights reserved

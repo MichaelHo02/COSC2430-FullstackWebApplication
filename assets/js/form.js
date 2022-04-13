@@ -17,6 +17,7 @@ const validEmail = function () {
 		message = '';
 	}
 	if (message.length === 0) {
+		
 		this.classList.add('is-valid');
 		this.classList.remove('is-invalid');
 		const element = $('#emailFeedback');

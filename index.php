@@ -48,6 +48,7 @@
         ?>
     </main>
     <footer>
+        <?php include "./include/footer.php" ?>
     </footer>
     <?php
     include "./include/gdpr.php"
