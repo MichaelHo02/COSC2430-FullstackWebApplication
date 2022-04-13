@@ -1,30 +1,10 @@
 <?php
-function deleteCard($postFile, $postArr)
-{
-    $arr = array_keys($postArr);
-    $id = $arr[0];
-    $jsonRead = getJson($postFile);
-    for ($i = 0; $i < count($jsonRead); $i++) {
-        if ($id == $jsonRead[$i]->postId) {
-            unset($jsonRead[$i]);
-            break;
-        }
-    }
-    $jsonWrite = array_values($jsonRead);
-    $jsonWrite = json_encode($jsonWrite);
-    if ($in = fopen($postFile, 'w')) {
-        fwrite($in, $jsonWrite);
-        fclose($in);
-    }
-}
-
-
 function renderCard($id, $avatar, $username, $lastUpdate, $content, $image, $sharingLev, $currentPath)
 {
     echo '
-        <div class="col position-relative">
+        <div class="col position-relative" id="' . $id . '">
             <div class="card h-100">
-                    <button name="' . $id . '" type="submit" value="submit" class="btn btn-danger rounded-circle position-absolute top-0 start-100 translate-middle px-2 py-1 delete-img-btn">
+                    <button name="' . $id . '" type="submit" value="submit" class="delBtn btn btn-danger rounded-circle position-absolute top-0 start-100 translate-middle px-2 py-1 delete-img-btn">
                         <i class="bi bi-x"></i>
                     </button>
                 <div class="card-body">
@@ -84,8 +64,8 @@ function isValidPostMyAccount($id)
 
 function isValidPostForUser($sharingLev, $id)
 {
-    return $sharingLev == 'public' || $sharingLev == 'internal' 
-    || ($sharingLev == 'private' && isValidPostMyAccount($id));
+    return $sharingLev == 'public' || $sharingLev == 'internal'
+        || ($sharingLev == 'private' && isValidPostMyAccount($id));
 }
 
 function getJson($name)
@@ -136,4 +116,3 @@ function configComponent($postFile, $userFile, $currentPath, $pathToImage)
         </div>
     </div>';
 }
-?>

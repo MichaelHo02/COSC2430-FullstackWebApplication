@@ -99,7 +99,7 @@
             <div class="row mt-5">
                 <div class="col-lg-3 col-md-6 col-sm-12">
                     <div class="bg-info rounded-circle w-75 avatar mx-auto">
-                        <img src="<?php echo $avatar; ?>" class=" mx-auto d-block img-fluid" alt="avatar" >
+                        <img src="<?php echo $avatar; ?>" class=" mx-auto d-block img-fluid" alt="avatar">
                     </div>
                 </div>
                 <div class="col-lg-9 col-md-6 col-sm-12 ">
@@ -111,14 +111,14 @@
                     <div class="row mt-lg-3 mt-md-0 mt-0">
                         <div class="col-lg-6 col-md-12 col-sm-12 text-md-start text-center">
                             <p for="" class="">Email: <span class=""><?php echo $email; ?></span></p>
-                            
+
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-12 text-md-start text-center">
-                            <p for="" class="">Registered on:                             <span class="">
-                                <?php
-                                echo $registeredTime;
-                                ?>
-                            </span></p>
+                            <p for="" class="">Registered on: <span class="">
+                                    <?php
+                                    echo $registeredTime;
+                                    ?>
+                                </span></p>
 
                         </div>
                     </div>
@@ -128,7 +128,7 @@
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-12 text-md-start text-center">
                             <p for="" class="">Last name: <span class=""><?php echo $lastName; ?></span></p>
-                            
+
                         </div>
                     </div>
                     <div class="row mt-lg-3 mt-md-0 mt-0">
@@ -191,15 +191,13 @@
         <?php
         include './cardComponent.php';
         include_once './sortCmp.php';
-        if (isset($_POST)) {
-            deleteCard('../posts.db', $_POST);
-        }
+        // if (isset($_POST)) {
+        //     deleteCard('../posts.db', $_POST);
+        // }
         ?>
-        <form action=" <?php echo $_SERVER['PHP_SELF'] ?>" method="POST" name="deleteForm" enctype="multipart/form-data"">
-            <?php
-            configComponent('../posts.db', '../accounts.db', $_SERVER['PHP_SELF'], '../assets/img/');
-            ?>
-        </form>
+        <?php
+        configComponent('../posts.db', '../accounts.db', $_SERVER['PHP_SELF'], '../assets/img/');
+        ?>
     </main>
 
     <footer>
@@ -208,6 +206,7 @@
     <?php
     include "./include/gdpr.php"
     ?>
+    <script src="../assets/js/deleteCard.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 
