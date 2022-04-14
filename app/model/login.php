@@ -20,7 +20,7 @@ function validateLogin($config)
                     if ($objArray[$i]->password == $loginPassword) {
                         $_GLOBAL[$objArray[$i]->id] = $objArray[$i];
                         setcookie('user-id-cookie', $objArray[$i]->id, time() + 7200, "/", "localhost");
-                        header('?page=home');
+                        header('Location: ?page=home');
                     } else {
                         $loginPasswordErr = 'Wrong username or password!';
                     }
