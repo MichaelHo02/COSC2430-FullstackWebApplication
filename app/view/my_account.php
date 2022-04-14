@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="../app/assets/css/avatar.css">
+<script src="../app/assets/js/deleteCard.js" defer></script>
 <div class="container">
     <div class="row mt-5">
         <div class="col-lg-3 col-md-6 col-sm-12">
