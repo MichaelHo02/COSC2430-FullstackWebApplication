@@ -1,7 +1,20 @@
 <?php
+$pathRenderPostFactory = $config['LIB_PATH'] . 'post' . DS . 'view.php';
 
-$nav = '';
+function setBtnVisibility()
+{
+    if (isset($_COOKIE['user-id-cookie'])) {
+        return "";
+    } else {
+        return "d-none";
+    }
+}
 
-$main = '';
+$btnVisibility = setBtnVisibility();
 
-$footer = '';
+
+// include $config['LIB_PATH'] . 'card' . DS . 'model.php';
+// include_once './include/sortCmp.php';
+
+// $postDB = $config['DATABASE_PATH'] . 'posts.db';
+// $userDB = $config['DATABASE_PATH'] . 'users.db';
