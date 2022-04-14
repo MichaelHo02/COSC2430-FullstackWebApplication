@@ -4,6 +4,7 @@ require $pathRenderPostFactory;
 ?>
 
 <script src="../app/assets/js/home.js" defer></script>
+<link rel="stylesheet" href="../app/assets/css/avatar.css">
 
 <div class="container mt-4">
     <button class="btn btn-primary create-post-btn 

@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="../app/assets/css/myaccount.css">
+<link rel="stylesheet" href="../app/assets/css/avatar.css">
 <div class="container">
     <div class="row mt-5">
         <div class="col-lg-3 col-md-6 col-sm-12">
@@ -41,33 +41,36 @@
             </div>
         </div>
     </div>
+</div>
 
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Change Avatar</h5>
-                    <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
-                    </button>
-                </div>
-                <form action="?page=my_account" name="form" method="post" enctype="multipart/form-data">
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label for="formFile" class="form-label">Profile picture</label>
-                            <input class="form-control <?php echo $inputAvt; ?>" type="file" id="formFile" name="formFile">
-                            <div id="" class="<?php echo $messageClass; ?>">
-                                <?php echo $message; ?>
-                            </div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Change Avatar</h5>
+                <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
+                </button>
+            </div>
+            <form action="?page=my_account" name="form" method="post" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Profile picture</label>
+                        <input class="form-control <?php echo $inputAvt; ?>" type="file" id="formFile" name="formFile">
+                        <div id="" class="<?php echo $messageClass; ?>">
+                            <?php echo $message; ?>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" value="Submit">Save changes</button>
-                    </div>
-                </form>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" value="Submit">Save changes</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
+
+<?php
+configComponent($postDB, $userDB, $page, '../app/database/img/');
+?>
