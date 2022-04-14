@@ -65,7 +65,7 @@ if (isset($_COOKIE['user-id-cookie'])) {
                 $email = $objArray[$i]->email;
                 $firstName = $objArray[$i]->firstName;
                 $lastName = $objArray[$i]->lastName;
-                $username = $objArray[$i]->username;
+                $username = "@" . $objArray[$i]->username;
                 $registeredTime = $objArray[$i]->registeredTime;
                 break;
             }
@@ -73,4 +73,45 @@ if (isset($_COOKIE['user-id-cookie'])) {
         fclose($db);
     }
 }
+
+function isValidAvatarBtn($file_ok)
+{
+    if (isset($_FILES['formFile'])) {
+        if ($file_ok) {
+            return 'is-valid btn-success';
+        } else {
+            return 'is-invalid btn-danger';
+        }
+    } else {
+        return '';
+    }
+}
+
+function isValidAvatarMessage($file_ok)
+{
+    if (isset($_FILES['formFile'])) {
+        if ($file_ok) {
+            return 'valid-feedback';
+        } else {
+            return 'invalid-feedback';
+        }
+    }
+    return '';
+}
+
+$avtBtn = isValidAvatarBtn($file_ok);
+$messageClass = isValidAvatarMessage($file_ok);
+
+function isValidAvatarInput($file_ok)
+{
+    if (isset($_FILES['formFile'])) {
+        if ($file_ok) {
+            return 'is-valid';
+        } else {
+            return 'is-invalid';
+        }
+    }
+    return '';
+}
+$inputAvt = isValidAvatarInput($file_ok);
 ?>
