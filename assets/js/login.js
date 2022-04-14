@@ -7,15 +7,6 @@ const loginEmailUsernameWarning = $('#loginUserFeedback');
 const passwordWarning = $('#passwordUserFeedback');
 
 
-// loginEmailUsername.addEventListener('blur', () => {
-//     if (loginEmailUsername.value == '') {
-//         loginEmailUsernameWarning.innerText = "* Email/Username cannot be empty.";
-//     } else {
-//         loginEmailUsernameWarning.innerText = " ";
-//     }
-// })
-
-
 function handleLoginForm() {
     loginEmailUsername.classList.remove('is-invalid');
     loginPassword.classList.remove('is-invalid');
