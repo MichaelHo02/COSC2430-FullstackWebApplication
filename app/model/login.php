@@ -46,4 +46,4 @@ $loginPasswordErr = validateLogin($config);
 
 $loginStatus = getLoginStatus($loginPasswordErr);
 
-var_dump($loginPasswordErr, $loginStatus);
+// var_dump($loginPasswordErr, $loginStatus);

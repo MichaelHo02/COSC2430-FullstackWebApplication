@@ -2,6 +2,8 @@
 require $pathRenderPostFactory;
 ?>
 
+<script src="../app/assets/js/home.js" defer></script>
+
 <div class="container mt-4">
     <button class="btn btn-primary create-post-btn 
     <?php echo $btnVisibility; ?> ">Create new post</button>
