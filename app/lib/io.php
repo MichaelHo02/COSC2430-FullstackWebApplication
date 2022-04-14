@@ -8,3 +8,12 @@ function getJson($filePath)
     }
     return null;
 }
+
+function setJson($file, $json)
+{
+    $in = fopen($file, 'w');
+    if ($in) {
+        fwrite($in, $json);
+    }
+    fclose($in);
+}

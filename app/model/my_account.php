@@ -1,5 +1,6 @@
-<!-- Idea: Show avatar, name, email, all posts, logout at the end -->
 <?php
+require_once $config['LIB_PATH'] . "io.php";
+
 if (isset($_FILES['formFile'])) {
     $avatar = $_FILES['formFile'];
     $file_ok = true;
@@ -26,11 +27,8 @@ if (isset($_FILES['formFile'])) {
 
     if ($file_ok) {
         $file = $config['DATABASE_PATH'] . 'users.db';
-
-        $db = fopen($file, 'r');
-        if ($db) {
-            $rawContent = fread($db, filesize($file));
-            $objArray = json_decode($rawContent);
+        $objArray = getJson($file);
+        if ($$objArray !== null) {
             for ($i = 0; $i < count($objArray); $i++) {
                 if ($objArray[$i]->id == $_COOKIE['user-id-cookie']) {
                     $objArray[$i]->avatar = $fileNewName;
@@ -38,13 +36,7 @@ if (isset($_FILES['formFile'])) {
                 }
             }
             $strSrc = json_encode($objArray);
-            fclose($db);
-
-            $in = fopen($file, 'w');
-            if ($in) {
-                fwrite($in, $strSrc);
-            }
-            fclose($in);
+            setJson($file, $strSrc);
         }
     }
 }
@@ -52,13 +44,9 @@ if (isset($_FILES['formFile'])) {
 $file = $config['DATABASE_PATH'] . 'users.db';
 
 if (isset($_COOKIE['user-id-cookie'])) {
-    $db = fopen($file, 'r');
-    $user;
+    $objArray = getJson($file);
 
-    if ($db) {
-        $rawContent = fread($db, filesize($file));
-        $objArray = json_decode($rawContent);
-
+    if ($objArray !== null) {
         for ($i = 0; $i < count($objArray); $i++) {
             if ($objArray[$i]->id == $_COOKIE['user-id-cookie']) {
                 $avatar = '../app/database/img/avatar/' . $objArray[$i]->avatar;
@@ -70,7 +58,6 @@ if (isset($_COOKIE['user-id-cookie'])) {
                 break;
             }
         }
-        fclose($db);
     }
 }
 
@@ -115,9 +102,8 @@ function isValidAvatarInput($file_ok)
 }
 $inputAvt = isValidAvatarInput($file_ok);
 
-include $config['LIB_PATH'] . 'card' . DS . 'model.php';
+include_once $config['LIB_PATH'] . 'card' . DS . 'model.php';
 include_once $config['LIB_PATH'] . 'sortCmp.php';
 
 $postDB = $config['DATABASE_PATH'] . 'posts.db';
 $userDB = $config['DATABASE_PATH'] . 'users.db';
-?>

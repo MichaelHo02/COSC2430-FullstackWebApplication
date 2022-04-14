@@ -2,7 +2,6 @@
 require_once $config['LIB_PATH'] . "user.php";
 require_once $config['LIB_PATH'] . "io.php";
 
-
 function validateLogin($config)
 {
     if (isset($_POST['submit'])) {
@@ -45,5 +44,3 @@ function getLoginStatus($loginPasswordErr)
 $loginPasswordErr = validateLogin($config);
 
 $loginStatus = getLoginStatus($loginPasswordErr);
-
-// var_dump($loginPasswordErr, $loginStatus);
