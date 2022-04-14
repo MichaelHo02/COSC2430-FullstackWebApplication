@@ -1,6 +1,8 @@
 <?php
 require_once $config['LIB_PATH'] . "user.php";
 require_once $config['LIB_PATH'] . "imageValidation.php";
+require_once $config['LIB_PATH'] . "io.php";
+
 if (isset($_POST['submit'])) {
 
     $email = $_POST['email'];
@@ -32,11 +34,7 @@ if (isset($_POST['submit'])) {
             $strSrc = json_encode($jsonSrc);
             fclose($out);
 
-            $in = fopen($file, 'w');
-            if ($in) {
-                fwrite($in, $strSrc);
-            }
-            fclose($in);
+            setJson($file, $strSrc);
 
             header('Location: ?page=login');
         }
