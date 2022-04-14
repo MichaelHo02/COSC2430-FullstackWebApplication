@@ -18,7 +18,7 @@
 
     <main>
         <?php
-        echo $content;
+        require $content;
         ?>
     </main>
 
