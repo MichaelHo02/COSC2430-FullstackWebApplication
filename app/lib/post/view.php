@@ -1,5 +1,5 @@
 <div class="container mt-3 d-none" id="post-factory">
-    <form class="col-sm-12 col-lg-6 ms-auto me-auto" action="" method="post" enctype="multipart/form-data">
+    <form class="col-sm-12 col-lg-6 ms-auto me-auto" action="?page=home" method="post" enctype="multipart/form-data">
 
         <div class="mb-3">
             <label for="imageUpload" name="uploadImg" class="form-label">Choose image to upload</label>
