@@ -10,8 +10,11 @@ $_404 = $config['VIEW_PATH'] . '404.php';
 
 $content = $_404;
 
-if (file_exists($model) && file_exists($view)) {
+if (file_exists($model)) {
     require $model;
+}
+
+if (file_exists($view)) {
     $content = $view;
 }
 
