@@ -1,0 +1,7 @@
+<?php
+
+$nav = '';
+
+$main = '';
+
+$footer = '';
