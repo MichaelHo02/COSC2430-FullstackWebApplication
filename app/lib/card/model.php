@@ -1,7 +1,7 @@
 <?php
 function renderCard($id, $avatar, $username, $lastUpdate, $content, $image, $sharingLev, $currentPath)
 {
-    return '
+    echo '
         <div class="col position-relative" id="' . $id . '">
             <div class="card h-100">
                     <button name="' . $id . '" type="submit" value="submit" class="delBtn btn btn-danger rounded-circle position-absolute top-0 start-100 translate-middle px-2 py-1 delete-img-btn">
@@ -85,8 +85,7 @@ function configComponent($postFile, $userFile, $currentPath, $pathToImage)
     <div class="container">
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-2">
     ';
-
-    if (str_contains($currentPath, 'index.php')) {
+    if (str_contains($currentPath, 'home')) {
         if (isset($_COOKIE['user-id-cookie'])) {
             for ($i = 0; $i < count($postJson); $i++) {
                 if (isValidPostForUser($postJson[$i]->sharingLev, $postJson[$i]->userId)) {
@@ -100,7 +99,7 @@ function configComponent($postFile, $userFile, $currentPath, $pathToImage)
                 }
             }
         }
-    } else if (str_contains($currentPath, 'myaccount.php') && isset($_COOKIE['user-id-cookie'])) {
+    } else if (str_contains($currentPath, 'my_account') && isset($_COOKIE['user-id-cookie'])) {
         for ($i = 0; $i < count($postJson); $i++) {
             if (isValidPostMyAccount($postJson[$i]->userId)) {
                 configCard($postJson[$i], $userJson, $pathToImage, $currentPath);
