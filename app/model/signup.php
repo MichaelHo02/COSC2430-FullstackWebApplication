@@ -35,8 +35,9 @@ if (isset($_POST['submit'])) {
                 echo 'fail ' . $fileNewName;
             }
         }
+    } else {
+        $message = 'No File was uploaded!';
     }
-    $message = 'No File was uploaded!';
 
     if ($file_ok) {
         $user = new User($email, $password, $firstName, $lastName, $fileNewName);

@@ -1,16 +1,6 @@
 <?php
-function getJson($name)
-{
-    $file = fopen($name, 'r');
-    $src = fread($file, filesize($name));
-    $json = json_decode($src);
-    fclose($file);
-    return $json;
-}
-
 $postFile = '../database/posts.db';
 $id = $_POST['id'];
-// echo $id;
 $jsonRead = getJson($postFile);
 for ($i = 0; $i < count($jsonRead); $i++) {
     if ($id == $jsonRead[$i]->postId) {

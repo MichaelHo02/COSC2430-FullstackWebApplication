@@ -68,14 +68,6 @@ function isValidPostForUser($sharingLev, $id)
         || ($sharingLev == 'private' && isValidPostMyAccount($id));
 }
 
-function getJson($name)
-{
-    $file = fopen($name, 'r');
-    $src = fread($file, filesize($name));
-    $json = json_decode($src);
-    return $json;
-}
-
 function configComponent($postFile, $userFile, $currentPath, $pathToImage)
 {
     $postJson = getJson($postFile);
