@@ -1,4 +1,5 @@
 <?php
+require $pathPostHandler;
 require $pathRenderPostFactory;
 ?>
 
@@ -12,5 +13,5 @@ require $pathRenderPostFactory;
 </div>
 
 <?php
-// configComponent($postDB, $userDB, $page, 'img/');
+configComponent($postDB, $userDB, $page, '../app/database/img/');
 ?>

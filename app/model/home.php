@@ -1,4 +1,5 @@
 <?php
+$pathPostHandler = $config['LIB_PATH'] . 'post' . DS . 'model.php';
 $pathRenderPostFactory = $config['LIB_PATH'] . 'post' . DS . 'view.php';
 
 function setBtnVisibility()
@@ -13,8 +14,8 @@ function setBtnVisibility()
 $btnVisibility = setBtnVisibility();
 
 
-// include $config['LIB_PATH'] . 'card' . DS . 'model.php';
-// include_once './include/sortCmp.php';
+include $config['LIB_PATH'] . 'card' . DS . 'model.php';
+include_once $config['LIB_PATH'] . 'sortCmp.php';
 
-// $postDB = $config['DATABASE_PATH'] . 'posts.db';
-// $userDB = $config['DATABASE_PATH'] . 'users.db';
+$postDB = $config['DATABASE_PATH'] . 'posts.db';
+$userDB = $config['DATABASE_PATH'] . 'users.db';
