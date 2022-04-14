@@ -134,9 +134,30 @@
                     <div class="row mt-lg-3 mt-md-0 mt-0">
                         <div class="d-grid gap-2">
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                            <button type="button" class="btn btn-primary <?php
+                                                                            if (isset($_FILES['formFile'])) {
+                                                                                if ($file_ok) {
+                                                                                    echo 'is-valid btn-success';
+                                                                                } else {
+                                                                                    echo 'is-invalid btn-danger';
+                                                                                }
+                                                                            }
+                                                                            ?>" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
                                 Change Avatar
                             </button>
+                            <div id="" class="<?php
+                                                if (isset($_FILES['formFile'])) {
+                                                    if ($file_ok) {
+                                                        echo 'valid-feedback';
+                                                    } else {
+                                                        echo 'invalid-feedback';
+                                                    }
+                                                }
+                                                ?>">
+                                <?php
+                                echo $message;
+                                ?>
+                            </div>
 
                             <!-- Modal -->
                             <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
