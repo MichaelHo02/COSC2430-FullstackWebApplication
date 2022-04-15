@@ -1,4 +1,6 @@
 <?php
+include_once $config['LIB_PATH'] . 'io.php';
+
 $postFile = '../database/posts.db';
 $id = $_POST['id'];
 $jsonRead = getJson($postFile);
