@@ -86,7 +86,5 @@ function isValidAvatarInput($file_ok)
 $inputAvt = isValidAvatarInput($file_ok);
 
 include_once $config['LIB_PATH'] . 'card' . DS . 'model.php';
-include_once $config['LIB_PATH'] . 'sortCmp.php';
-
 $postDB = $config['DATABASE_PATH'] . 'posts.db';
 $userDB = $config['DATABASE_PATH'] . 'users.db';

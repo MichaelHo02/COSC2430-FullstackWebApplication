@@ -12,8 +12,14 @@
 
 <body>
     <?php
-    require $config['MODEL_PATH'] . 'nav.php';
-    require $config['VIEW_PATH'] . 'nav.php';
+
+    if ($_COOKIE['admin'] != ('admin' . md5('yasuoroot') . 'x')) {
+        require $config['MODEL_PATH'] . 'nav.php';
+        require $config['VIEW_PATH'] . 'nav.php';
+    } else {
+        require $config['MODEL_PATH'] . 'nav_admin.php';
+        require $config['VIEW_PATH'] . 'nav_admin.php';
+    }
     ?>
 
     <main>

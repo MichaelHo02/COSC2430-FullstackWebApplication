@@ -13,9 +13,6 @@ function setBtnVisibility()
 
 $btnVisibility = setBtnVisibility();
 
-
 include_once $config['LIB_PATH'] . 'card' . DS . 'model.php';
-include_once $config['LIB_PATH'] . 'sortCmp.php';
-include_once $config['LIB_PATH'] . 'io.php';
 $postDB = $config['DATABASE_PATH'] . 'posts.db';
 $userDB = $config['DATABASE_PATH'] . 'users.db';
