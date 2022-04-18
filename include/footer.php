@@ -20,16 +20,16 @@ header("Expires: 0 ");
     <div class="container">
         <div class="row justify-content-between">
             <div class="col-md-7 text-center">
-                <div class="col-lg-12 footer__title h1 ">1nstagram.com</div>
+                <!-- <div class="col-lg-12 footer__title h1 ">1nstagram.com</div> -->
                 <div class="footer__menu col-lg-12">
-                    <a href="#" class="menu__item"><span>About</span></a>
-                    <a href="#" class="menu__item"><span>Privacy</span></a>
-                    <a href="#" class="menu__item"><span>Support</span></a>
+                    <a href="<?php echo "./include/about.php"; ?>" class="menu__item"><span>About</span></a>
+                    <a href="<?php echo "./include/privacy.php"; ?>" class="menu__item"><span>Privacy</span></a>
+                    <a href="<?php echo "./include/help.php"; ?>" class="menu__item"><span>Support</span></a>
                 </div>
             </div>
             <div class="col-md-5 text-center">
                 <?php
-                if(isset($_COOKIE['user-id-cookie'])){
+                if (isset($_COOKIE['user-id-cookie'])) {
                     $db = fopen('../accounts.db', 'r');
 
                     if ($db) {
@@ -44,14 +44,13 @@ header("Expires: 0 ");
                     }
                     echo '
                         <div class="user__card">
-                            <img src="'. $avatar .'" alt="" class="user__card-image">
-                            <div class="user__card-name">'. $username .'</div>
+                            <img src="' . $avatar . '" alt="" class="user__card-image">
+                            <div class="user__card-name">' . $username . '</div>
                         </div>
                     ';
-                }
-                else echo '
+                } else echo '
                         <div class = "footer__user-title h1">Join us now</div>
-                     ';
+                ';
                 ?>
                 <!-- <div class="user__card">
                     <img src="https://picsum.photos/id/1025/4951/3301" alt="" class="user__card-image">
@@ -79,18 +78,18 @@ header("Expires: 0 ");
                                     }
                                 }
                                 ?>">
-                                <?php
-                                if (isset($_COOKIE['user-id-cookie'])) {
-                                    $path = strtolower(end(explode('/', $_SERVER['PHP_SELF'])));
-                                    if ($path === 'myaccount.php') {
-                                        echo 'Log out';
-                                    } else {
-                                        echo "My account";
-                                    }
-                                } else {
-                                    echo "Login";
-                                }
-                                ?>
+                    <?php
+                    if (isset($_COOKIE['user-id-cookie'])) {
+                        $path = strtolower(end(explode('/', $_SERVER['PHP_SELF'])));
+                        if ($path === 'myaccount.php') {
+                            echo 'Log out';
+                        } else {
+                            echo "My account";
+                        }
+                    } else {
+                        echo "Login";
+                    }
+                    ?>
                 </a>
             </div>
         </div>

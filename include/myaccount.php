@@ -201,7 +201,7 @@
     </main>
 
     <footer>
-
+            
     </footer>
     <?php
     include "./include/gdpr.php"
