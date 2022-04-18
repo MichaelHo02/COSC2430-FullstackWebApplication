@@ -5,12 +5,14 @@ include_once $config['LIB_PATH'] . 'io.php';
 
 function renderCard($id, $avatar, $username, $lastUpdate, $content, $image, $sharingLev, $currentPath)
 {
+    $btnStr = ($currentPath !== 'home') ? '
+    <button name="' . $id . '" type="submit" value="submit" class="delBtn btn btn-danger rounded-circle position-absolute top-0 start-100 translate-middle px-2 py-1 delete-img-btn">
+        <i class="bi bi-x"></i>
+    </button>' : '';
+
     echo '
         <div class="col position-relative" id="' . $id . '">
-            <div class="card h-100">
-                    <button name="' . $id . '" type="submit" value="submit" class="delBtn btn btn-danger rounded-circle position-absolute top-0 start-100 translate-middle px-2 py-1 delete-img-btn">
-                        <i class="bi bi-x"></i>
-                    </button>
+            <div class="card h-100">' . $btnStr . '
                 <div class="card-body">
                     <div class="row px-3 align-items-center justify-content-start">
                         <div class="col col-2 bg-info rounded-circle avatar">
