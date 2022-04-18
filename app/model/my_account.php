@@ -1,4 +1,8 @@
 <?php
+if (isset($_COOKIE)) {
+    header("location: ?page=home");
+}
+
 require_once $config['LIB_PATH'] . "io.php";
 require_once $config['LIB_PATH'] . "imageValidation.php";
 
