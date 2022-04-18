@@ -65,7 +65,7 @@ function isValidPostForGuest($sharingLev)
 
 function isValidPostMyAccount($id)
 {
-    return $id == $_COOKIE['user-id-cookie'];
+    return $id == (isset($_COOKIE['user-id-cookie'])? $_COOKIE['user-id-cookie'] : $_REQUEST['id']);
 }
 
 function isValidPostForUser($sharingLev, $id)
@@ -97,7 +97,7 @@ function configComponent($postFile, $userFile, $currentPath, $pathToImage)
                 }
             }
         }
-    } else if (str_contains($currentPath, 'my_account') && isset($_COOKIE['user-id-cookie'])) {
+    } else if (str_contains($currentPath, 'my_account')) {
         for ($i = 0; $i < count($postJson); $i++) {
             if (isValidPostMyAccount($postJson[$i]->userId)) {
                 configCard($postJson[$i], $userJson, $pathToImage, $currentPath);

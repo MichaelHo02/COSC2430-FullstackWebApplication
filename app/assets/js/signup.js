@@ -1,5 +1,5 @@
-const $ = document.querySelector.bind(document);
-const $$ = document.querySelectorAll.bind(document);
+// const $ = document.querySelector.bind(document);
+// const $$ = document.querySelectorAll.bind(document);
 
 const validEmail = function () {
 	const email = String(this.value).toLowerCase();
@@ -129,11 +129,19 @@ const validName = function () {
 	updateBtn();
 };
 
-$('#email').addEventListener('input', validEmail);
+let isValidQty = 1;
+let validFeedbackQty = 1;
+let listGroupItemSuccess = 5;
+
+if (!$('.modal')) {
+	$('#email').addEventListener('input', validEmail);
+	$('#firstName').addEventListener('input', validName);
+	$('#lastName').addEventListener('input', validName);
+	isValidQty = 4;
+	validFeedbackQty = 4;
+}
 $('#password').addEventListener('input', validPassword);
 $('#retypePassword').addEventListener('input', validRetypePassword);
-$('#firstName').addEventListener('input', validName);
-$('#lastName').addEventListener('input', validName);
 
 const updateBtn = function () {
 	console.log(
@@ -142,16 +150,15 @@ const updateBtn = function () {
 		$$('.list-group-item-success').length
 	);
 	console.log(
-		$$('.is-valid').length < 4 ||
-			$$('.valid-feedback').length < 4 ||
-			$$('.list-group-item-success').length < 5
+		$$('.is-valid').length < isValidQty ||
+			$$('.valid-feedback').length < validFeedbackQty ||
+			$$('.list-group-item-success').length < listGroupItemSuccess
 	);
 	if (
-		$$('.is-valid').length < 4 ||
-		$$('.valid-feedback').length < 4 ||
-		$$('.list-group-item-success').length < 5
+		$$('.is-valid').length < isValidQty ||
+		$$('.valid-feedback').length < validFeedbackQty ||
+		$$('.list-group-item-success').length < listGroupItemSuccess
 	) {
-		console.log('A');
 		$('#submit').disabled = true;
 	} else {
 		$('#submit').disabled = false;
@@ -161,8 +168,8 @@ const updateBtn = function () {
 $('.form').onsubmit = function () {
 	console.log('object');
 	return (
-		$$('.is-valid').length === 4 &&
-		$$('.valid-feedback').length === 4 &&
-		$$('.list-group-item-success').length === 5
+		$$('.is-valid').length === isValidQty &&
+		$$('.valid-feedback').length === validFeedbackQty &&
+		$$('.list-group-item-success').length === listGroupItemSuccess
 	);
 };

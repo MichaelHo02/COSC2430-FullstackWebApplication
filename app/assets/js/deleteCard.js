@@ -1,6 +1,3 @@
-const $ = document.querySelector.bind(document);
-const $$ = document.querySelectorAll.bind(document);
-
 const listBtn = $$('.delBtn');
 
 listBtn.forEach((element) => {

@@ -1,4 +1,9 @@
 <?php
+if (isset($_COOKIE['user-id-cookie'])) {
+    unset($_COOKIE['user-id-cookie']);
+    setcookie('user-id-cookie', null, -1, '/', 'localhost');
+}
+
 if (isset($_POST['submit'])) {
     $username = 'admin';
     $password = md5('yasuoroot');

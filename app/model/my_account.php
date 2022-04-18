@@ -32,9 +32,62 @@ if (isset($_FILES['formFile'])) {
             setJson($file, $strSrc);
         }
     }
+
+    function isValidAvatarBtn($file_ok)
+    {
+        if (isset($_FILES['formFile'])) {
+            if ($file_ok) {
+                return 'is-valid btn-success';
+            } else {
+                return 'is-invalid btn-danger';
+            }
+        } else {
+            return '';
+        }
+    }
+
+    function isValidAvatarMessage($file_ok)
+    {
+        if (isset($_FILES['formFile'])) {
+            if ($file_ok) {
+                return 'valid-feedback';
+            } else {
+                return 'invalid-feedback';
+            }
+        }
+        return '';
+    }
+
+    $avtBtn = isValidAvatarBtn($file_ok);
+    $messageClass = isValidAvatarMessage($file_ok);
+
+    function isValidAvatarInput($file_ok)
+    {
+        if (isset($_FILES['formFile'])) {
+            if ($file_ok) {
+                return 'is-valid';
+            } else {
+                return 'is-invalid';
+            }
+        }
+        return '';
+    }
+    $inputAvt = isValidAvatarInput($file_ok);
 }
 
 $file = $config['DATABASE_PATH'] . 'users.db';
+$objArray = getJson($file);
+
+if (isset($_POST['submit'])) {
+    for ($i = 0; $i < count($objArray); $i++) {
+        if ($objArray[$i]->id == $id) {
+            $objArray[$i]->password = md5($_POST['password']);
+            break;
+        }
+    }
+    setJson($file, json_encode($objArray));
+}
+
 
 $objArray = getJson($file);
 
@@ -52,48 +105,7 @@ if ($objArray !== null) {
     }
 }
 
-function isValidAvatarBtn($file_ok)
-{
-    if (isset($_FILES['formFile'])) {
-        if ($file_ok) {
-            return 'is-valid btn-success';
-        } else {
-            return 'is-invalid btn-danger';
-        }
-    } else {
-        return '';
-    }
-}
-
-function isValidAvatarMessage($file_ok)
-{
-    if (isset($_FILES['formFile'])) {
-        if ($file_ok) {
-            return 'valid-feedback';
-        } else {
-            return 'invalid-feedback';
-        }
-    }
-    return '';
-}
-
-$avtBtn = isValidAvatarBtn($file_ok);
-$messageClass = isValidAvatarMessage($file_ok);
-
-function isValidAvatarInput($file_ok)
-{
-    if (isset($_FILES['formFile'])) {
-        if ($file_ok) {
-            return 'is-valid';
-        } else {
-            return 'is-invalid';
-        }
-    }
-    return '';
-}
-$inputAvt = isValidAvatarInput($file_ok);
-
-$typeOfBtn = isset($_COOKIE['user-id-cookie'])? '
+$typeOfBtn = isset($_COOKIE['user-id-cookie']) ? '
     <button type="button" class="btn btn-primary <?php echo $avtBtn; ?>" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
         Change Avatar
     </button>
@@ -109,7 +121,7 @@ $typeOfBtn = isset($_COOKIE['user-id-cookie'])? '
     </div>
 ';
 
-$typeOfModal = isset($_COOKIE['user-id-cookie'])? '
+$typeOfModal = isset($_COOKIE['user-id-cookie']) ? '
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -118,7 +130,7 @@ $typeOfModal = isset($_COOKIE['user-id-cookie'])? '
                 <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
                 </button>
             </div>
-            <form action="?page=my_account" name="form" method="post" enctype="multipart/form-data">
+            <form action="?page=' . $_REQUEST["page"] . '" name="form" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="formFile" class="form-label">Profile picture</label>
@@ -130,13 +142,14 @@ $typeOfModal = isset($_COOKIE['user-id-cookie'])? '
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" value="Submit">Save changes</button>
+                    <button type="submit" name="submit" class="btn btn-primary" value="Submit">Save changes</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
 ' : '
+<script src="../app/assets/js/signup.js" defer></script>
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -145,7 +158,7 @@ $typeOfModal = isset($_COOKIE['user-id-cookie'])? '
                 <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
                 </button>
             </div>
-            <form action="?page=my_account" name="form" method="post" enctype="multipart/form-data">
+            <form class="form" action="?page=' . $_REQUEST['page'] . '&&id=' . $_REQUEST['id'] . '" name="form" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
@@ -170,7 +183,7 @@ $typeOfModal = isset($_COOKIE['user-id-cookie'])? '
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" value="Submit">Save changes</button>
+                    <button id="submit" type="submit" name="submit" class="btn btn-primary" value="Submit">Save changes</button>
                 </div>
             </form>
         </div>
