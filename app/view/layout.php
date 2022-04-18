@@ -15,7 +15,7 @@
 
 <body>
     <?php
-    if (!str_contains($page, 'admin')) {
+    if (!str_contains($page, 'admin') && !str_contains($page, 'my_account')) {
         if ($_COOKIE['admin']) {
             unset($_COOKIE['admin']);
             setcookie('admin', null, -1, '/', 'localhost');

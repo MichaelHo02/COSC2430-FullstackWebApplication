@@ -110,7 +110,11 @@ function renderUIUser(data) {
 		let id = data[i].id;
 		let email = data[i].email;
 		let html = `
-        <li class="list-group-item"><span class="pe-1">Id: ${id},</span>Email: ${email}</li>
+            <li class="list-group-item" onclick="window.location.href = '?page=my_account&&id=${id}'">
+                <span class="pe-1">
+                    Id: ${id}, Email: ${email}
+                </span>
+            </li>
         `;
 		let para = document.createRange().createContextualFragment(html);
 		userList.appendChild(para);
