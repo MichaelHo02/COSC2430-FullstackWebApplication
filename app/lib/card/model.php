@@ -103,7 +103,7 @@ function configComponent($postFile, $userFile, $currentPath, $pathToImage)
                 configCard($postJson[$i], $userJson, $pathToImage, $currentPath);
             }
         }
-    } else if (str_contains($currentPath, 'adminDashboard.php')) {
+    } else if (str_contains($currentPath, 'admin')) {
         for ($i = 0; $i < count($postJson); $i++) {
             configCard($postJson[$i], $userJson, $pathToImage, $currentPath);
         }

@@ -1,12 +1,15 @@
-<header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="#">Dashboard</a>
-            <form class="d-flex">
-                <input class="form-control me-2 search-user-input" type="search" placeholder="Search user" aria-label="Search">
-                <button class="btn btn-outline-success search-user-btn" type="submit">Search</button>
+<header class="container">
+    <nav class="navbar navbar-expand-lg navbar-light position-relative">
+        <a href="<?php echo $navBrandLink; ?>" class="navbar-brand display-1 font-weight-bold position-absolute">
+            Dashboard
+        </a>
+        <div class="ms-auto me-auto w-50">
+            <form class="">
+                <input class="form-control modal-xl" type="search" placeholder="Search" aria-label="Search">
             </form>
         </div>
-        </div>
+        <a class="btn <?php echo $btnClass; ?> position-absolute end-0" href=" <?php echo $btnLink; ?>">
+            <?php echo $btnInnerText; ?>
+        </a>
     </nav>
 </header>
