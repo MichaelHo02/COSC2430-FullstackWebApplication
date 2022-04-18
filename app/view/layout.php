@@ -15,7 +15,12 @@
 
 <body>
     <?php
-
+    if (!str_contains($page, 'admin')) {
+        if ($_COOKIE['admin']) {
+            unset($_COOKIE['admin']);
+            setcookie('admin', null, -1, '/', 'localhost');
+        }
+    }
     if ($_COOKIE['admin'] != ('admin' . md5('yasuoroot') . 'x')) {
         require $config['MODEL_PATH'] . 'nav.php';
         require $config['VIEW_PATH'] . 'nav.php';
