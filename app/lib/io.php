@@ -11,7 +11,7 @@ function getJson($filePath)
 
 function setJson($file, $json)
 {
-    echo 'Hello';
+    // echo 'Hello';
     $in = fopen($file, 'w');
     if ($in) {
         fwrite($in, $json);
