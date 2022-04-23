@@ -3,8 +3,9 @@
 include_once $config['LIB_PATH'] . 'sortCmp.php';
 include_once $config['LIB_PATH'] . 'io.php';
 
-function renderCard($id, $avatar, $username, $lastUpdate, $content, $image, $sharingLev, $currentPath)
+function renderCard($id, $avatar, $username, $lastUpdate, $content, $image, $sharingLev, $currentPath, $isLazy)
 {
+    $lazy = $isLazy == true ? "loading='lazy'" : "";
     $btnStr = ($currentPath !== 'home') ? '
     <button name="' . $id . '" type="submit" value="submit" class="delBtn btn btn-danger rounded-circle position-absolute top-0 start-100 translate-middle px-2 py-1 delete-img-btn">
         <i class="bi bi-x"></i>
@@ -30,7 +31,7 @@ function renderCard($id, $avatar, $username, $lastUpdate, $content, $image, $sha
                         <p class="card-text p-0">' . $content . '</p>
                     </div>
                 </div>
-                <img src="' . $image . '" class="card-img-bottom cap" alt="Post Image" />
+                <img src="' . $image . '" class="card-img-bottom cap" alt="Post Image" ' . $lazy . ' />
             </div>
         </div>
         ';
@@ -45,7 +46,7 @@ function getUser($id, $userJson)
     }
 }
 
-function configCard($post, $userJson, $pathToImage, $currentPath)
+function configCard($post, $userJson, $pathToImage, $currentPath, $isLazy)
 {
     $user = getUser($post->userId, $userJson);
     $avatar = $pathToImage . 'avatar/' . $user->avatar;
@@ -55,7 +56,7 @@ function configCard($post, $userJson, $pathToImage, $currentPath)
     $content = $post->postDesc;
     $image = $pathToImage . 'storage/' . $post->postId . '.' . $post->postExt;
     $sharingLev = $post->sharingLev;
-    renderCard($post->postId, $avatar, $username, $lastUpdate, $content, $image, $sharingLev, $currentPath);
+    renderCard($post->postId, $avatar, $username, $lastUpdate, $content, $image, $sharingLev, $currentPath, $isLazy);
 }
 
 function isValidPostForGuest($sharingLev)
@@ -87,25 +88,25 @@ function configComponent($postFile, $userFile, $currentPath, $pathToImage)
         if (isset($_COOKIE['user-id-cookie'])) {
             for ($i = 0; $i < count($postJson); $i++) {
                 if (isValidPostForUser($postJson[$i]->sharingLev, $postJson[$i]->userId)) {
-                    configCard($postJson[$i], $userJson, $pathToImage, $currentPath);
+                    configCard($postJson[$i], $userJson, $pathToImage, $currentPath, $i == 0 || $i == 1 || $i == 2 ? false : true);
                 }
             }
         } else {
             for ($i = 0; $i < count($postJson); $i++) {
                 if (isValidPostForGuest($postJson[$i]->sharingLev)) {
-                    configCard($postJson[$i], $userJson, $pathToImage, $currentPath);
+                    configCard($postJson[$i], $userJson, $pathToImage, $currentPath,  $i == 0 || $i == 1 || $i == 2 ? false : true);
                 }
             }
         }
     } else if (str_contains($currentPath, 'my_account')) {
         for ($i = 0; $i < count($postJson); $i++) {
             if (isValidPostMyAccount($postJson[$i]->userId)) {
-                configCard($postJson[$i], $userJson, $pathToImage, $currentPath);
+                configCard($postJson[$i], $userJson, $pathToImage, $currentPath,  $i == 0 || $i == 1 || $i == 2 ? false : true);
             }
         }
     } else if (str_contains($currentPath, 'admin')) {
         for ($i = 0; $i < count($postJson); $i++) {
-            configCard($postJson[$i], $userJson, $pathToImage, $currentPath);
+            configCard($postJson[$i], $userJson, $pathToImage, $currentPath,  $i == 0 || $i == 1 || $i == 2 ? false : true);
         }
     }
 
