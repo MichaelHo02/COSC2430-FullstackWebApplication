@@ -6,6 +6,7 @@ $id = $_POST['id'];
 $jsonRead = getJson($postFile);
 for ($i = 0; $i < count($jsonRead); $i++) {
     if ($id == $jsonRead[$i]->postId) {
+        unlink('../database/img/storage/' . $jsonRead[$i]->postId . '.' . $jsonRead[$i]->postExt);
         unset($jsonRead[$i]);
         break;
     }
