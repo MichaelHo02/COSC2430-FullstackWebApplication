@@ -106,18 +106,18 @@ if ($objArray !== null) {
 }
 
 $typeOfBtn = isset($_COOKIE['user-id-cookie']) ? '
-    <button type="button" class="btn btn-primary <?php echo $avtBtn; ?>" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+    <button type="button" class="btn btn-primary ' . $avtBtn . '" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
         Change Avatar
     </button>
-    <div id="" class="<?php echo $messageClass; ?>">
-        <?php echo $message; ?>
+    <div id="" class="' . $messageClass . '">
+        ' . $message . '
     </div>
 ' : '
-    <button type="button" class="btn btn-primary <?php echo $avtBtn; ?>" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+    <button type="button" class="btn btn-primary ' . $avtBtn . '" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
         Change Password
     </button>
-    <div id="" class="<?php echo $messageClass; ?>">
-        <?php echo $message; ?>
+    <div id="" class="' . $messageClass . '">
+        ' . $message . '
     </div>
 ';
 
@@ -134,9 +134,9 @@ $typeOfModal = isset($_COOKIE['user-id-cookie']) ? '
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="formFile" class="form-label">Profile picture</label>
-                        <input class="form-control <?php echo $inputAvt; ?>" type="file" id="formFile" name="formFile">
-                        <div id="" class="<?php echo $messageClass; ?>">
-                            <?php echo $message; ?>
+                        <input class="form-control ' . $inputAvt . '" type="file" id="formFile" name="formFile">
+                        <div id="" class="' . $messageClass . '">
+                            ' . $message . '
                         </div>
                     </div>
                 </div>
