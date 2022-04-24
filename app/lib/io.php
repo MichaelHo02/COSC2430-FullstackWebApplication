@@ -1,7 +1,9 @@
 <?php
 function getJson($filePath)
 {
-    if ($db = fopen($filePath, 'r')) {
+    clearstatcache();
+    $db = fopen($filePath, "r");
+    if ($db) {
         $rawContent = fread($db, filesize($filePath));
         fclose($db);
         return json_decode($rawContent);
@@ -11,10 +13,9 @@ function getJson($filePath)
 
 function setJson($file, $json)
 {
-    // echo 'Hello';
     $in = fopen($file, 'w');
     if ($in) {
         fwrite($in, $json);
+        fclose($in);
     }
-    fclose($in);
 }

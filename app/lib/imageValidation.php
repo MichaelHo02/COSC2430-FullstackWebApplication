@@ -17,7 +17,6 @@ function isValidFile($config)
         $fileNewName = uniqid() . '.' . $file_ext;
         $fileFullName = $config['DATABASE_PATH'] . 'img/avatar/' . $fileNewName;
         if (move_uploaded_file($avatar['tmp_name'], $fileFullName)) {
-            // echo 'success ' . $fileNewName;
             $message = 'File is saved!';
         } else {
             echo 'fail ' . $fileNewName;

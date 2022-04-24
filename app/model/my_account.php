@@ -24,6 +24,7 @@ if (isset($_FILES['formFile'])) {
         if ($objArray !== null) {
             for ($i = 0; $i < count($objArray); $i++) {
                 if ($objArray[$i]->id == $id) {
+                    unlink('../app/database/img/avatar/' . $objArray[$i]->avatar);
                     $objArray[$i]->avatar = $fileNewName;
                     break;
                 }
@@ -76,9 +77,11 @@ if (isset($_FILES['formFile'])) {
 }
 
 $file = $config['DATABASE_PATH'] . 'users.db';
+
 $objArray = getJson($file);
 
-if (isset($_POST['submit'])) {
+
+if (isset($_POST['password'])) {
     for ($i = 0; $i < count($objArray); $i++) {
         if ($objArray[$i]->id == $id) {
             $objArray[$i]->password = md5($_POST['password']);
@@ -87,7 +90,6 @@ if (isset($_POST['submit'])) {
     }
     setJson($file, json_encode($objArray));
 }
-
 
 $objArray = getJson($file);
 
