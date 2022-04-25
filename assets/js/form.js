@@ -130,6 +130,14 @@ const validName = function () {
 	updateBtn();
 };
 
+const Reset = function () {
+	requirement = document.querySelectorAll(".list-group-item");
+	for (let i of requirement) {
+	  i.classList.remove("list-group-item-danger");
+	  i.classList.remove("list-group-item-success");
+	}
+  };
+
 $('#email').addEventListener('input', validEmail);
 $('#password').addEventListener('input', validPassword);
 $('#retypePassword').addEventListener('input', validRetypePassword);
