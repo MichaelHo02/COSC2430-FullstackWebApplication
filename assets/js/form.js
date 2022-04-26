@@ -166,3 +166,17 @@ $('.form').onsubmit = function () {
 		$$('.list-group-item-success').length === 5
 	);
 };
+
+const Reset = function () {
+	//reset password alert
+	const requirement=document.querySelectorAll('.list-group-item');
+	for (let i of requirement){
+		i.classList.remove('list-group-item-danger','list-group-item-success');
+	}
+
+	//reset all form control alert
+	const form_control=document.querySelectorAll('.form-control');
+	for (let i of form_control){
+		i.classList.remove('is-valid','is-invalid');
+	}
+};
