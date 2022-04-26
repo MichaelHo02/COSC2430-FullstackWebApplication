@@ -17,6 +17,7 @@ const validEmail = function () {
 		message = '';
 	}
 	if (message.length === 0) {
+		
 		this.classList.add('is-valid');
 		this.classList.remove('is-invalid');
 		const element = $('#emailFeedback');
@@ -166,3 +167,16 @@ $('.form').onsubmit = function () {
 		$$('.list-group-item-success').length === 5
 	);
 };
+
+const Reset = function () {
+	const requirement = document.querySelectorAll(".list-group-item");
+	for (let i of requirement) {
+	  i.classList.remove("list-group-item-danger","list-group-item-success");
+	}
+
+	const form_control = document.querySelectorAll(".form-control");
+	console.log(form_control);
+	for (let i of form_control) {
+		i.classList.remove("is-valid","is-invalid");
+	  }
+  };

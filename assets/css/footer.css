@@ -1,0 +1,44 @@
+.footer__menu {
+    margin-bottom: 30px;
+}
+
+.footer__title,
+.footer__user-title {
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.menu__item {
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.menu__item span {
+    color: black;
+    font-weight: 400;
+}
+
+.copyright__wrapper {
+    border-top: 2px solid black;
+}
+
+.copyright__content {
+    padding-top: 15px;
+}
+
+.user__card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.user__card-image {
+    vertical-align: middle;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
