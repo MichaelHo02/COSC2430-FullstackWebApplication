@@ -7,7 +7,7 @@ if (isset($_POST['submit'])) {
 
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $password = md5($password);
+    $password = password_hash($password, PASSWORD_DEFAULT);
 
 
     $firstName = $_POST['firstName'];

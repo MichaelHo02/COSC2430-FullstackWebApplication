@@ -6,7 +6,7 @@ function validateLogin($config)
 {
     if (isset($_POST['submit'])) {
         $emailUsername = $_POST['email'];
-        $loginPassword = md5($_POST['password']);
+        $loginPassword = $_POST['password'];
 
         $path = $config['DATABASE_PATH'] . 'users.db';
         $objArray = getJson($path);
@@ -16,7 +16,7 @@ function validateLogin($config)
                     $objArray[$i]->email == $emailUsername
                     || $objArray[$i]->username == $emailUsername
                 ) {
-                    if ($objArray[$i]->password == $loginPassword) {
+                    if (password_verify($loginPassword, $objArray[$i]->password)) {
                         $_GLOBAL[$objArray[$i]->id] = $objArray[$i];
                         setcookie('user-id-cookie', $objArray[$i]->id, time() + 7200, "/", "localhost");
                         header('Location: ?page=home');
