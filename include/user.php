@@ -1,5 +1,5 @@
 <?php
-include "./photo.php";
+// include "./photo.php";
 
 class User
 {

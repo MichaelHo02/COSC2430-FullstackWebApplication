@@ -130,14 +130,6 @@ const validName = function () {
 	updateBtn();
 };
 
-const Reset = function () {
-	requirement = document.querySelectorAll(".list-group-item");
-	for (let i of requirement) {
-	  i.classList.remove("list-group-item-danger");
-	  i.classList.remove("list-group-item-success");
-	}
-  };
-
 $('#email').addEventListener('input', validEmail);
 $('#password').addEventListener('input', validPassword);
 $('#retypePassword').addEventListener('input', validRetypePassword);
@@ -175,3 +167,16 @@ $('.form').onsubmit = function () {
 		$$('.list-group-item-success').length === 5
 	);
 };
+
+const Reset = function () {
+	const requirement = document.querySelectorAll(".list-group-item");
+	for (let i of requirement) {
+	  i.classList.remove("list-group-item-danger","list-group-item-success");
+	}
+
+	const form_control = document.querySelectorAll(".form-control");
+	console.log(form_control);
+	for (let i of form_control) {
+		i.classList.remove("is-valid","is-invalid");
+	  }
+  };

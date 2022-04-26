@@ -131,7 +131,7 @@
                                         }
                                         ?>">
                         <?php
-                        echo $message;
+                        // echo $message;
                         ?>
                     </div>
                 </div>
