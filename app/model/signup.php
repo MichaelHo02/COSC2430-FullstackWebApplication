@@ -13,7 +13,7 @@ if (isset($_POST['submit'])) {
     $firstName = $_POST['firstName'];
     $lastName = $_POST['lastName'];
 
-
+    
     // avatar validation
     if (isset($_FILES['formFile'])) {
         $result = isValidFile($config);
@@ -21,10 +21,10 @@ if (isset($_POST['submit'])) {
         $message = $result[1];
         $fileNewName = $result[2];
     } else {
-        $message = 'No File was uploaded!';
+        $message = 'No File was uploa!';
     }
 
-    if ($file_ok) {
+    if ($file_ok && $email_ok) {
         $user = new User($email, $password, $firstName, $lastName, $fileNewName);
 
         $file = $config['DATABASE_PATH'] . 'users.db';
@@ -40,3 +40,4 @@ if (isset($_POST['submit'])) {
         }
     }
 }
+

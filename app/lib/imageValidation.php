@@ -26,3 +26,20 @@ function isValidFile($config)
 
     return [$file_ok, $message, $fileNewName];
 }
+
+function isValidEmail($config, $emailInput){
+    $email_ok = true;
+    $path = $config['DATABASE_PATH'] . 'users.db';
+    $message_email = 'Email is saved';
+    $objArray = getJson($path);
+    if ($objArray !== null) {
+        for ($i = 0; $i < count($objArray); $i++) {
+            if ($objArray[$i]->email == $emailInput) {
+                $email_ok = false;
+                $message_email = 'This email has been used before !';
+                break;
+            }
+        }
+    }
+    return [$email_ok, $message_email];
+}

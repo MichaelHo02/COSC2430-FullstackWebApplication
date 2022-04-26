@@ -27,13 +27,13 @@ function filterData(data) {
 
 	let searchValue = searchUserInput.value;
 	data.forEach((user) => {
-		if (user.email.includes(searchValue)) {
+		if (user.email.includes(searchValue) || user.firstname.includes(searchValue) || user.lastname.includes(searchValue)) {
 			result.push(user);
 		}
 	});
 	data = result;
 
-	return result;
+	return result.reverse();
 }
 
 function renderPagination(data) {

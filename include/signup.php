@@ -17,6 +17,7 @@
 
     <?php
     require_once "./user.php";
+    require_once "../app/lib/io.php";
     if (isset($_POST['submit'])) {
 
         $email = $_POST['email'];
@@ -27,6 +28,25 @@
         $firstName = $_POST['firstName'];
         $lastName = $_POST['lastName'];
 
+        // email validation
+        if(isset($_POST['email'])){
+            $email_ok = true;
+            // $path = '../app/database/users.db';
+            $path = '../accounts.db';
+            $message_email = 'Email is saved';
+            $objArray = getJson($path);
+            if ($objArray !== null) {
+                for ($i = 0; $i < count($objArray); $i++) {
+                    if (strcmp($objArray[$i]->email, $email) == 0) {
+                        $email_ok = false;
+                        $message_email = 'This email has been used before !';
+                        break;
+                    }
+                }
+            }
+        }
+        $message_email = 'Enter valid email !';
+        
 
         // avatar validation
         if (isset($_FILES['formFile'])) {
@@ -55,7 +75,7 @@
         }
         $message = 'No File was uploaded!';
 
-        if ($file_ok) {
+        if ($file_ok && $email_ok) {
             $user = new User($email, $password, $firstName, $lastName, $fileNewName);
 
             $file = '../accounts.db';
@@ -83,8 +103,17 @@
             <form name="form" class="col-lg-6 col-sm-10 mt-4 form" method="post" action="signup.php" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="email" class="form-label">Email address</label>
-                    <input name="email" type="email" class="form-control" id="email" autocomplete="off">
-                    <div id="emailFeedback" class=""></div>
+                    <input name="email" type="email" class="form-control <?php ?>" id="email" autocomplete="off">
+                    <div id="emailFeedback" class="<?php
+                                                        if ($email) {
+                                                            if ($email_ok) {
+                                                                echo 'valid-feedback';
+                                                            } else {
+                                                                echo 'invalid-feedback';
+                                                            }
+                                                        } 
+                                                    ?>">
+                    <?php echo $message_email ?></div>
                 </div>
 
                 <div class="mb-3">
