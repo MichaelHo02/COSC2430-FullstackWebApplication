@@ -35,8 +35,7 @@ function isValidEmail($config, $emailInput){
     $objArray = getJson($path);
     if ($objArray !== null) {
         for ($i = 0; $i < count($objArray); $i++) {
-            var_dump($objArray[$i]->email, $emailInput);
-            if ($objArray[$i]->email == $emailInput) {
+            if (strtolower($objArray[$i]->email) == strtolower($emailInput)) {
                 $email_ok = false;
                 $message_email = 'This email has been used before !';
                 break;

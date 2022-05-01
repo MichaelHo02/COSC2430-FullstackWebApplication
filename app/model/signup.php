@@ -30,7 +30,7 @@ if (isset($_POST['submit'])) {
     }
 
     if ($file_ok && $isEmailValid) {
-        $user = new User($email, $password, $firstName, $lastName, $fileNewName);
+        $user = new User(strtolower($email), $password, $firstName, $lastName, $fileNewName);
 
         $file = $config['DATABASE_PATH'] . 'users.db';
         if ($out = fopen($file, 'r')) {

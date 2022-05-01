@@ -16,8 +16,8 @@ function validateLogin($config)
         if ($objArray !== null) {
             for ($i = 0; $i < count($objArray); $i++) {
                 if (
-                    $objArray[$i]->email == $emailUsername
-                    || $objArray[$i]->username == $emailUsername
+                    strtolower($objArray[$i]->email) == strtolower($emailUsername)
+                    || strtolower($objArray[$i]->username) == strtolower($emailUsername)
                 ) {
                     if ($objArray[$i]->password == $loginPassword) {
                         $_GLOBAL[$objArray[$i]->id] = $objArray[$i];
