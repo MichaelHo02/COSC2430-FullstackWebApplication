@@ -4,7 +4,8 @@ function isValidFile($config)
     $avatar = $_FILES['formFile'];
     $file_ok = true;
     $extension = ['jpg', 'jpeg', 'png', 'gif'];
-    $file_ext = strtolower(end(explode('.', $avatar['name'])));
+    $explore = explode('.', $avatar['name']);
+    $file_ext = strtolower(end($explore));
     if (in_array($file_ext, $extension) === false) {
         $file_ok = false;
         $message = 'Wrong file extension! Only JPG, JPEG, PNG, and GIF';
@@ -34,6 +35,7 @@ function isValidEmail($config, $emailInput){
     $objArray = getJson($path);
     if ($objArray !== null) {
         for ($i = 0; $i < count($objArray); $i++) {
+            var_dump($objArray[$i]->email, $emailInput);
             if ($objArray[$i]->email == $emailInput) {
                 $email_ok = false;
                 $message_email = 'This email has been used before !';

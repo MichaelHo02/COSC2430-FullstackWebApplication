@@ -22,4 +22,4 @@ header("Cache-Control: no-cache, no-store, must-revalidate"); // HTTP 1.1.
 header("Pragma: no-cache"); // HTTP 1.0.
 header("Expires: 0 ");
 
-include $config['VIEW_PATH'] . 'layout.php';
+require_once $config['VIEW_PATH'] . 'layout.php';

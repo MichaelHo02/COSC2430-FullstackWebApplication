@@ -4,6 +4,9 @@ require_once $config['LIB_PATH'] . "io.php";
 
 function validateLogin($config)
 {
+    $loginPasswordErr = '';
+    $email_message = '';
+
     if (isset($_POST['submit'])) {
         $emailUsername = $_POST['email'];
         $loginPassword = md5($_POST['password']);

@@ -3,6 +3,8 @@ require_once $config['LIB_PATH'] . "user.php";
 require_once $config['LIB_PATH'] . "imageValidation.php";
 require_once $config['LIB_PATH'] . "io.php";
 
+$emailMessage = '';
+
 if (isset($_POST['submit'])) {
 
     $email = $_POST['email'];
@@ -20,11 +22,14 @@ if (isset($_POST['submit'])) {
         $file_ok = $result[0];
         $message = $result[1];
         $fileNewName = $result[2];
+        $result1 = isValidEmail($config, $email);
+        $isEmailValid = $result1[0];
+        $emailMessage = $result1[1];
     } else {
         $message = 'No File was uploa!';
     }
 
-    if ($file_ok && $email_ok) {
+    if ($file_ok && $isEmailValid) {
         $user = new User($email, $password, $firstName, $lastName, $fileNewName);
 
         $file = $config['DATABASE_PATH'] . 'users.db';

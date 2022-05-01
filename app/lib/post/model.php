@@ -1,12 +1,13 @@
 <?php
 
 include $config['LIB_PATH'] . "post.php";
-
-$file_name = $_FILES['uploadImg']['name'];
-$file_size = $_FILES['uploadImg']['size'];
-$file_tmp = $_FILES['uploadImg']['tmp_name'];
-$file_type = $_FILES['uploadImg']['type'];
-$file_ext = strtolower(end(explode('.', $_FILES['uploadImg']['name'])));
+if ($_FILES['uploadImg'] ?? null) {
+    $file_name = $_FILES['uploadImg']['name'];
+    $file_size = $_FILES['uploadImg']['size'];
+    $file_tmp = $_FILES['uploadImg']['tmp_name'];
+    $file_type = $_FILES['uploadImg']['type'];
+    $file_ext = strtolower(end(explode('.', $_FILES['uploadImg']['name'])));
+}
 $extensions = array("jpeg", "jpg", "png");
 $file_ok = true;
 
