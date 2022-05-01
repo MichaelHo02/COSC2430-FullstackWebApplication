@@ -26,7 +26,7 @@ if (isset($_POST['submit'])) {
         $isEmailValid = $result1[0];
         $emailMessage = $result1[1];
     } else {
-        $message = 'No File was uploa!';
+        $message = 'No File was upload';
     }
 
     if ($file_ok && $isEmailValid) {
