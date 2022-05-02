@@ -38,6 +38,9 @@
             ?>
         </main>
 
+        <?php
+        require $config['VIEW_PATH'] . 'footer.php';
+        ?>
     </div>
     <?php
     if (!str_contains($page, 'admin')) {
