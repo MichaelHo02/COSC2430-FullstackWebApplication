@@ -39,7 +39,6 @@ if (isset($_POST["submit"])) {
 
         for ($i = 0; $i < $jsonUserSrcLength; $i++) {
             if ($jsonUserSrc[$i]->id == $currentUserId) {
-                // array_push($jsonUserSrc[$i]->postIdList, $post->getPostId());
                 $strJsonUser = json_encode($jsonUserSrc);
                 break;
             }
