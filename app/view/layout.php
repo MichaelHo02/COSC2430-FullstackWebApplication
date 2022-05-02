@@ -8,26 +8,29 @@
     <title>1nstaKilogram</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="../app/assets/css/avatar.css">
-    <link rel="stylesheet" href="../app/assets/css/dashboard.css">
-    <link rel="stylesheet" href="../app/assets/css/gdpr.css">
-    <script src="../assets/js/gdpr.js" defer></script>
+    <link rel="stylesheet" href="/assets/css/avatar.css">
+    <link rel="stylesheet" href="/assets/css/dashboard.css">
+    <link rel="stylesheet" href="/assets/css/gdpr.css">
+    <script src="assets/js/gdpr.js" defer></script>
+    <script src="assets/js/deleteCard.js" defer></script>
 </head>
 
 <body>
     <?php
     if (!str_contains($page, 'admin') && !str_contains($page, 'my_account')) {
-        if ($_COOKIE['admin']) {
+        if ($_COOKIE['admin']?? null) {
             unset($_COOKIE['admin']);
             setcookie('admin', null, -1, '/', 'localhost');
         }
     }
-    if ($_COOKIE['admin'] != ('admin' . md5('yasuoroot') . 'x')) {
+    if ($_COOKIE['admin']?? null) {
+        if ($_COOKIE['admin'] ?? null == ('admin' . md5('yasuoroot') . 'x')) {
+            require $config['MODEL_PATH'] . 'nav_admin.php';
+            require $config['VIEW_PATH'] . 'nav_admin.php';
+        }
+    } else {
         require $config['MODEL_PATH'] . 'nav.php';
         require $config['VIEW_PATH'] . 'nav.php';
-    } else {
-        require $config['MODEL_PATH'] . 'nav_admin.php';
-        require $config['VIEW_PATH'] . 'nav_admin.php';
     }
     ?>
 
@@ -37,9 +40,9 @@
         ?>
     </main>
 
-    <?php 
-        require $config['VIEW_PATH'] . 'footer.php';
-        require $config['VIEW_PATH'] . 'gdpr.php';
+    <?php
+    require $config['VIEW_PATH'] . 'footer.php';
+    require $config['VIEW_PATH'] . 'gdpr.php';
     ?>
 
 

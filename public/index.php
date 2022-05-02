@@ -1,5 +1,7 @@
 <?php
 defined('APPLICATION_PATH') || define('APPLICATION_PATH', realpath(dirname(__FILE__) . '/../app'));
+defined('PUBLIC_PATH') || define('PUBLIC_PATH', realpath(dirname(__FILE__) . '/'));
+
 const DS = DIRECTORY_SEPARATOR;
 require APPLICATION_PATH . DS . 'config' . DS . 'config.php';
 
@@ -22,4 +24,4 @@ header("Cache-Control: no-cache, no-store, must-revalidate"); // HTTP 1.1.
 header("Pragma: no-cache"); // HTTP 1.0.
 header("Expires: 0 ");
 
-include $config['VIEW_PATH'] . 'layout.php';
+require_once $config['VIEW_PATH'] . 'layout.php';

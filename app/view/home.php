@@ -3,9 +3,9 @@ require $pathPostHandler;
 require $pathRenderPostFactory;
 ?>
 
-<script src="../app/assets/js/home.js" defer></script>
-<script src="../app/assets/js/deleteCard.js" defer></script>
-<link rel="stylesheet" href="../app/assets/css/avatar.css">
+<script src="/assets/js/home.js" defer></script>
+<script src="/assets/js/deleteCard.js" defer></script>
+<link rel="stylesheet" href="/assets/css/avatar.css">
 
 <div class="container mt-4">
     <button class="btn btn-primary create-post-btn 
@@ -15,5 +15,5 @@ require $pathRenderPostFactory;
 </div>
 
 <?php
-configComponent($postDB, $userDB, $page, '../app/database/img/');
+configComponent($postDB, $userDB, $page, 'assets/img/');
 ?>

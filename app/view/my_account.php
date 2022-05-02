@@ -44,5 +44,5 @@
 <?php echo $typeOfModal; ?>
 
 <?php
-configComponent($postDB, $userDB, $page, '../app/database/img/');
+configComponent($postDB, $userDB, $page, 'assets/img/');
 ?>

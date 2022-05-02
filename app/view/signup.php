@@ -1,4 +1,4 @@
-<script src="../app/assets/js/signup.js" defer></script>
+<script src="/assets/js/signup.js" defer></script>
 <div class="container mt-5 ">
     <div class="row justify-content-center">
         <h1 class="display-3 col-12 text-center">Sign Up</h1>
@@ -6,7 +6,9 @@
             <div class="mb-3">
                 <label for="email" class="form-label">Email address</label>
                 <input name="email" type="email" class="form-control" id="email" autocomplete="off">
-                <div id="emailFeedback" class=""></div>
+                <div id="emailFeedback" class="">
+                    <?php echo $emailMessage; ?>
+                </div>
             </div>
 
             <div class="mb-3">
@@ -51,7 +53,7 @@
                                     }
                                     ?>">
                     <?php
-                    echo $message;
+                    echo $message?? null;
                     ?>
                 </div>
             </div>

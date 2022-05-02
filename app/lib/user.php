@@ -1,6 +1,4 @@
 <?php
-include_once "./post.php";
-
 class User
 {
     private $id;

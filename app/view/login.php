@@ -1,4 +1,4 @@
-<script src="../app/assets/js/login.js" defer></script>
+<script src="/assets/js/login.js" defer></script>
 <div class="container mt-5">
     <div class="row justify-content-center">
         <h1 class="display-3 col-12 text-center">Login</h1>

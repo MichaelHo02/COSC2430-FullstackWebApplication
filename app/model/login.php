@@ -4,6 +4,9 @@ require_once $config['LIB_PATH'] . "io.php";
 
 function validateLogin($config)
 {
+    $loginPasswordErr = '';
+    $email_message = '';
+
     if (isset($_POST['submit'])) {
         $emailUsername = $_POST['email'];
         $loginPassword = $_POST['password'];
@@ -13,8 +16,8 @@ function validateLogin($config)
         if ($objArray !== null) {
             for ($i = 0; $i < count($objArray); $i++) {
                 if (
-                    $objArray[$i]->email == $emailUsername
-                    || $objArray[$i]->username == $emailUsername
+                    strtolower($objArray[$i]->email) == strtolower($emailUsername)
+                    || strtolower($objArray[$i]->username) == strtolower($emailUsername)
                 ) {
                     if (password_verify($loginPassword, $objArray[$i]->password)) {
                         $_GLOBAL[$objArray[$i]->id] = $objArray[$i];
