@@ -1,5 +1,7 @@
 <?php
 defined('APPLICATION_PATH') || define('APPLICATION_PATH', realpath(dirname(__FILE__) . '/../app'));
+defined('PUBLIC_PATH') || define('PUBLIC_PATH', realpath(dirname(__FILE__) . '/'));
+
 const DS = DIRECTORY_SEPARATOR;
 require APPLICATION_PATH . DS . 'config' . DS . 'config.php';
 

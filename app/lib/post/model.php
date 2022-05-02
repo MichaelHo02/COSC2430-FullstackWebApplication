@@ -63,7 +63,7 @@ if (isset($_POST["submit"])) {
         fclose($postDb);
 
         // Move img to storage
-        move_uploaded_file($file_tmp, $config['DATABASE_PATH'] . "img/storage/" . $post->getPostId() . "." . $file_ext);
+        move_uploaded_file($file_tmp, $config['IMG_PATH'] . "storage/" . $post->getPostId() . "." . $file_ext);
         header('location: ?page=home');
     }
 }

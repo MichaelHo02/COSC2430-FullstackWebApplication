@@ -4,7 +4,7 @@ if (!isset($_COOKIE['user-id-cookie']) && !isset($_COOKIE['admin'])) {
 }
 
 require_once $config['LIB_PATH'] . 'io.php';
-require_once $config['LIB_PATH'] . 'imageValidation.php';
+require_once $config['LIB_PATH'] . 'signupValidation.php';
 
 if (isset($_COOKIE['user-id-cookie'])) {
     $id = $_COOKIE['user-id-cookie'];
@@ -29,7 +29,7 @@ if (isset($_FILES['formFile'])) {
         if ($objArray !== null) {
             for ($i = 0; $i < count($objArray); $i++) {
                 if ($objArray[$i]->id == $id) {
-                    unlink('../app/database/img/avatar/' . $objArray[$i]->avatar);
+                    unlink('./assets/img/avatar/' . $objArray[$i]->avatar);
                     $objArray[$i]->avatar = $fileNewName;
                     break;
                 }
@@ -101,7 +101,7 @@ $objArray = getJson($file);
 if ($objArray !== null) {
     for ($i = 0; $i < count($objArray); $i++) {
         if ($objArray[$i]->id == $id) {
-            $avatar = '../app/database/img/avatar/' . $objArray[$i]->avatar;
+            $avatar = 'assets/img/avatar/' . $objArray[$i]->avatar;
             $email = $objArray[$i]->email;
             $firstName = $objArray[$i]->firstName;
             $lastName = $objArray[$i]->lastName;

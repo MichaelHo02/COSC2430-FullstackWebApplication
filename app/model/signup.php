@@ -1,6 +1,6 @@
 <?php
 require_once $config['LIB_PATH'] . "user.php";
-require_once $config['LIB_PATH'] . "imageValidation.php";
+require_once $config['LIB_PATH'] . "signupValidation.php";
 require_once $config['LIB_PATH'] . "io.php";
 
 $emailMessage = '';
@@ -15,13 +15,14 @@ if (isset($_POST['submit'])) {
     $firstName = $_POST['firstName'];
     $lastName = $_POST['lastName'];
 
-    
+
     // avatar validation
     if (isset($_FILES['formFile'])) {
         $result = isValidFile($config);
         $file_ok = $result[0];
         $message = $result[1];
         $fileNewName = $result[2];
+
         $result1 = isValidEmail($config, $email);
         $isEmailValid = $result1[0];
         $emailMessage = $result1[1];
@@ -45,4 +46,3 @@ if (isset($_POST['submit'])) {
         }
     }
 }
-

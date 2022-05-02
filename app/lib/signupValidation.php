@@ -16,7 +16,7 @@ function isValidFile($config)
     }
     if ($file_ok) {
         $fileNewName = uniqid() . '.' . $file_ext;
-        $fileFullName = $config['DATABASE_PATH'] . 'img/avatar/' . $fileNewName;
+        $fileFullName = $config['IMG_PATH'] . 'avatar/' . $fileNewName;
         if (move_uploaded_file($avatar['tmp_name'], $fileFullName)) {
             $message = 'File is saved!';
         } else {
@@ -28,7 +28,8 @@ function isValidFile($config)
     return [$file_ok, $message, $fileNewName];
 }
 
-function isValidEmail($config, $emailInput){
+function isValidEmail($config, $emailInput)
+{
     $email_ok = true;
     $path = $config['DATABASE_PATH'] . 'users.db';
     $message_email = 'Email is saved';
