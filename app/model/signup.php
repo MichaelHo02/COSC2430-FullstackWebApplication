@@ -18,19 +18,21 @@ if (isset($_POST['submit'])) {
 
     // avatar validation
     if (isset($_FILES['formFile'])) {
-        $result = isValidFile($config);
-        $file_ok = $result[0];
-        $message = $result[1];
-        $fileNewName = $result[2];
-
         $result1 = isValidEmail($config, $email);
         $isEmailValid = $result1[0];
         $emailMessage = $result1[1];
+
+        if ($isEmailValid) {
+            $result = isValidFile($config);
+            $isFileValid = $result[0];
+            $message = $result[1];
+            $fileNewName = $result[2];
+        }
     } else {
         $message = 'No File was upload';
     }
 
-    if ($file_ok && $isEmailValid) {
+    if ($isFileValid ?? null && $isEmailValid) {
         $user = new User(strtolower($email), $password, $firstName, $lastName, $fileNewName);
 
         $file = $config['DATABASE_PATH'] . 'users.db';
@@ -46,3 +48,33 @@ if (isset($_POST['submit'])) {
         }
     }
 }
+
+function isValidCSS($isValid)
+{
+    if (isset($_FILES['formFile'])) {
+        if ($isValid) {
+            return 'is-valid';
+        } else {
+            return 'is-invalid';
+        }
+    }
+    return '';
+}
+
+function isValidMessageCSS($isValid)
+{
+    if (isset($_FILES['formFile'])) {
+        if ($isValid) {
+            return 'valid-feedback';
+        } else {
+            return 'invalid-feedback';
+        }
+    }
+    return '';
+}
+
+$fileCSS = isValidCSS($isFileValid ?? null);
+$fileMessageCSS = isValidMessageCSS($isFileValid ?? null);
+
+$emailCSS = isValidCSS($isEmailValid ?? null);
+$emailMessageCSS = isValidMessageCSS($isEmailValid ?? null);

@@ -137,6 +137,7 @@ if (!$('.modal')) {
 	isValidQty = 4;
 	validFeedbackQty = 4;
 }
+
 $('#password').addEventListener('input', validPassword);
 $('#retypePassword').addEventListener('input', validRetypePassword);
 
@@ -171,14 +172,14 @@ $('.form').onsubmit = function () {
 };
 
 $('.btn.btn-secondary').onclick = function () {
-	$$('.list-group-item').forEach(item => {
+	$$('.list-group-item').forEach((item) => {
 		item.classList.remove(
 			'list-group-item-danger',
 			'list-group-item-success'
 		);
-	})
+	});
 
-	$$('.form-control').forEach(item => {
+	$$('.form-control').forEach((item) => {
 		item.classList.remove('is-valid', 'is-invalid');
-	})
-}
+	});
+};

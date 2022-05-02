@@ -5,8 +5,8 @@
         <form name="form" class="col-lg-6 col-sm-10 mt-4 form" method="post" action="?page=signup" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="email" class="form-label">Email address</label>
-                <input name="email" type="email" class="form-control" id="email" autocomplete="off">
-                <div id="emailFeedback" class="">
+                <input name="email" type="email" class="form-control <?php echo $emailCSS; ?>" id="email" autocomplete="off">
+                <div id="emailFeedback" class="<?php echo $emailMessageCSS; ?>">
                     <?php echo $emailMessage; ?>
                 </div>
             </div>
@@ -18,11 +18,11 @@
 
             <div class="mb-3">
                 <ul class="list-group">
-                    <li class="list-group-item">Password must be from 8 to 20 characters</li>
-                    <li class="list-group-item">Password must contain at least 1 lower case letter</li>
-                    <li class="list-group-item">Password must contain at least 1 upper case letter</li>
-                    <li class="list-group-item">Password must contain at least 1 digit</li>
-                    <li class="list-group-item">Password requires to have no space</li>
+                    <li class="list-group-item pe-none">Password must be from 8 to 20 characters</li>
+                    <li class="list-group-item pe-none">Password must contain at least 1 lower case letter</li>
+                    <li class="list-group-item pe-none">Password must contain at least 1 upper case letter</li>
+                    <li class="list-group-item pe-none">Password must contain at least 1 digit</li>
+                    <li class="list-group-item pe-none">Password requires to have no space</li>
                 </ul>
             </div>
 
@@ -34,26 +34,10 @@
 
             <div class="mb-3">
                 <label for="formFile" class="form-label">Profile picture</label>
-                <input class="form-control <?php
-                                            if (isset($_FILES['formFile'])) {
-                                                if ($file_ok) {
-                                                    echo 'is-valid';
-                                                } else {
-                                                    echo 'is-invalid';
-                                                }
-                                            }
-                                            ?>" type="file" id="formFile" name="formFile">
-                <div id="" class="<?php
-                                    if (isset($_FILES['formFile'])) {
-                                        if ($file_ok) {
-                                            echo 'valid-feedback';
-                                        } else {
-                                            echo 'invalid-feedback';
-                                        }
-                                    }
-                                    ?>">
+                <input class="form-control <?php echo $fileCSS; ?>" type="file" id="formFile" name="formFile">
+                <div id="" class="<?php echo $fileMessageCSS; ?>">
                     <?php
-                    echo $message?? null;
+                    echo $message ?? null;
                     ?>
                 </div>
             </div>
