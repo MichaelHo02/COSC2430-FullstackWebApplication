@@ -12,11 +12,11 @@ function renderCard($id, $avatar, $username, $lastUpdate, $content, $image, $sha
     </button>' : '';
 
     echo '
-        <div class="col position-relative" id="' . $id . '">
+        <div class="col w-75 ms-auto me-auto position-relative" id="' . $id . '">
             <div class="card h-100">' . $btnStr . '
                 <div class="card-body">
                     <div class="row px-3 align-items-center justify-content-start">
-                        <div class="col col-2 bg-info rounded-circle avatar">
+                        <div class="col col-1 bg-info rounded-circle avatar">
                             <img src="' . $avatar . '" class="mx-auto d-block img-fluid" alt="avatar">
                         </div>
                         <div class="col col-8">
@@ -28,10 +28,10 @@ function renderCard($id, $avatar, $username, $lastUpdate, $content, $image, $sha
                         </div>
                     </div>
                     <div class="row px-3 pt-2">
-                        <p class="card-text p-0">' . $content . '</p>
+                        <p class="card-text p-0 rounded-2">' . $content . '</p>
                     </div>
                 </div>
-                <img src="' . $image . '" class="card-img-bottom cap" alt="Post Image" ' . $lazy . ' />
+                <img src="' . $image . '" class="card-img-bottom cap px-2 pb-2" alt="Post Image" ' . $lazy . ' />
             </div>
         </div>
         ';
