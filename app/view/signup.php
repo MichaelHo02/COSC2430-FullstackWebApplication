@@ -2,7 +2,7 @@
 <div class="container mt-5 ">
     <div class="row justify-content-center">
         <h1 class="display-3 col-12 text-center">Sign Up</h1>
-        <form name="form" class="col-lg-6 col-sm-10 mt-4 form" method="post" action="?page=signup" enctype="multipart/form-data">
+        <form name="form" class="col-lg-6 col-sm-10 mt-4 mb-5 pb-5 form" method="post" action="?page=signup" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="email" class="form-label">Email address</label>
                 <input name="email" type="email" class="form-control <?php echo $emailCSS; ?>" id="email" autocomplete="off">
@@ -54,8 +54,10 @@
                 <div id="lastNameFeedback" class=""></div>
             </div>
 
-            <input type="reset" value="Reset" class="btn btn-secondary">
-            <input name="submit" type="submit" value="Register" class="btn btn-primary" id="submit" disabled>
+            <div class="row align-items-start m-auto">
+                <input type="reset" value="Reset" class="col-md-3 col-lg-2 col-sm-12 me-md-2 btn btn-secondary">
+                <input name="submit" type="submit" value="Register" class="col-md-3 col-lg-3 col-sm-12 mt-sm-2 mt-md-0 mt-2 btn btn-primary" id="submit" disabled>
+            </div>
         </form>
     </div>
 </div>
