@@ -1,6 +1,6 @@
 .avatar {
     overflow: hidden;
-    object-fit: fill;
+    object-fit: cover;
     object-position: center;
     padding: 0 !important;
     aspect-ratio: 1 / 1;
@@ -8,6 +8,7 @@
 
 .avatar img {
     min-width: 100%;
+    min-height: 100%;
 }
 
 .card {

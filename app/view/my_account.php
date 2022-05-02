@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="../app/assets/css/avatar.css">
+<link rel="stylesheet" href="assets/css/avatar.css">
 
 <div class="container">
     <div class="row mt-5">
