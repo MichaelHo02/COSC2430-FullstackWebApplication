@@ -6,6 +6,9 @@ function isValidFile($config)
     $extension = ['jpg', 'jpeg', 'png', 'gif'];
     $explore = explode('.', $avatar['name']);
     $file_ext = strtolower(end($explore));
+    if ($avatar['error']) {
+        return [false, 'File size is greater than expected!', ''];
+    }
     if (in_array($file_ext, $extension) === false) {
         $file_ok = false;
         $message = 'Wrong file extension! Only JPG, JPEG, PNG, and GIF';
@@ -17,6 +20,7 @@ function isValidFile($config)
     if ($file_ok) {
         $fileNewName = uniqid() . '.' . $file_ext;
         $fileFullName = $config['IMG_PATH'] . 'avatar/' . $fileNewName;
+        // clearstatcache();
         if (move_uploaded_file($avatar['tmp_name'], $fileFullName)) {
             $message = 'File is saved!';
         } else {
