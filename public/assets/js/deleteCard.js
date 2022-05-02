@@ -2,7 +2,7 @@ const listBtn = $$('.delBtn');
 
 listBtn.forEach((element) => {
 	element.addEventListener('click', (e) => {
-		fetch('../app/lib/deleteCard.php', {
+		fetch('?func=deleteCard', {
 			method: 'POST',
 			headers: {
 				'Content-Type':
