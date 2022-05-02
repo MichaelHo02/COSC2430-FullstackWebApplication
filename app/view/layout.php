@@ -40,12 +40,11 @@
             ?>
         </main>
 
-        <?php
-            require $config['VIEW_PATH'] . 'footer.php';
-        ?>
     </div>
     <?php 
-        require $config['VIEW_PATH'] . 'gdpr.php'; 
+        if (!str_contains($page, 'admin')) {
+            require $config['VIEW_PATH'] . 'gdpr.php'; 
+        }
         
     ?>
 
