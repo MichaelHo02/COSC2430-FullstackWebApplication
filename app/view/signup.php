@@ -18,11 +18,11 @@
 
             <div class="mb-3">
                 <ul class="list-group">
-                    <li class="list-group-item pe-none">Password must be from 8 to 20 characters</li>
-                    <li class="list-group-item pe-none">Password must contain at least 1 lower case letter</li>
-                    <li class="list-group-item pe-none">Password must contain at least 1 upper case letter</li>
-                    <li class="list-group-item pe-none">Password must contain at least 1 digit</li>
-                    <li class="list-group-item pe-none">Password requires to have no space</li>
+                    <li class="list-group-item pe-none">From 8 to 20 characters</li>
+                    <li class="list-group-item pe-none">Contain at least 1 lower case letter</li>
+                    <li class="list-group-item pe-none">Contain at least 1 upper case letter</li>
+                    <li class="list-group-item pe-none">Contain at least 1 digit</li>
+                    <li class="list-group-item pe-none">Have no space</li>
                 </ul>
             </div>
 

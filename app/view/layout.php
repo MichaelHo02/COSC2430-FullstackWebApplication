@@ -16,35 +16,35 @@
 </head>
 
 <body>
-    <?php
-    if (!str_contains($page, 'admin') && !str_contains($page, 'my_account')) {
-        if ($_COOKIE['admin']?? null) {
-            unset($_COOKIE['admin']);
-            setcookie('admin', null, -1, '/', 'localhost');
-        }
-    }
-    if ($_COOKIE['admin']?? null) {
-        if ($_COOKIE['admin'] ?? null == ('admin' . md5('yasuoroot') . 'x')) {
-            require $config['MODEL_PATH'] . 'nav_admin.php';
-            require $config['VIEW_PATH'] . 'nav_admin.php';
-        }
-    } else {
-        require $config['MODEL_PATH'] . 'nav.php';
-        require $config['VIEW_PATH'] . 'nav.php';
-    }
-    ?>
-
-    <main>
+    <div class="d-flex flex-column min-vh-100">
         <?php
-        require $content;
+        if (!str_contains($page, 'admin') && !str_contains($page, 'my_account')) {
+            if ($_COOKIE['admin'] ?? null) {
+                unset($_COOKIE['admin']);
+                setcookie('admin', null, -1, '/', 'localhost');
+            }
+        }
+        if ($_COOKIE['admin'] ?? null) {
+            if ($_COOKIE['admin'] ?? null == ('admin' . md5('yasuoroot') . 'x')) {
+                require $config['MODEL_PATH'] . 'nav_admin.php';
+                require $config['VIEW_PATH'] . 'nav_admin.php';
+            }
+        } else {
+            require $config['MODEL_PATH'] . 'nav.php';
+            require $config['VIEW_PATH'] . 'nav.php';
+        }
         ?>
-    </main>
+        <main class="flex-grow-1">
+            <?php
+            require $content;
+            ?>
+        </main>
 
-    <?php
-    require $config['VIEW_PATH'] . 'footer.php';
-    require $config['VIEW_PATH'] . 'gdpr.php';
-    ?>
-
+        <?php
+        require $config['VIEW_PATH'] . 'footer.php';
+        ?>
+    </div>
+    <?php require $config['VIEW_PATH'] . 'gdpr.php'; ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
