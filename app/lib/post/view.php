@@ -21,5 +21,6 @@
         </div>
 
         <button name="submit" type="submit" class="btn btn-primary post-submit"><i class="bi bi-send me-2"></i>Post</button>
+        <button name="submit" type="submit" class="btn btn-secondary post-submit post-cancel">Cancel</button>
     </form>
 </div>
