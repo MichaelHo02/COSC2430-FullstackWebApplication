@@ -24,8 +24,7 @@ function isValidFile($config)
             $message = 'File is not saved!';
         }
     }
-
-    return [$file_ok, $message, $fileNewName];
+    return [$file_ok, $message, $fileNewName ?? ''];
 }
 
 function isValidEmail($config, $emailInput)

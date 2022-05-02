@@ -1,4 +1,3 @@
-<link href="../app/assets/css/dashboard.css" rel="stylesheet">
 <header class="container">
     <nav class="navbar navbar-expand-lg navbar-light">
         <a href="<?php echo $navBrandLink; ?>" class="navbar-brand display-1 font-weight-bold col-4">
@@ -9,7 +8,7 @@
         </button>
         <div class="collapse navbar-collapse col-lg-8 row" id="navbarSupportedContent">
             <div class="p-2 col-lg-6">
-                <input class="form-control modal-xl w-100" type="search" placeholder="Search" aria-label="Search">
+                <input class="form-control modal-xl w-100 search-user-input" type="search" placeholder="Search" aria-label="Search">
             </div>
             <div class="p-2 col-lg-6 col-md-12 text-lg-end">
                 <a class="btn <?php echo $btnClass; ?> d-lg-inline-block d-md-grid" href="<?php echo $btnLink; ?>">

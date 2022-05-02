@@ -1,12 +1,12 @@
 <?php
 include_once $config['LIB_PATH'] . 'io.php';
 
-$postFile = '../database/posts.db';
+$postFile = $config['DATABASE_PATH'] . 'posts.db';
 $id = $_POST['id'];
 $jsonRead = getJson($postFile);
 for ($i = 0; $i < count($jsonRead); $i++) {
     if ($id == $jsonRead[$i]->postId) {
-        unlink('../database/img/storage/' . $jsonRead[$i]->postId . '.' . $jsonRead[$i]->postExt);
+        unlink('./assets/img/storage/' . $jsonRead[$i]->postId . '.' . $jsonRead[$i]->postExt);
         unset($jsonRead[$i]);
         break;
     }

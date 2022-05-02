@@ -156,7 +156,7 @@ $typeOfModal = isset($_COOKIE['user-id-cookie']) ? "
     </div>
 </div>
 " : "
-<script src='../app/assets/js/signup.js' defer></script>
+<script src='./assets/js/signup.js' defer></script>
 <div class='modal fade' id='exampleModalCenter' tabindex='-1' role='dialog' aria-labelledby='exampleModalCenterTitle' aria-hidden='true'>
     <div class='modal-dialog modal-dialog-centered' role='document'>
         <div class='modal-content'>

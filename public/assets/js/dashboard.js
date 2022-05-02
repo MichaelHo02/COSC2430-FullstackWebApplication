@@ -1,9 +1,6 @@
-const userDbPath = '../app/lib/adminFeed.php';
+const userDbPath = '?func=adminFeed';
 const userList = document.querySelector('.user-list');
 const pagination = document.querySelector('.pagination');
-
-console.log(userList);
-console.log(pagination);
 
 let currentPage = 0;
 let totalPages = 0;
@@ -15,9 +12,10 @@ function fetchAllUsers(callback) {
 			'Content-Type': 'application/json',
 		},
 	})
-		.then((response) => response.json())
+		.then((response) => {
+			return response.json();
+		})
 		.then((data) => {
-			// console.log(data)
 			callback(data);
 		});
 }
@@ -27,7 +25,11 @@ function filterData(data) {
 
 	let searchValue = searchUserInput.value;
 	data.forEach((user) => {
-		if (user.email.includes(searchValue) || user.firstname.includes(searchValue) || user.lastname.includes(searchValue)) {
+		if (
+			user.email.includes(searchValue) ||
+			user.firstname.includes(searchValue) ||
+			user.lastname.includes(searchValue)
+		) {
 			result.push(user);
 		}
 	});
@@ -49,7 +51,6 @@ function renderPagination(data) {
 
 	if (totalUsers < 10) {
 		// Disable pagination
-		console.log('< 10');
 		let pageItems = pagination.querySelectorAll('.page-item');
 		pageItems[0].classList.add('disabled');
 		pageItems[1].classList.add('disabled');
@@ -101,8 +102,6 @@ function addEventPagination(data) {
 function renderUIUser(data) {
 	userList.innerHTML = '';
 	activeCurrentPagination();
-	console.log('data: ', data);
-	console.log('currentPage: ', currentPage);
 	for (let i = currentPage * 10; i < currentPage * 10 + 10; i++) {
 		if (i == data.length) {
 			break;
