@@ -101,7 +101,7 @@ $objArray = getJson($file);
 if ($objArray !== null) {
     for ($i = 0; $i < count($objArray); $i++) {
         if ($objArray[$i]->id == $id) {
-            $avatar = 'assets/img/avatar/' . $objArray[$i]->avatar;
+            $avatar = './assets/img/avatar/' . $objArray[$i]->avatar;
             $email = $objArray[$i]->email;
             $firstName = $objArray[$i]->firstName;
             $lastName = $objArray[$i]->lastName;
@@ -137,7 +137,7 @@ $typeOfModal = isset($_COOKIE['user-id-cookie']) ? "
                 <button type='button' class='btn-close' aria-label='Close' data-bs-dismiss='modal'></button>
                 </button>
             </div>
-            <form action='?page='{$_REQUEST['page']}' name='form' method='post' enctype='multipart/form-data'>
+            <form action='?page={$_REQUEST['page']}' name='form' method='post' enctype='multipart/form-data'>
                 <div class='modal-body'>
                     <div class='mb-3'>
                         <label for='formFile' class='form-label'>Profile picture</label>
@@ -165,7 +165,7 @@ $typeOfModal = isset($_COOKIE['user-id-cookie']) ? "
                 <button type='button' class='btn-close' aria-label='Close' data-bs-dismiss='modal'></button>
                 </button>
             </div>
-            <form class='form' action='?page='{$_REQUEST['page']}&&id={$_REQUEST['id']}' name='form' method='post' enctype='multipart/form-data'>
+            <form class='form' action='?page={$_REQUEST['page']}&&id={$_REQUEST['id']}' name='form' method='post' enctype='multipart/form-data'>
                 <div class='modal-body'>
                     <div class='mb-3'>
                         <label for='password' class='form-label'>Password</label>
