@@ -566,7 +566,7 @@
             </p>
         </section>
         <section class="col-sm-10 mt-4">
-            <h1 class="display-3 col-12 text-center">Contact Us</h1>
+            <h1 id="contact" class="display-3 col-12 text-center">Contact Us</h1>
             <p class="mt-4 text-center">
                 If you have any questions about this Privacy Policy, You can contact
                 us:

@@ -7,6 +7,9 @@
             <li class="nav-item">
                 <a href="<?php echo "?page=privacy"; ?>" class="nav-link px-2 text-muted"><span>Privacy</span></a>
             </li>
+            <li class="nav-item">
+                <a href="<?php echo "?page=help"; ?>" class="nav-link px-2 text-muted"><span>Help</span></a>
+            </li>
         </ul>
         <p class="text-center text-muted">&copy; 2022 All rights reserved</p>
     </div>
