@@ -1,6 +1,3 @@
-// const $ = document.querySelector.bind(document);
-// const $$ = document.querySelectorAll.bind(document);
-
 const validEmail = function () {
 	const email = String(this.value).toLowerCase();
 
@@ -166,10 +163,22 @@ const updateBtn = function () {
 };
 
 $('.form').onsubmit = function () {
-	console.log('object');
 	return (
 		$$('.is-valid').length === isValidQty &&
 		$$('.valid-feedback').length === validFeedbackQty &&
 		$$('.list-group-item-success').length === listGroupItemSuccess
 	);
 };
+
+$('.btn.btn-secondary').onclick = function () {
+	$$('.list-group-item').forEach(item => {
+		item.classList.remove(
+			'list-group-item-danger',
+			'list-group-item-success'
+		);
+	})
+
+	$$('.form-control').forEach(item => {
+		item.classList.remove('is-valid', 'is-invalid');
+	})
+}
