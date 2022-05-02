@@ -73,8 +73,14 @@ function isValidMessageCSS($isValid)
     return '';
 }
 
-$fileCSS = isValidCSS($isFileValid ?? null);
-$fileMessageCSS = isValidMessageCSS($isFileValid ?? null);
 
 $emailCSS = isValidCSS($isEmailValid ?? null);
 $emailMessageCSS = isValidMessageCSS($isEmailValid ?? null);
+
+if ($isEmailValid ?? null) {
+    $fileCSS = isValidCSS($isFileValid ?? null);
+    $fileMessageCSS = isValidMessageCSS($isFileValid ?? null);
+} else {
+    $fileCSS = '';
+    $fileMessageCSS = '';
+}

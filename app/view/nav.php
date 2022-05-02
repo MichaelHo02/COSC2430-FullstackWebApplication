@@ -11,7 +11,7 @@
                 <input class="form-control modal-xl w-100" type="search" placeholder="Search" aria-label="Search">
             </div>
             <div class="p-2 col-lg-6 col-md-12 text-lg-end">
-                <a class="btn <?php echo $btnClass; ?> d-lg-inline-block d-md-grid" href="<?php echo $btnLink; ?>">
+                <a class="btn <?php echo $btnClass; ?> d-lg-inline-block d-grid" href="<?php echo $btnLink; ?>">
                     <?php echo $btnInnerText; ?>
                 </a>
             </div>

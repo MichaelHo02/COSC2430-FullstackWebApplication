@@ -1,6 +1,6 @@
 <?php
 if (!isset($_COOKIE['user-id-cookie']) && !isset($_COOKIE['admin'])) {
-    header('location: ?page=home');
+    header('location: ?page=login');
 }
 
 require_once $config['LIB_PATH'] . 'io.php';
