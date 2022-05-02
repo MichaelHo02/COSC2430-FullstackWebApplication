@@ -4,7 +4,6 @@ require $pathRenderPostFactory;
 ?>
 
 <script src="/assets/js/home.js" defer></script>
-<script src="/assets/js/deleteCard.js" defer></script>
 <link rel="stylesheet" href="/assets/css/avatar.css">
 
 <div class="container mt-4">
