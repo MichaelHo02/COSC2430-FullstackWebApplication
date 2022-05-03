@@ -1,6 +1,6 @@
 <?php
 
-include_once $config['LIB_PATH'] . 'sortCmp.php';
+include_once $config['LIB_PATH'] . 'sort_cmp.php';
 include_once $config['LIB_PATH'] . 'io.php';
 
 function renderCard($id, $avatar, $username, $lastUpdate, $content, $image, $sharingLev, $currentPath, $isLazy)

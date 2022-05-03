@@ -1,5 +1,5 @@
 <?php
-require_once $config['LIB_PATH'] . 'sortCmp.php';
+require_once $config['LIB_PATH'] . 'sort_cmp.php';
 $userFile = $config['DATABASE_PATH'] . 'users.db';
 $userDb = fopen($userFile, 'r');
 $userSrc = fread($userDb, filesize($userFile));

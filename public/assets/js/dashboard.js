@@ -1,4 +1,4 @@
-const userDbPath = '?func=adminFeed';
+const userDbPath = '?func=admin_feed';
 const userList = document.querySelector('.user-list');
 const pagination = document.querySelector('.pagination');
 

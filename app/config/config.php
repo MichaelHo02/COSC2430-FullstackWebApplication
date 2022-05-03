@@ -10,4 +10,4 @@ $config = [
     'IMG_PATH' => PUBLIC_PATH . DS . 'assets' . DS . 'img' . DS
 ];
 
-require $config['LIB_PATH'] . 'function.php';
+require $config['LIB_PATH'] . 'request.php';
