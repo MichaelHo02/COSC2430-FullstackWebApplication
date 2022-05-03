@@ -16,7 +16,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="postDesc" name="postDesc" class="form-label">Post description</label>
+                <label for="postDesc" class="form-label">Post description</label>
                 <textarea class="form-control" name="postDesc" id="postDesc" rows="2" style="resize: none;"></textarea>
             </div>
 
