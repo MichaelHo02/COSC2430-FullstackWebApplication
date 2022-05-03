@@ -1,6 +1,6 @@
 <?php
 require_once $config['LIB_PATH'] . "user.php";
-require_once $config['LIB_PATH'] . "signupValidation.php";
+require_once $config['LIB_PATH'] . "validation.php";
 require_once $config['LIB_PATH'] . "io.php";
 
 $emailMessage = '';
@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {
         $emailMessage = $result1[1];
 
         if ($isEmailValid) {
-            $result = isValidFile($config);
+            $result = isValidFile($config, 'formFile', 'avatar/');
             $isFileValid = $result[0];
             $message = $result[1];
             $fileNewName = $result[2];
@@ -49,37 +49,13 @@ if (isset($_POST['submit'])) {
     }
 }
 
-function isValidCSS($isValid)
-{
-    if (isset($_FILES['formFile'])) {
-        if ($isValid) {
-            return 'is-valid';
-        } else {
-            return 'is-invalid';
-        }
-    }
-    return '';
-}
 
-function isValidMessageCSS($isValid)
-{
-    if (isset($_FILES['formFile'])) {
-        if ($isValid) {
-            return 'valid-feedback';
-        } else {
-            return 'invalid-feedback';
-        }
-    }
-    return '';
-}
-
-
-$emailCSS = isValidCSS($isEmailValid ?? null);
-$emailMessageCSS = isValidMessageCSS($isEmailValid ?? null);
+$emailCSS = isset($_FILES['formFile']) ? isValidCSS($isEmailValid ?? null) : '';
+$emailMessageCSS = isset($_FILES['formFile']) ? isValidMessageCSS($isEmailValid ?? null) : '';
 
 if ($isEmailValid ?? null) {
-    $fileCSS = isValidCSS($isFileValid ?? null);
-    $fileMessageCSS = isValidMessageCSS($isFileValid ?? null);
+    $fileCSS = isset($_FILES['formFile']) ? isValidCSS($isFileValid ?? null) : '';
+    $fileMessageCSS = isset($_FILES['formFile']) ? isValidMessageCSS($isFileValid ?? null) : '';
 } else {
     $fileCSS = '';
     $fileMessageCSS = '';

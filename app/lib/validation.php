@@ -1,7 +1,7 @@
 <?php
-function isValidFile($config)
+function isValidFile($config, $key, $path)
 {
-    $avatar = $_FILES['formFile'];
+    $avatar = $_FILES[$key];
     $file_ok = true;
     $extension = ['jpg', 'jpeg', 'png', 'gif'];
     $explore = explode('.', $avatar['name']);
@@ -19,8 +19,7 @@ function isValidFile($config)
     }
     if ($file_ok) {
         $fileNewName = uniqid() . '.' . $file_ext;
-        $fileFullName = $config['IMG_PATH'] . 'avatar/' . $fileNewName;
-        // clearstatcache();
+        $fileFullName = $config['IMG_PATH'] . $path . $fileNewName;
         if (move_uploaded_file($avatar['tmp_name'], $fileFullName)) {
             $message = 'File is saved!';
         } else {
@@ -47,4 +46,31 @@ function isValidEmail($config, $emailInput)
         }
     }
     return [$email_ok, $message_email];
+}
+
+function isValidBtnCSS($isValid)
+{
+    if ($isValid) {
+        return 'is-valid btn-success';
+    } else {
+        return 'is-invalid btn-danger';
+    }
+}
+
+function isValidCSS($isValid)
+{
+    if ($isValid) {
+        return 'is-valid';
+    } else {
+        return 'is-invalid';
+    }
+}
+
+function isValidMessageCSS($isValid)
+{
+    if ($isValid) {
+        return 'valid-feedback';
+    } else {
+        return 'invalid-feedback';
+    }
 }

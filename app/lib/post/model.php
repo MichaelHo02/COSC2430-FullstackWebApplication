@@ -1,68 +1,41 @@
 <?php
 
-include $config['LIB_PATH'] . "post.php";
+require_once $config['LIB_PATH'] . "post.php";
+require_once $config['LIB_PATH'] . "validation.php";
+require_once $config['LIB_PATH'] . "io.php";
+
+$isValidFile = false;
+$message = '';
+$fileNewName = '';
+
 if ($_FILES['uploadImg'] ?? null) {
-    $file_name = $_FILES['uploadImg']['name'];
-    $file_size = $_FILES['uploadImg']['size'];
-    $file_tmp = $_FILES['uploadImg']['tmp_name'];
-    $file_type = $_FILES['uploadImg']['type'];
-    $file_ext = strtolower(end(explode('.', $_FILES['uploadImg']['name'])));
+    $result = isValidFile($config, 'uploadImg', 'storage/');
+    $isValidFile = $result[0];
+    $message = $result[1];
+    $fileNewName = $result[2];
+    $explore = explode('.', $_FILES['uploadImg']['name']);
+    $file_ext = strtolower(end($explore));
 }
-$extensions = array("jpeg", "jpg", "png");
-$file_ok = true;
 
-if (isset($_POST["submit"])) {
-    if (in_array($file_ext, $extensions) === false) { // Check extensions
-        $file_ok = false;
-    }
+if ($isValidFile && isset($_POST['submit'])) {
+    // Create new post obj
+    $post = new Post(
+        $_COOKIE['user-id-cookie'],
+        $_POST['postDesc'],
+        $_POST['sharingLev'],
+        $file_ext
+    );
 
-    if ($file_size > 20000000) { // > 20mb
-        $file_ok = false;
-    }
+    // Add img to db
+    $postFile =  $config['DATABASE_PATH'] . 'posts.db';
+    $jsonPostSrc = getJson($postFile);
+    array_push($jsonPostSrc, $post->jsonSerialize());
+    $strJson = json_encode($jsonPostSrc);
+    setJson($postFile, $strJson);
 
-    if ($file_ok) {
-        // Create new post obj
-        $post = new Post(
-            $_COOKIE['user-id-cookie'],
-            $_POST['postDesc'],
-            $_POST['sharingLev'],
-            $file_ext
-        );
-
-        // Add img to user
-        $currentUserId = $_COOKIE['user-id-cookie'];
-        $userFile = $config['DATABASE_PATH'] . 'users.db';
-        $userDb = fopen($userFile, 'r');
-        $jsonUserSrc = json_decode(fread($userDb, filesize($userFile)));
-        $jsonUserSrcLength = count($jsonUserSrc);
-        $strJsonUser = "";
-
-        for ($i = 0; $i < $jsonUserSrcLength; $i++) {
-            if ($jsonUserSrc[$i]->id == $currentUserId) {
-                $strJsonUser = json_encode($jsonUserSrc);
-                break;
-            }
-        }
-        fclose($userDb);
-
-        // Write to db
-        $userDb = fopen($userFile, 'w');
-        fwrite($userDb, $strJsonUser);
-        fclose($userDb);
-
-        // Add img to db
-        $postFile =  $config['DATABASE_PATH'] . 'posts.db';
-        $postDb = fopen($postFile, 'r');
-        $jsonPostSrc = json_decode(fread($postDb, filesize($postFile)));
-        array_push($jsonPostSrc, $post->jsonSerialize());
-        fclose($postDb);
-
-        $postDb = fopen($postFile, 'w');
-        fwrite($postDb, json_encode($jsonPostSrc));
-        fclose($postDb);
-
-        // Move img to storage
-        move_uploaded_file($file_tmp, $config['IMG_PATH'] . "storage/" . $post->getPostId() . "." . $file_ext);
-        header('location: ?page=home');
-    }
+    header('location: ?page=home');
 }
+
+$inputClass = isset($_POST['submit']) ? isValidCSS($isValidFile) : '';
+$messageClass = isset($_POST['submit']) ? isValidMessageCSS($isValidFile) : '';
+$btnValidations = isset($_POST['submit']) ? isValidBtnCSS($isValidFile) : '';

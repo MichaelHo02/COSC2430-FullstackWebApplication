@@ -4,7 +4,7 @@ if (!isset($_COOKIE['user-id-cookie']) && !isset($_COOKIE['admin'])) {
 }
 
 require_once $config['LIB_PATH'] . 'io.php';
-require_once $config['LIB_PATH'] . 'signupValidation.php';
+require_once $config['LIB_PATH'] . 'validation.php';
 
 if (isset($_COOKIE['user-id-cookie'])) {
     $id = $_COOKIE['user-id-cookie'];
@@ -18,7 +18,7 @@ $message = '';
 $inputAvt = '';
 
 if (isset($_FILES['formFile'])) {
-    $result = isValidFile($config);
+    $result = isValidFile($config, 'formFile', 'avatar/');
     $file_ok = $result[0];
     $message = $result[1];
     $fileNewName = $result[2];
@@ -39,46 +39,9 @@ if (isset($_FILES['formFile'])) {
         }
     }
 
-    function isValidAvatarBtn($file_ok)
-    {
-        if (isset($_FILES['formFile'])) {
-            if ($file_ok) {
-                return 'is-valid btn-success';
-            } else {
-                return 'is-invalid btn-danger';
-            }
-        } else {
-            return '';
-        }
-    }
-
-    function isValidAvatarMessage($file_ok)
-    {
-        if (isset($_FILES['formFile'])) {
-            if ($file_ok) {
-                return 'valid-feedback';
-            } else {
-                return 'invalid-feedback';
-            }
-        }
-        return '';
-    }
-
-    $avtBtn = isValidAvatarBtn($file_ok);
-    $messageClass = isValidAvatarMessage($file_ok);
-
-    function isValidAvatarInput($file_ok)
-    {
-        if (isset($_FILES['formFile'])) {
-            if ($file_ok) {
-                return 'is-valid';
-            } else {
-                return 'is-invalid';
-            }
-        }
-        return '';
-    }
-    $inputAvt = isValidAvatarInput($file_ok);
+    $avtBtn = isset($_FILES['formFile']) ? isValidBtnCSS($file_ok) : '';
+    $messageClass = isset($_FILES['formFile']) ? isValidMessageCSS($file_ok) : '';
+    $inputAvt = isset($_FILES['formFile']) ? isValidCSS($file_ok) : '';
 }
 
 $file = $config['DATABASE_PATH'] . 'users.db';
@@ -174,11 +137,11 @@ $typeOfModal = isset($_COOKIE['user-id-cookie']) ? "
 
                     <div class='mb-3'>
                         <ul class='list-group'>
-                            <li class='list-group-item'>Password must be from 8 to 20 characters</li>
-                            <li class='list-group-item'>Password must contain at least 1 lower case letter</li>
-                            <li class='list-group-item'>Password must contain at least 1 upper case letter</li>
-                            <li class='list-group-item'>Password must contain at least 1 digit</li>
-                            <li class='list-group-item'>Password requires to have no space</li>
+                            <li class='list-group-item pe-none'>From 8 to 20 characters</li>
+                            <li class='list-group-item pe-none'>Contain at least 1 lower case letter</li>
+                            <li class='list-group-item pe-none'>Contain at least 1 upper case letter</li>
+                            <li class='list-group-item pe-none'>Contain at least 1 digit</li>
+                            <li class='list-group-item pe-none'>Have no space</li>
                         </ul>
                     </div>
 

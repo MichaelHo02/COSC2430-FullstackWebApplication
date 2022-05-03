@@ -10,7 +10,8 @@ require $pathRenderPostFactory;
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-2">
         <div class="col w-75 ms-auto me-auto position-relative">
             <button class="btn btn-primary create-post-btn 
-            <?php echo $btnVisibility; ?> "><i class="bi bi-plus-lg"></i> Create new post</button>
+            <?php echo $btnVisibility;
+            echo $btnValidations; ?>"><i class=" bi bi-plus-lg"></i> Create new post</button>
         </div>
 
     </div>
