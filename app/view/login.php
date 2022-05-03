@@ -19,7 +19,7 @@
                 <div id="passwordUserFeedback" class="invalid-feedback"></div>
             </div>
             <div class="mb-3">
-                <label class="form-check-label" for="redirectSignUp">Don't have an account? <a href="?page=signup" class="link-primary">Sign up</a></label>
+                <p class="form-check-label">Don't have an account? <a href="?page=signup" class="link-primary">Sign up</a></p>
             </div>
             <div class="row align-items-start m-auto">
                 <button name="submit" type="submit" class="col-md-2 col-sm-12 btn btn-primary login-submit">Submit</button>

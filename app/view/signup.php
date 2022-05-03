@@ -35,7 +35,7 @@
             <div class="mb-3">
                 <label for="formFile" class="form-label">Profile picture</label>
                 <input class="form-control <?php echo $fileCSS; ?>" type="file" id="formFile" name="formFile">
-                <div id="" class="<?php echo $fileMessageCSS; ?>">
+                <div class="<?php echo $fileMessageCSS; ?>">
                     <?php
                     echo $message ?? null;
                     ?>
