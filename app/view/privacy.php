@@ -198,7 +198,7 @@
                         this Privacy Policy.
                     </p>
                 </div>
-                <div class="mt-5">
+                <div class="mt-5" id="cookies">
                     <h3 class="display-6">Tracking Technologies and Cookies</h3>
                     <p class="mt-4">
                         We use Cookies and similar tracking technologies to track the
