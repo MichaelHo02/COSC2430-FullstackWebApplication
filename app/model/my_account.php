@@ -54,7 +54,7 @@ $objArray = getJson($file);
 if (isset($_POST['password'])) {
     for ($i = 0; $i < count($objArray); $i++) {
         if ($objArray[$i]->id == $id) {
-            $objArray[$i]->password = md5($_POST['password']);
+            $objArray[$i]->password = password_hash($_POST['password'], PASSWORD_DEFAULT);
             break;
         }
     }
@@ -150,7 +150,7 @@ $typeOfModal = isset($_COOKIE['user-id-cookie']) ? "
                     <div class='mb-3'>
                         <label for='retypePassword' class='form-label'>Retype Password</label>
                         <input name='retypePassword' type='password' class='form-control' id='retypePassword'>
-                        <div id='retypePasswordFeedback' class='></div>
+                        <div id='retypePasswordFeedback' class=''></div>
                     </div>
                 </div>
                 <div class='modal-footer'>

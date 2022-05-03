@@ -11,7 +11,6 @@ class Post
     function __construct($postId, $userId, $postDesc, $sharingLev, $postExt)
     {
         $this->postId = $postId;
-        date_default_timezone_set('Asia/Ho_Chi_Minh');
         $this->publishedDate = time();
         $this->userId = $userId;
         $this->postDesc = $postDesc;
