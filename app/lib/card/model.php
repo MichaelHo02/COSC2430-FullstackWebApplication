@@ -6,35 +6,36 @@ include_once $config['LIB_PATH'] . 'io.php';
 function renderCard($id, $avatar, $username, $lastUpdate, $content, $image, $sharingLev, $currentPath, $isLazy)
 {
     $lazy = $isLazy == true ? "loading='lazy'" : "";
-    $btnStr = ($currentPath !== 'home') ? '
-    <button name="' . $id . '" type="submit" value="submit" class="delBtn btn btn-danger rounded-circle position-absolute top-0 start-100 translate-middle px-2 py-1 delete-img-btn">
-        <i class="bi bi-x"></i>
-    </button>' : '';
+    $btnStr = ($currentPath !== 'home') ? "
+    <button name='$id' type='submit' value='submit' class='delBtn btn btn-danger rounded-circle position-absolute top-0 start-100 translate-middle px-2 py-1 delete-img-btn'>
+        <i class='bi bi-x'></i>
+    </button>" : '';
 
-    echo '
-        <div class="col w-75 ms-auto me-auto position-relative" id="' . $id . '">
-            <div class="card h-100">' . $btnStr . '
-                <div class="card-body">
-                    <div class="row px-3 align-items-center justify-content-start">
-                        <div class="col col-1 bg-info rounded-circle avatar">
-                            <img src="' . $avatar . '" class="mx-auto d-block img-fluid" alt="avatar">
+    echo "
+        <div class='col w-75 ms-auto me-auto position-relative' id='$id'>
+            <div class='card h-100'>
+                $btnStr
+                <div class='card-body'>
+                    <div class='row px-3 align-items-center justify-content-start'>
+                        <div class='col col-1 bg-info rounded-circle avatar'>
+                            <img src='$avatar' class='mx-auto d-block img-fluid' alt='avatar'>
                         </div>
-                        <div class="col col-8">
-                            <h5 class="card-title">' . $username . '</h5>
-                            <p class="card-text">
-                                <small class="text-muted">' . $lastUpdate . '</small>
-                                <small class="text-muted"> | ' . $sharingLev . '</small>
+                        <div class='col col-8'>
+                            <h5 class='card-title'>$username</h5>
+                            <p class='card-text'>
+                                <small class='text-muted'>$lastUpdate</small>
+                                <small class='text-muted'> | $sharingLev</small>
                             </p>
                         </div>
                     </div>
-                    <div class="row px-3 pt-2">
-                        <p class="card-text p-0 rounded-2">' . $content . '</p>
+                    <div class='row px-3 pt-2'>
+                        <p class='card-text p-0 rounded-2'>$content</p>
                     </div>
                 </div>
-                <img src="' . $image . '" class="card-img-bottom cap px-2 pb-2" alt="Post Image" ' . $lazy . ' />
+                <img src='$image' class='card-img-bottom cap px-2 pb-2' alt='Post Image' $lazy/>
             </div>
         </div>
-        ';
+        ";
 }
 
 function getUser($id, $userJson)
@@ -66,7 +67,7 @@ function isValidPostForGuest($sharingLev)
 
 function isValidPostMyAccount($id)
 {
-    return $id == (isset($_COOKIE['user-id-cookie'])? $_COOKIE['user-id-cookie'] : $_REQUEST['id']);
+    return $id == (isset($_COOKIE['user-id-cookie']) ? $_COOKIE['user-id-cookie'] : $_REQUEST['id']);
 }
 
 function isValidPostForUser($sharingLev, $id)
