@@ -112,10 +112,12 @@ function renderUIUser(data) {
 		}
 		let id = data[i].id;
 		let email = data[i].email;
+		let firstName = data[i].firstName
+		let lastName = data[i].lastName
 		let html = `
             <li class="list-group-item" onclick="window.location.href = '?page=my_account&&id=${id}'">
                 <span class="pe-1">
-                    Id: ${id}, Email: ${email}
+                    Email: ${email} | Name: ${firstName + ' ' + lastName}
                 </span>
             </li>
         `;
