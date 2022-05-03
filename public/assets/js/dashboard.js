@@ -23,12 +23,13 @@ function fetchAllUsers(callback) {
 function filterData(data) {
 	let result = [];
 
-	let searchValue = searchUserInput.value;
+	let searchValue = searchUserInput.value.toString();
+
 	data.forEach((user) => {
 		if (
 			user.email.includes(searchValue) ||
-			user.firstname.includes(searchValue) ||
-			user.lastname.includes(searchValue)
+			user.firstName.includes(searchValue) ||
+			user.lastName.includes(searchValue)
 		) {
 			result.push(user);
 		}
