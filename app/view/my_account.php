@@ -39,9 +39,9 @@
     </div>
 </div>
 
-<!-- Modal -->
-<?php echo $typeOfModal; ?>
-
 <?php
 configComponent($postDB, $userDB, $page, './assets/img/');
 ?>
+
+<!-- Modal -->
+<?php echo $typeOfModal; ?>
