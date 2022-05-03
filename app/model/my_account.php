@@ -150,7 +150,7 @@ $typeOfModal = isset($_COOKIE['user-id-cookie']) ? "
                     <div class='mb-3'>
                         <label for='retypePassword' class='form-label'>Retype Password</label>
                         <input name='retypePassword' type='password' class='form-control' id='retypePassword'>
-                        <div id='retypePasswordFeedback' class='></div>
+                        <div id='retypePasswordFeedback' class=''></div>
                     </div>
                 </div>
                 <div class='modal-footer'>
