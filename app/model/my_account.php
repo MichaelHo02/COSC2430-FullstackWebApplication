@@ -3,6 +3,10 @@ if (!isset($_COOKIE['user-id-cookie']) && !isset($_COOKIE['admin'])) {
     header('location: ?page=login');
 }
 
+if (!isset($_REQUEST['id']) && isset($_COOKIE['admin'])) {
+    header('location: ?page=admin');
+}
+
 require_once $config['LIB_PATH'] . 'io.php';
 require_once $config['LIB_PATH'] . 'validation.php';
 

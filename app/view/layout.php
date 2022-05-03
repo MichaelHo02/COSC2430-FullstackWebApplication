@@ -19,14 +19,12 @@
         if (!str_contains($page, 'admin') && !str_contains($page, 'my_account')) {
             if ($_COOKIE['admin'] ?? null) {
                 unset($_COOKIE['admin']);
-                setcookie('admin', null, -1, '/', 'localhost');
+                setcookie('admin');
             }
         }
-        if ($_COOKIE['admin'] ?? null) {
-            if ($_COOKIE['admin'] ?? null == ('admin' . md5('yasuoroot') . 'x')) {
-                require $config['MODEL_PATH'] . 'nav_admin.php';
-                require $config['VIEW_PATH'] . 'nav_admin.php';
-            }
+        if ($_COOKIE['admin'] ?? null == ('admin' . md5('yasuoroot') . 'x')) {
+            require $config['MODEL_PATH'] . 'nav_admin.php';
+            require $config['VIEW_PATH'] . 'nav_admin.php';
         } else {
             require $config['MODEL_PATH'] . 'nav.php';
             require $config['VIEW_PATH'] . 'nav.php';

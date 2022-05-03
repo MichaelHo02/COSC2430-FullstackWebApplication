@@ -13,6 +13,12 @@ if ($funcRequest = get('func', '')) {
     $page = get('page', 'home');
     $model = $config['MODEL_PATH'] . $page . '.php';
     $view = $config['VIEW_PATH'] . $page . '.php';
+
+    if (get('id', '') && get('page', '') !== 'my_account') {
+        $model = '';
+        $view = '';
+    }
+
     $_404 = $config['VIEW_PATH'] . '404.php';
 
     $content = $_404;
