@@ -25,11 +25,6 @@ class User
         $this->registeredTime = date('Y/m/d');
     }
 
-    function setName($name)
-    {
-        $this->name = $name;
-    }
-
     function setEmail($email)
     {
         $this->email = $email;
@@ -58,10 +53,6 @@ class User
     function getId()
     {
         return $this->id;
-    }
-    function getName()
-    {
-        return $this->name;
     }
 
     function getEmail()
