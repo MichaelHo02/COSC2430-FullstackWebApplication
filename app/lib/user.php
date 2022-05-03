@@ -10,8 +10,9 @@ class User
     private $firstName;
     private $lastName;
     private $avatar;
+    private $avtExt;
 
-    function __construct($email, $password, $firstName, $lastName, $avatar)
+    function __construct($email, $password, $firstName, $lastName, $avatar, $avtExt)
     {
         $this->id = "user_" . uniqid();
         $this->email = $email;
@@ -19,6 +20,7 @@ class User
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->avatar = $avatar;
+        $this->avtExt = $avtExt;
         $this->username = trim($this->firstName) . trim($this->lastName);
         $this->registeredTime = date('Y/m/d');
     }

@@ -27,13 +27,14 @@ if (isset($_POST['submit'])) {
             $isFileValid = $result[0];
             $message = $result[1];
             $fileNewName = $result[2];
+            $fileExt = $result[3];
         }
     } else {
         $message = 'No File was upload';
     }
 
     if ($isFileValid ?? null && $isEmailValid) {
-        $user = new User(strtolower($email), $password, $firstName, $lastName, $fileNewName);
+        $user = new User(strtolower($email), $password, $firstName, $lastName, $fileNewName, $fileExt);
 
         $file = $config['DATABASE_PATH'] . 'users.db';
         if ($out = fopen($file, 'r')) {

@@ -13,8 +13,7 @@ if ($_FILES['uploadImg'] ?? null) {
     $isValidFile = $result[0];
     $message = $result[1];
     $fileNewName = $result[2];
-    $explore = explode('.', $_FILES['uploadImg']['name']);
-    $file_ext = strtolower(end($explore));
+    $fileExt = $result[3];
 }
 
 if ($isValidFile && isset($_POST['submit'])) {
@@ -24,7 +23,7 @@ if ($isValidFile && isset($_POST['submit'])) {
         $_COOKIE['user-id-cookie'],
         $_POST['postDesc'],
         $_POST['sharingLev'],
-        $file_ext
+        $fileExt
     );
 
     // Add img to db

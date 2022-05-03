@@ -5,11 +5,11 @@ function isValidFile($config, $key, $path)
     $file_ok = true;
     $extension = ['jpg', 'jpeg', 'png', 'gif'];
     $explore = explode('.', $avatar['name']);
-    $file_ext = strtolower(end($explore));
+    $fileExt    = strtolower(end($explore));
     if ($avatar['error']) {
         return [false, 'File size is greater than expected!', ''];
     }
-    if (in_array($file_ext, $extension) === false) {
+    if (in_array($fileExt  , $extension) === false) {
         $file_ok = false;
         $message = 'Wrong file extension! Only JPG, JPEG, PNG, and GIF';
     }
@@ -19,7 +19,7 @@ function isValidFile($config, $key, $path)
     }
     if ($file_ok) {
         $fileNewName = 'img_' . uniqid();
-        $fileFullName = $config['IMG_PATH'] . $path . $fileNewName . '.' . $file_ext;
+        $fileFullName = $config['IMG_PATH'] . $path . $fileNewName . '.' . $fileExt;
         if (move_uploaded_file($avatar['tmp_name'], $fileFullName)) {
             $message = 'File is saved!';
         } else {
@@ -27,7 +27,7 @@ function isValidFile($config, $key, $path)
             $message = 'File is not saved!';
         }
     }
-    return [$file_ok, $message, $fileNewName ?? ''];
+    return [$file_ok, $message, $fileNewName ?? '', $fileExt ?? ''];
 }
 
 function isValidEmail($config, $emailInput)

@@ -49,7 +49,7 @@ function getUser($id, $userJson)
 function configCard($post, $userJson, $pathToImage, $currentPath, $isLazy)
 {
     $user = getUser($post->userId, $userJson);
-    $avatar = $pathToImage . 'avatar/' . $user->avatar;
+    $avatar = $pathToImage . 'avatar/' . $user->avatar . '.' . $user->avtExt;
     $username = $user->username;
     date_default_timezone_set('Asia/Ho_Chi_Minh');
     $lastUpdate = date('Y-m-d', $post->publishedDate);

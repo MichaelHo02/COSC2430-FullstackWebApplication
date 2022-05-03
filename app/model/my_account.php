@@ -22,6 +22,7 @@ if (isset($_FILES['formFile'])) {
     $file_ok = $result[0];
     $message = $result[1];
     $fileNewName = $result[2];
+    $fileExt = $result[3];
 
     if ($file_ok) {
         $file = $config['DATABASE_PATH'] . 'users.db';
@@ -29,8 +30,9 @@ if (isset($_FILES['formFile'])) {
         if ($objArray !== null) {
             for ($i = 0; $i < count($objArray); $i++) {
                 if ($objArray[$i]->id == $id) {
-                    unlink('./assets/img/avatar/' . $objArray[$i]->avatar);
+                    unlink('./assets/img/avatar/' . $objArray[$i]->avatar . '.' . $objArray[$i]->avtExt);
                     $objArray[$i]->avatar = $fileNewName;
+                    $objArray[$i]->avtExt = $fileExt;
                     break;
                 }
             }
@@ -64,7 +66,7 @@ $objArray = getJson($file);
 if ($objArray !== null) {
     for ($i = 0; $i < count($objArray); $i++) {
         if ($objArray[$i]->id == $id) {
-            $avatar = './assets/img/avatar/' . $objArray[$i]->avatar;
+            $avatar = './assets/img/avatar/' . $objArray[$i]->avatar . '.' . $objArray[$i]->avtExt;
             $email = $objArray[$i]->email;
             $firstName = $objArray[$i]->firstName;
             $lastName = $objArray[$i]->lastName;
