@@ -52,8 +52,7 @@ function configCard($post, $userJson, $pathToImage, $currentPath, $isLazy)
     $user = getUser($post->userId, $userJson);
     $avatar = $pathToImage . 'avatar/' . $user->avatar . '.' . $user->avtExt;
     $username = $user->username;
-    date_default_timezone_set('Asia/Ho_Chi_Minh');
-    $lastUpdate = date('Y-m-d', $post->publishedDate);
+    $lastUpdate = date('Y-m-d H:i', $post->publishedDate);
     $content = $post->postDesc;
     $image = $pathToImage . 'storage/' . $post->postId . '.' . $post->postExt;
     $sharingLev = $post->sharingLev;

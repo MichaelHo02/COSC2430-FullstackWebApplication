@@ -22,7 +22,8 @@ class User
         $this->avatar = $avatar;
         $this->avtExt = $avtExt;
         $this->username = trim($this->firstName) . trim($this->lastName);
-        $this->registeredTime = date('Y/m/d');
+
+        $this->registeredTime = date('Y-m-d H:i');
     }
 
     function setName($name)
