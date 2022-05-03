@@ -1,7 +1,7 @@
 <?php
 if (isset($_COOKIE['user-id-cookie'])) {
     unset($_COOKIE['user-id-cookie']);
-    setcookie('user-id-cookie', null, -1, '/', 'localhost');
+    setcookie('user-id-cookie');
 }
 
 $loginPasswordErr = '';
@@ -19,7 +19,6 @@ if (isset($_POST['submit'])) {
     } else {
         $loginPasswordErr = 'Wrong username or password!';
     }
-
 }
 
 if ($loginPasswordErr == '') {
