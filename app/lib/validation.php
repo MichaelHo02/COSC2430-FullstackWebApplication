@@ -21,7 +21,7 @@ function isValidFile($config, $key, $path)
         $fileNewName = 'img_' . uniqid();
         $fileFullName = $config['IMG_PATH'] . $path . $fileNewName . '.' . $fileExt;
         if (move_uploaded_file($avatar['tmp_name'], $fileFullName)) {
-            $message = 'File is saved!';
+            $message = '';
         } else {
             echo 'fail ' . $fileNewName;
             $message = 'File is not saved!';
@@ -34,7 +34,7 @@ function isValidEmail($config, $emailInput)
 {
     $email_ok = true;
     $path = $config['DATABASE_PATH'] . 'users.db';
-    $message_email = 'Email is saved';
+    $message_email = '';
     $objArray = getJson($path);
     if ($objArray !== null) {
         for ($i = 0; $i < count($objArray); $i++) {
@@ -51,7 +51,7 @@ function isValidEmail($config, $emailInput)
 function isValidBtnCSS($isValid)
 {
     if ($isValid) {
-        return 'is-valid btn-success';
+        return '';
     } else {
         return 'is-invalid btn-danger';
     }
@@ -60,7 +60,7 @@ function isValidBtnCSS($isValid)
 function isValidCSS($isValid)
 {
     if ($isValid) {
-        return 'is-valid';
+        return '';
     } else {
         return 'is-invalid';
     }
@@ -69,7 +69,7 @@ function isValidCSS($isValid)
 function isValidMessageCSS($isValid)
 {
     if ($isValid) {
-        return 'valid-feedback';
+        return '';
     } else {
         return 'invalid-feedback';
     }

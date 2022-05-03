@@ -1,6 +1,6 @@
 <div class="container mt-5">
     <div class="row justify-content-center">
-        <h1 class="display-3 col-12 text-center">Privacy</h1>
+        <h2 class="display-3 col-12 text-center">Privacy</h2>
         <p class="text-muted text-center">Last updated: February 12, 2022</p>
 
         <div class="col-sm-10 mt-4">
@@ -21,7 +21,7 @@
         </div>
 
         <section class="col-sm-10 mt-4">
-            <h1 class="display-3 col-12 text-center">Interpretation and Definitions</h1>
+            <h2 class="display-3 col-12 text-center">Interpretation and Definitions</h2>
             <div class="mt-5">
                 <h2 class="display-5 col-12">Interpretation</h2>
                 <p class="mt-4">
@@ -114,7 +114,7 @@
             </div>
         </section>
         <section class="col-sm-10 mt-4">
-            <h1 class="display-3 col-12 text-center">Collecting and Using Your Personal Data</h1>
+            <h2 class="display-3 col-12 text-center">Collecting and Using Your Personal Data</h2>
             <div class="mt-5">
                 <h2 class="display-5 col-12">Types of Data Collected</h2>
                 <div class="mt-5">
@@ -518,7 +518,7 @@
             </div>
         </section>
         <section class="col-sm-10 mt-4">
-            <h1 class="display-3 col-12 text-center">Children's Privacy</h1>
+            <h2 class="display-3 col-12 text-center">Children's Privacy</h2>
             <p class="mt-4">
                 Our Service does not address anyone under the age of 13. We do not
                 knowingly collect personally identifiable information from anyone
@@ -536,7 +536,7 @@
             </p>
         </section>
         <section class="col-sm-10 mt-4">
-            <h1 class="display-3 col-12 text-center">Links to Other Websites</h1>
+            <h2 class="display-3 col-12 text-center">Links to Other Websites</h2>
             <p class="mt-4">
                 Our Service may contain links to other websites that are not operated
                 by Us. If You click on a third party link, You will be directed to
@@ -549,7 +549,7 @@
             </p>
         </section>
         <section class="col-sm-10 mt-4">
-            <h1 class="display-3 col-12 text-center">Changes to this Privacy Policy</h1>
+            <h2 class="display-3 col-12 text-center">Changes to this Privacy Policy</h2>
             <p class="mt-4">
                 We may update Our Privacy Policy from time to time. We will notify You
                 of any changes by posting the new Privacy Policy on this page.
@@ -566,7 +566,7 @@
             </p>
         </section>
         <section class="col-sm-10 mt-4">
-            <h1 id="contact" class="display-3 col-12 text-center">Contact Us</h1>
+            <h2 id="contact" class="display-3 col-12 text-center">Contact Us</h2>
             <p class="mt-4 text-center">
                 If you have any questions about this Privacy Policy, You can contact
                 us:

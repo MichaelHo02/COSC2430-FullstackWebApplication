@@ -13,20 +13,20 @@
             </h1>
             <div class="row mt-lg-3 mt-md-0 mt-0">
                 <div class="col-lg-6 col-md-12 col-sm-12 text-md-start text-center">
-                    <p for="" class="">Email: <span class=""><?php echo $email; ?></span></p>
+                    <p>Email: <span><?php echo $email; ?></span></p>
                 </div>
                 <div class="col-lg-6 col-md-12 col-sm-12 text-md-start text-center">
-                    <p for="" class="">Registered on: <span class="">
+                    <p>Registered on: <span>
                             <?php echo $registeredTime; ?>
                         </span></p>
                 </div>
             </div>
             <div class="row mt-lg-3 mt-md-0 mt-0">
                 <div class="col-lg-6 col-md-12 col-sm-12 text-md-start text-center">
-                    <p for="" class="">First name: <span class=""><?php echo $firstName; ?></span> </p>
+                    <p>First name: <span><?php echo $firstName; ?></span> </p>
                 </div>
                 <div class="col-lg-6 col-md-12 col-sm-12 text-md-start text-center">
-                    <p for="" class="">Last name: <span class=""><?php echo $lastName; ?></span></p>
+                    <p>Last name: <span><?php echo $lastName; ?></span></p>
                 </div>
             </div>
             <div class="row mt-lg-3 mt-md-0 mt-0">
