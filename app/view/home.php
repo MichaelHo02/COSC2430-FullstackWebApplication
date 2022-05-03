@@ -20,5 +20,5 @@ require $pathRenderPostFactory;
 </div>
 
 <?php
-configComponent($postDB, $userDB, $page, 'assets/img/');
+configComponent($postDB, $userDB, $page, './assets/img/');
 ?>

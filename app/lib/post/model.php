@@ -20,6 +20,7 @@ if ($_FILES['uploadImg'] ?? null) {
 if ($isValidFile && isset($_POST['submit'])) {
     // Create new post obj
     $post = new Post(
+        $fileNewName,
         $_COOKIE['user-id-cookie'],
         $_POST['postDesc'],
         $_POST['sharingLev'],

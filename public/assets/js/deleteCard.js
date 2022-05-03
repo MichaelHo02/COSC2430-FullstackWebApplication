@@ -13,7 +13,9 @@ listBtn.forEach((element) => {
 			.then((response) => response.text())
 			.then((res) => {
 				if (res) {
+					console.log(res);
 					const card = $(`#${res}`);
+					console.log(card);
 					card.parentNode.removeChild(card);
 				}
 				console.log(res);

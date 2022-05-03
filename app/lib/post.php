@@ -8,9 +8,9 @@ class Post
     private $postDesc;
     private $sharingLev;
 
-    function __construct($userId, $postDesc, $sharingLev, $postExt)
+    function __construct($postId, $userId, $postDesc, $sharingLev, $postExt)
     {
-        $this->postId = "img_" . uniqid();
+        $this->postId = $postId;
         date_default_timezone_set('Asia/Ho_Chi_Minh');
         $this->publishedDate = time();
         $this->userId = $userId;

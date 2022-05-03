@@ -18,8 +18,8 @@ function isValidFile($config, $key, $path)
         $message = 'File size is greater than 20MB';
     }
     if ($file_ok) {
-        $fileNewName = uniqid() . '.' . $file_ext;
-        $fileFullName = $config['IMG_PATH'] . $path . $fileNewName;
+        $fileNewName = 'img_' . uniqid();
+        $fileFullName = $config['IMG_PATH'] . $path . $fileNewName . '.' . $file_ext;
         if (move_uploaded_file($avatar['tmp_name'], $fileFullName)) {
             $message = 'File is saved!';
         } else {
