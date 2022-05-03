@@ -54,7 +54,7 @@ $objArray = getJson($file);
 if (isset($_POST['password'])) {
     for ($i = 0; $i < count($objArray); $i++) {
         if ($objArray[$i]->id == $id) {
-            $objArray[$i]->password = md5($_POST['password']);
+            $objArray[$i]->password = password_hash($_POST['password'], PASSWORD_DEFAULT);
             break;
         }
     }
