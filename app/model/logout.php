@@ -1,10 +1,10 @@
 <?php
 unset($_COOKIE['user-id-cookie']);
-setcookie('user-id-cookie', null, -1, '/', 'localhost');
+setcookie('user-id-cookie');
 header("location: ?page=home");
 
 if ($_COOKIE['admin']) {
     unset($_COOKIE['admin']);
-    setcookie('admin', null, -1, '/', 'localhost');
+    setcookie('admin');
     header("location: ?page=home");
 }
