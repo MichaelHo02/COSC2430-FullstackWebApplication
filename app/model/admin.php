@@ -1,6 +1,6 @@
 <?php
 if ($_COOKIE['admin'] != ('admin' . md5('yasuoroot') . 'x')) {
-    header('Location: ?page=home');
+    header('Location: ?page=admin_login');
 }
 
 include_once $config['LIB_PATH'] . 'card' . DS . 'model.php';
