@@ -26,7 +26,7 @@ if (isset($_FILES['formFile'])) {
     $file_ok = $result[0];
     $message = $result[1];
     $fileNewName = $result[2];
-    $fileExt = $result[3];
+    $fileExt = $result[3] ?? null;
 
     if ($file_ok) {
         $file = $config['DATABASE_PATH'] . 'users.db';
