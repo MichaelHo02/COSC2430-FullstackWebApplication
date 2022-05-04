@@ -1,7 +1,7 @@
 <?php
 function getBtnClass($page)
 {
-    if (isset($_COOKIE['user-id-cookie']) && str_contains($page, 'my_account')) {
+    if (isset($_SESSION['user-id-cookie']) && str_contains($page, 'my_account')) {
         return 'btn-outline-danger';
     } else {
         return "btn-primary";
@@ -10,9 +10,9 @@ function getBtnClass($page)
 
 function getBtnLink($page)
 {
-    if (isset($_COOKIE['user-id-cookie']) && str_contains($page, 'my_account')) {
+    if (isset($_SESSION['user-id-cookie']) && str_contains($page, 'my_account')) {
         return '?page=logout';
-    } else if (isset($_COOKIE['user-id-cookie'])) {
+    } else if (isset($_SESSION['user-id-cookie'])) {
         return "?page=my_account";
     } else {
         return "?page=login";
@@ -21,7 +21,7 @@ function getBtnLink($page)
 
 function getBtnInnerText($page)
 {
-    if (isset($_COOKIE['user-id-cookie'])) {
+    if (isset($_SESSION['user-id-cookie'])) {
         if (str_contains($page, 'my_account')) {
             return 'Log out';
         } else {

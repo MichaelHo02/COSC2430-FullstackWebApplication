@@ -1,5 +1,5 @@
 <?php
-if ($_COOKIE['admin'] != ('admin' . md5('yasuoroot') . 'x')) {
+if ($_SESSION['admin'] != ('admin' . md5('yasuoroot') . 'x')) {
     header('Location: ?page=admin_login');
 }
 

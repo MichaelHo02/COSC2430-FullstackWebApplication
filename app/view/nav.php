@@ -8,7 +8,7 @@
         </button>
         <div class="collapse navbar-collapse col-8" id="navbarSupportedContent">
             <div class="py-2 col-lg-6">
-                <input class="form-control modal-xl w-100" type="search" placeholder="Search" aria-label="Search">
+                <input class="form-control modal-xl w-100 search-user-input" type="search" placeholder="Search" aria-label="Search">
             </div>
             <div class="col-lg-6 col-12 text-lg-end">
                 <a class="btn <?php echo $btnClass; ?> d-lg-inline-block d-grid" href="<?php echo $btnLink; ?>">

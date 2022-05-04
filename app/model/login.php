@@ -21,7 +21,7 @@ function validateLogin($config)
                 ) {
                     if (password_verify($loginPassword, $objArray[$i]->password)) {
                         $_GLOBAL[$objArray[$i]->id] = $objArray[$i];
-                        setcookie('user-id-cookie', $objArray[$i]->id, time() + 7200, "/", "localhost");
+                        $_SESSION['user-id-cookie'] = $objArray[$i]->id;
                         header('Location: ?page=home');
                     } else {
                         $loginPasswordErr = 'Wrong username or password!';

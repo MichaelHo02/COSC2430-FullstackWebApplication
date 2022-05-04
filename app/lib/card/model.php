@@ -66,7 +66,7 @@ function isValidPostForGuest($sharingLev)
 
 function isValidPostMyAccount($id)
 {
-    return $id == (isset($_COOKIE['user-id-cookie']) ? $_COOKIE['user-id-cookie'] : $_REQUEST['id']);
+    return $id == (isset($_SESSION['user-id-cookie']) ? $_SESSION['user-id-cookie'] : $_REQUEST['id']);
 }
 
 function isValidPostForUser($sharingLev, $id)
@@ -85,7 +85,7 @@ function configComponent($postFile, $userFile, $currentPath, $pathToImage)
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-2">
     ';
     if (str_contains($currentPath, 'home')) {
-        if (isset($_COOKIE['user-id-cookie'])) {
+        if (isset($_SESSION['user-id-cookie'])) {
             for ($i = 0; $i < count($postJson); $i++) {
                 if (isValidPostForUser($postJson[$i]->sharingLev, $postJson[$i]->userId)) {
                     configCard($postJson[$i], $userJson, $pathToImage, $currentPath, $i == 0 || $i == 1 || $i == 2 ? false : true);

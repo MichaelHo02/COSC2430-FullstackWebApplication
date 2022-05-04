@@ -4,7 +4,7 @@ $pathRenderPostFactory = $config['LIB_PATH'] . 'post' . DS . 'view.php';
 
 function setBtnVisibility()
 {
-    if (isset($_COOKIE['user-id-cookie'])) {
+    if (isset($_SESSION['user-id-cookie'])) {
         return "";
     } else {
         return "d-none";

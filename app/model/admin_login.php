@@ -1,7 +1,6 @@
 <?php
-if (isset($_COOKIE['user-id-cookie'])) {
-    unset($_COOKIE['user-id-cookie']);
-    setcookie('user-id-cookie');
+if (isset($_SESSION['user-id-cookie'])) {
+    unset($_SESSION['user-id-cookie']);
 }
 
 $loginPasswordErr = '';
@@ -14,7 +13,7 @@ if (isset($_POST['submit'])) {
     $loginPassword = md5($_POST['adminPassword']);
 
     if ($loginPassword == $password) {
-        setcookie('admin', $username . $password . "x", time() + 7200, "/", "localhost");
+        $_SESSION['admin'] = 'admin' . md5('yasuoroot') . 'x'   ; 
         header('Location: ?page=admin');
     } else {
         $loginPasswordErr = 'Wrong username or password!';

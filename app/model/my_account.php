@@ -1,17 +1,17 @@
 <?php
-if (!isset($_COOKIE['user-id-cookie']) && !isset($_COOKIE['admin'])) {
+if (!isset($_SESSION['user-id-cookie']) && !isset($_SESSION['admin'])) {
     header('location: ?page=login');
 }
 
-if (!isset($_REQUEST['id']) && isset($_COOKIE['admin'])) {
+if (!isset($_REQUEST['id']) && isset($_SESSION['admin'])) {
     header('location: ?page=admin');
 }
 
 require_once $config['LIB_PATH'] . 'io.php';
 require_once $config['LIB_PATH'] . 'validation.php';
 
-if (isset($_COOKIE['user-id-cookie'])) {
-    $id = $_COOKIE['user-id-cookie'];
+if (isset($_SESSION['user-id-cookie'])) {
+    $id = $_SESSION['user-id-cookie'];
 } else {
     $id = $_REQUEST['id'];
 }
@@ -81,7 +81,7 @@ if ($objArray !== null) {
     }
 }
 
-$typeOfBtn = isset($_COOKIE['user-id-cookie']) ? "
+$typeOfBtn = isset($_SESSION['user-id-cookie']) ? "
     <button type='button' class='btn btn-primary $avtBtn' data-bs-toggle='modal' data-bs-target='#exampleModalCenter'>
         Change Avatar
     </button>
@@ -97,7 +97,7 @@ $typeOfBtn = isset($_COOKIE['user-id-cookie']) ? "
     </div>
 ";
 
-$typeOfModal = isset($_COOKIE['user-id-cookie']) ? "
+$typeOfModal = isset($_SESSION['user-id-cookie']) ? "
 <div class='modal fade' id='exampleModalCenter' tabindex='-1' role='dialog' aria-hidden='true'>
     <div class='modal-dialog modal-dialog-centered' role='document'>
         <div class='modal-content'>
