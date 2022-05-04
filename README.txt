@@ -7,3 +7,9 @@ Members:
 
 We are all constribute equally with each person 25% of the project.
 
+Repository: https://github.com/MichaelHo02/COSC2430-FullstackWebApplication
+Video:
+
+To start/ run the website, you need to navigate to the folder ./COSC2430-FullstackWebApplication/www
+Then you can type the following command into your terminal php -S localhost:8080
+Then you can navigate the website by entering the following url: 
