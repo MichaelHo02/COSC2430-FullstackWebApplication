@@ -1,4 +1,8 @@
 <?php
+if (isset($_SESSION['admin'])) {
+    unset($_SESSION['admin']);
+}
+
 require_once $config['LIB_PATH'] . "user.php";
 require_once $config['LIB_PATH'] . "io.php";
 
