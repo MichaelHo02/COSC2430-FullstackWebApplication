@@ -24,3 +24,6 @@ thach@gmail.com Thachho02
 ben@gmail.com Benparker0
 christopher@gmail.com Christopher0
 jake@gmail.com Jakenackos0
+julian@gmail.com Julianwan0
+leilani@gmail.com Lelilani0
+may@gmail.com Maygauthier0
