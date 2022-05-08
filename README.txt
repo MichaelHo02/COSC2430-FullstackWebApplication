@@ -13,3 +13,9 @@ Video:
 To start/ run the website, you need to navigate to the folder ./COSC2430-FullstackWebApplication/www
 Then you can type the following command into your terminal php -S localhost:8080
 Then you can navigate the website by entering the following url: 
+
+
+
+
+
+alex@gmail.com Alexsuprun0

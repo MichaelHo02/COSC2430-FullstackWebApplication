@@ -17,10 +17,10 @@ function renderCard($id, $avatar, $username, $lastUpdate, $content, $image, $sha
                 $btnStr
                 <div class='card-body'>
                     <div class='row px-3 align-items-center justify-content-start'>
-                        <div class='col col-1 bg-info rounded-circle avatar'>
+                        <div class='col col-md-1 col-2 bg-info rounded-circle avatar'>
                             <img src='$avatar' class='mx-auto d-block img-fluid' alt='avatar'>
                         </div>
-                        <div class='col col-8'>
+                        <div class='col col-md-11 col-10'>
                             <h5 class='card-title'>$username</h5>
                             <p class='card-text'>
                                 <small class='text-muted'>$lastUpdate</small>
