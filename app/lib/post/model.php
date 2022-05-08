@@ -32,8 +32,6 @@ if ($isValidFile && isset($_POST['submit'])) {
     array_push($jsonPostSrc, $post->jsonSerialize());
     $strJson = json_encode($jsonPostSrc);
     setJson($postFile, $strJson);
-
-    header('location: ?page=home');
 }
 
 $inputClass = isset($_POST['submit']) ? isValidCSS($isValidFile) : '';
