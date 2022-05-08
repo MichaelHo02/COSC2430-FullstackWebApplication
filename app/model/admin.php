@@ -1,4 +1,7 @@
 <?php
+if (!isset($_SESSION['admin'])) {
+    header('Location: ?page=admin_login');
+}
 if ($_SESSION['admin'] != ('admin' . md5('yasuoroot') . 'x')) {
     header('Location: ?page=admin_login');
 }
