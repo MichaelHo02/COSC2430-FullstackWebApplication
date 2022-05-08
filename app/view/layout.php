@@ -18,12 +18,11 @@
     <div class="d-flex flex-column min-vh-100">
         <?php
         if (!str_contains($page, 'admin') && !str_contains($page, 'my_account')) {
-            if ($_COOKIE['admin'] ?? null) {
-                unset($_COOKIE['admin']);
-                setcookie('admin');
+            if ($_SESSION['admin'] ?? null) {
+                unset($_SESSION['admin']);
             }
         }
-        if ($_COOKIE['admin'] ?? null == ('admin' . md5('yasuoroot') . 'x')) {
+        if ($_SESSION['admin'] ?? null == ('admin' . md5('yasuoroot') . 'x')) {
             require $config['MODEL_PATH'] . 'nav_admin.php';
             require $config['VIEW_PATH'] . 'nav_admin.php';
         } else {
